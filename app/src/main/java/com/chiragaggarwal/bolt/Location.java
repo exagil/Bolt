@@ -15,6 +15,29 @@ public class Location {
         return nativeLocation.distanceTo(destination.nativeLocation);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Location location = (Location) o;
+
+        if (Double.compare(location.latitude, latitude) != 0) return false;
+        return Double.compare(location.longitude, longitude) == 0;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(latitude);
+        result = (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(longitude);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
     private android.location.Location buildNativeLocation(double latitude, double longitude) {
         android.location.Location location = new android.location.Location("");
         location.setLatitude(latitude);
