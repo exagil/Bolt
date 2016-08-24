@@ -59,6 +59,12 @@ public class LocationTest {
     }
 
     @Test
+    public void testThatALocationWhichDoesNotHaveAccuracyOfValidMeasureIsInvalid() {
+        Location location = new Location(12.9611d, 77.6472d, false, 100, true, 100f);
+        assertFalse(location.isValid());
+    }
+
+    @Test
     public void testThatALocationWithAccuracyBelowTwentyIsValid() {
         Location location = new Location(12.9611d, 77.6472d, true, 19, true, 100f);
         assertTrue(location.isValid());
