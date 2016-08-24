@@ -63,4 +63,10 @@ public class LocationTest {
         Location location = new Location(12.9611d, 77.6472d, true, 19, true, 3.16f);
         assertTrue(location.isValid());
     }
+
+    @Test
+    public void testThatALocationWithoutSpeedIsNotValid() {
+        Location location = new Location(12.9611d, 77.6472d, true, 19, false, 3.16f);
+        assertFalse(location.isValid());
+    }
 }
