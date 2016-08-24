@@ -54,13 +54,13 @@ public class LocationTest {
 
     @Test
     public void testThatALocationWhichHasAccuracyOfTwentyIsValid() {
-        Location location = new Location(12.9611d, 77.6472d, true, 20, true, 3.16f);
+        Location location = new Location(12.9611d, 77.6472d, true, 20, true, 100f);
         assertTrue(location.isValid());
     }
 
     @Test
     public void testThatALocationWithAccuracyBelowTwentyIsValid() {
-        Location location = new Location(12.9611d, 77.6472d, true, 19, true, 3.16f);
+        Location location = new Location(12.9611d, 77.6472d, true, 19, true, 100f);
         assertTrue(location.isValid());
     }
 
@@ -74,5 +74,11 @@ public class LocationTest {
     public void testThatALocationWithSpeedMoreThanOneHundredMetersPerSecondIsNotValid() {
         Location location = new Location(12.9611d, 77.6472d, true, 19, true, 101f);
         assertFalse(location.isValid());
+    }
+
+    @Test
+    public void testThatALocationWithSpeedAsOneHundredMetersPerSecondIsValid() {
+        Location location = new Location(12.9611d, 77.6472d, true, 19, true, 100f);
+        assertTrue(location.isValid());
     }
 }
