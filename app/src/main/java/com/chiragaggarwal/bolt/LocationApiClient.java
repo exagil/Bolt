@@ -20,22 +20,19 @@ public class LocationApiClient implements
     private static final long FASTEST_LOCATION_UPDATE_INTERVAL_IN_SECONDS = 1;
     private static final float SMALLEST_DISPLACEMENT_IN_METERS = 1.0f;
     public static final int LOCATION_UPDATE_INTERVAL_IN_SECONDS = 2;
-    private final GoogleApiClient googleApiClient;
+    private GoogleApiClient googleApiClient;
     private LocationChangeListener locationChangeListener;
 
-    public LocationApiClient(Context context, LocationChangeListener locationChangeListener) {
+    public LocationApiClient(GoogleApiClient googleApiClient, LocationChangeListener locationChangeListener) {
+        this.googleApiClient = googleApiClient;
         this.locationChangeListener = locationChangeListener;
-        googleApiClient = buildGoogleApiClientForLocation(context);
-    }
-
-    public void connect() {
-        googleApiClient.connect();
     }
 
     @Override
     public void onLocationChanged(android.location.Location nativeLocation) {
         Location location = new Location(nativeLocation.getLatitude(), nativeLocation.getLongitude());
-        locationChangeListener.onLocationChanged(location);
+        if (nativeLocation.hasAccuracy())
+            locationChangeListener.onLocationChanged(location);
     }
 
     @Override
