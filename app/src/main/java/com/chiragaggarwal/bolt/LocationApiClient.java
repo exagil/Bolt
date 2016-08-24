@@ -16,6 +16,10 @@ public class LocationApiClient implements
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
 
+    public static final int LOCATION_REQUEST_PRIORITY = 100;
+    private static final long FASTEST_LOCATION_UPDATE_INTERVAL_IN_SECONDS = 1;
+    private static final float SMALLEST_DISPLACEMENT_IN_METERS = 1.0f;
+    public static final int LOCATION_UPDATE_INTERVAL_IN_SECONDS = 2;
     private final GoogleApiClient googleApiClient;
     private LocationChangeListener locationChangeListener;
 
@@ -36,7 +40,12 @@ public class LocationApiClient implements
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        LocationRequest locationRequest = new LocationRequest();
+        LocationRequest locationRequest = new LocationRequest().
+                setPriority(LOCATION_REQUEST_PRIORITY).
+                setInterval(LOCATION_UPDATE_INTERVAL_IN_SECONDS).
+                setFastestInterval(FASTEST_LOCATION_UPDATE_INTERVAL_IN_SECONDS).
+                setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY).
+                setSmallestDisplacement(SMALLEST_DISPLACEMENT_IN_METERS);
         LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
     }
 
