@@ -28,6 +28,12 @@ public class LocationApiClient implements
         this.locationChangeListener = locationChangeListener;
     }
 
+    public void connect() {
+        googleApiClient.registerConnectionCallbacks(this);
+        googleApiClient.registerConnectionFailedListener(this);
+        googleApiClient.connect();
+    }
+
     @Override
     public void onLocationChanged(android.location.Location nativeLocation) {
         Location location = new Location(nativeLocation.getLatitude(), nativeLocation.getLongitude());

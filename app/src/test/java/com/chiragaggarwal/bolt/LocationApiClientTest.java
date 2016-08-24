@@ -38,4 +38,15 @@ public class LocationApiClientTest {
         locationApiClient.onLocationChanged(nativeLocation);
         verify(locationChangeListener, never()).onLocationChanged(location);
     }
+
+    @Test
+    public void testThatLocationApiClientConnectsSuccessfully() {
+        LocationChangeListener locationChangeListener = mock(LocationChangeListener.class);
+        GoogleApiClient googleApiClient = mock(GoogleApiClient.class);
+        LocationApiClient locationApiClient = new LocationApiClient(googleApiClient, locationChangeListener);
+        locationApiClient.connect();
+        verify(googleApiClient).registerConnectionCallbacks(locationApiClient);
+        verify(googleApiClient).registerConnectionFailedListener(locationApiClient);
+        verify(googleApiClient).connect();
+    }
 }
