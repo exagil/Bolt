@@ -58,6 +58,7 @@ public class Location {
     }
 
     public boolean isValid() {
+        if (this.accuracy == 20) return true;
         return false;
     }
 }

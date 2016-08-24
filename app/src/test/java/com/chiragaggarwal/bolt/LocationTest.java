@@ -51,4 +51,10 @@ public class LocationTest {
         Location location = new Location(12.9611d, 77.6472d, false, 100, true, 3.16f);
         assertFalse(location.isValid());
     }
+
+    @Test
+    public void testThatALocationWhichHasAccuracyOfTwentyIsValid() {
+        Location location = new Location(12.9611d, 77.6472d, true, 20, true, 3.16f);
+        assertTrue(location.isValid());
+    }
 }
