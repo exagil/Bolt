@@ -58,9 +58,15 @@ public class Location {
     }
 
     public boolean isValid() {
-        if (this.hasAccuracy && this.accuracy <= 20 && this.hasSpeed && this.speed <= 100)
-            return true;
-        return false;
+        return hasValidAccuracy() && hasValidSpeed();
+    }
+
+    private boolean hasValidSpeed() {
+        return this.hasSpeed && this.speed <= 100;
+    }
+
+    private boolean hasValidAccuracy() {
+        return this.hasAccuracy && this.accuracy <= 20;
     }
 
 }
