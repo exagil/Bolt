@@ -1,6 +1,5 @@
 package com.chiragaggarwal.bolt;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,6 +19,7 @@ public class LocationApiClient implements
     private static final long FASTEST_LOCATION_UPDATE_INTERVAL_IN_SECONDS = 1;
     private static final float SMALLEST_DISPLACEMENT_IN_METERS = 1.0f;
     public static final int LOCATION_UPDATE_INTERVAL_IN_SECONDS = 2;
+    public static final float ACCURACY_THRESHOLD = 20f;
     private GoogleApiClient googleApiClient;
     private LocationChangeListener locationChangeListener;
 
@@ -37,8 +37,8 @@ public class LocationApiClient implements
     @Override
     public void onLocationChanged(android.location.Location nativeLocation) {
         Location location = new Location(nativeLocation.getLatitude(), nativeLocation.getLongitude());
-        if (nativeLocation.hasAccuracy())
-            locationChangeListener.onLocationChanged(location);
+        if (nativeLocation.hasAccuracy() && isNativeLocationAccuracyExpected(nativeLocation))
+            locationChangeListener.onFetchAccurateLocation(location);
     }
 
     @Override
@@ -60,12 +60,7 @@ public class LocationApiClient implements
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
     }
 
-    @NonNull
-    private GoogleApiClient buildGoogleApiClientForLocation(Context context) {
-        return new GoogleApiClient.Builder(context)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
+    private boolean isNativeLocationAccuracyExpected(android.location.Location nativeLocation) {
+        return nativeLocation.getAccuracy() <= ACCURACY_THRESHOLD;
     }
 }
