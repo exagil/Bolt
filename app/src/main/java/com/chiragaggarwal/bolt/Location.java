@@ -56,4 +56,8 @@ public class Location {
         nativeLocation.setAccuracy(accuracy);
         return nativeLocation;
     }
+
+    public boolean isValid() {
+        return false;
+    }
 }

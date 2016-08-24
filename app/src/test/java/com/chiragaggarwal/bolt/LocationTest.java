@@ -45,4 +45,10 @@ public class LocationTest {
         Location anotherLocation = new Location(12.9611d, 77.6472d, true, 16, true, 3.16f);
         assertEquals(location.hashCode(), anotherLocation.hashCode());
     }
+
+    @Test
+    public void testThatALocationWithNoAccuracyIsNotValid() {
+        Location location = new Location(12.9611d, 77.6472d, false, 100, true, 3.16f);
+        assertFalse(location.isValid());
+    }
 }
