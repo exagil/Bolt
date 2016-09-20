@@ -4,6 +4,7 @@ package com.chiragaggarwal.bolt;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.junit.Test;
+import org.mockito.Matchers;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
@@ -68,5 +69,21 @@ public class LocationApiClientTest {
         verify(googleApiClient).registerConnectionCallbacks(locationApiClient);
         verify(googleApiClient).registerConnectionFailedListener(locationApiClient);
         verify(googleApiClient).connect();
+    }
+
+    @Test
+    public void testThatLocationIsNotProvidedIfItDoesNotHaveSpeed() {
+        LocationChangeListener locationChangeListener = mock(LocationChangeListener.class);
+        GoogleApiClient googleApiClient = mock(GoogleApiClient.class);
+        LocationApiClient locationApiClient = new LocationApiClient(googleApiClient, locationChangeListener);
+        android.location.Location nativeLocation = mock(android.location.Location.class);
+        when(nativeLocation.getLatitude()).thenReturn(12.9611d);
+        when(nativeLocation.getLongitude()).thenReturn(77.6472d);
+        when(nativeLocation.hasAccuracy()).thenReturn(true);
+        when(nativeLocation.getAccuracy()).thenReturn(15.5f);
+        when(nativeLocation.hasSpeed()).thenReturn(false);
+        when(nativeLocation.getSpeed()).thenReturn(0.0f);
+        locationApiClient.onLocationChanged(nativeLocation);
+        verify(locationChangeListener, never()).onFetchAccurateLocation(Matchers.any(Location.class));
     }
 }
