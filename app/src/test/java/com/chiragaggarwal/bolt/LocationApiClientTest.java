@@ -86,4 +86,20 @@ public class LocationApiClientTest {
         locationApiClient.onLocationChanged(nativeLocation);
         verify(locationChangeListener, never()).onFetchAccurateLocation(Matchers.any(Location.class));
     }
+
+    @Test
+    public void testThatLocationIsNotProvidedWhenHasInappropriateSpeed() {
+        LocationChangeListener locationChangeListener = mock(LocationChangeListener.class);
+        GoogleApiClient googleApiClient = mock(GoogleApiClient.class);
+        LocationApiClient locationApiClient = new LocationApiClient(googleApiClient, locationChangeListener);
+        android.location.Location nativeLocation = mock(android.location.Location.class);
+        when(nativeLocation.getLatitude()).thenReturn(12.9611d);
+        when(nativeLocation.getLongitude()).thenReturn(77.6472d);
+        when(nativeLocation.hasAccuracy()).thenReturn(true);
+        when(nativeLocation.getAccuracy()).thenReturn(15.5f);
+        when(nativeLocation.hasSpeed()).thenReturn(true);
+        when(nativeLocation.getSpeed()).thenReturn(1000.765f);
+        locationApiClient.onLocationChanged(nativeLocation);
+        verify(locationChangeListener, never()).onFetchAccurateLocation(Matchers.any(Location.class));
+    }
 }
