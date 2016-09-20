@@ -4,11 +4,11 @@ public class Location {
     private final double latitude;
     private final double longitude;
     private final boolean hasAccuracy;
-    private final int accuracy;
+    private final float accuracy;
     private final boolean hasSpeed;
     private final float speed;
 
-    public Location(double latitude, double longitude, boolean hasAccuracy, int accuracy, boolean hasSpeed, float speed) {
+    public Location(double latitude, double longitude, boolean hasAccuracy, float accuracy, boolean hasSpeed, float speed) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.hasAccuracy = hasAccuracy;
@@ -42,7 +42,7 @@ public class Location {
         temp = Double.doubleToLongBits(longitude);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (hasAccuracy ? 1 : 0);
-        result = 31 * result + accuracy;
+        result = 31 * result + (accuracy != +0.0f ? Float.floatToIntBits(accuracy) : 0);
         result = 31 * result + (hasSpeed ? 1 : 0);
         result = 31 * result + (speed != +0.0f ? Float.floatToIntBits(speed) : 0);
         return result;
