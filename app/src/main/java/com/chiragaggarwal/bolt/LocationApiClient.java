@@ -36,7 +36,14 @@ public class LocationApiClient implements
 
     @Override
     public void onLocationChanged(android.location.Location nativeLocation) {
-        Location location = new Location(nativeLocation.getLatitude(), nativeLocation.getLongitude());
+        Location location = new Location(
+                nativeLocation.getLatitude(),
+                nativeLocation.getLongitude(),
+                nativeLocation.hasAccuracy(),
+                nativeLocation.getAccuracy(),
+                nativeLocation.hasSpeed(),
+                nativeLocation.getSpeed()
+        );
         if (nativeLocation.hasAccuracy() && isNativeLocationAccuracyExpected(nativeLocation))
             locationChangeListener.onFetchAccurateLocation(location);
     }
