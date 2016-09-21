@@ -4,4 +4,5 @@
     <string name="calories">CALORIES (CAL)</string>
     <string name="average_pace">AVG. PACE</string>
     <string name="distance">DISTANCE (MI)</string>
+    <string name="start_activity">START ACTIVITY</string>
 </resources>

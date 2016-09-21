@@ -1,11 +1,67 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="style_full_width_extensible_height">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="style_extensible_height_extensible_width">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="text_timer" parent="@style/style_full_width_extensible_height">
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">24dp</item>
+        <item name="android:textSize">64sp</item>
+    </style>
+
+    <style name="text_duration" parent="@style/style_extensible_height_extensible_width">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_below">@id/text_timer</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="layout_run_stats" parent="@style/style_full_width_extensible_height">
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_below">@id/text_duration</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:weightSum">3</item>
+    </style>
+
+    <style name="layout_stats_element">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="text_stats_measure" parent="@style/style_extensible_height_extensible_width">
+        <item name="android:layout_gravity">top|center_horizontal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">40sp</item>
+    </style>
+
+    <style name="text_stats_label" parent="@style/style_extensible_height_extensible_width">
+        <item name="android:layout_gravity">top|center_horizontal</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="button_start_activity" parent="@style/style_full_width_extensible_height">
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:background">@android:color/holo_green_light</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>
