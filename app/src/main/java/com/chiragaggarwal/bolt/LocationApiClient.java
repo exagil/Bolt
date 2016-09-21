@@ -19,8 +19,6 @@ public class LocationApiClient implements
     private static final long FASTEST_LOCATION_UPDATE_INTERVAL_IN_SECONDS = 1;
     private static final float SMALLEST_DISPLACEMENT_IN_METERS = 1.0f;
     public static final int LOCATION_UPDATE_INTERVAL_IN_SECONDS = 2;
-    public static final float ACCURACY_THRESHOLD = 20f;
-    public static final float SPEED_THRESHOLD = 100f;
     private GoogleApiClient googleApiClient;
     private LocationChangeListener locationChangeListener;
 
@@ -49,10 +47,7 @@ public class LocationApiClient implements
             locationChangeListener.onFetchAccurateLocation(location);
     }
 
-    private boolean hasAppropriateAccuracy(android.location.Location nativeLocation) {
-        return nativeLocation.hasAccuracy() && isNativeLocationAccuracyExpected(nativeLocation);
-    }
-
+    @SuppressWarnings("MissingPermission")
     @Override
     public void onConnected(@Nullable Bundle bundle) {
         LocationRequest locationRequest = new LocationRequest().
@@ -70,13 +65,5 @@ public class LocationApiClient implements
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-    }
-
-    private boolean hasAppropriateSpeed(android.location.Location nativeLocation) {
-        return nativeLocation.hasSpeed() && nativeLocation.getSpeed() <= SPEED_THRESHOLD;
-    }
-
-    private boolean isNativeLocationAccuracyExpected(android.location.Location nativeLocation) {
-        return nativeLocation.getAccuracy() <= ACCURACY_THRESHOLD;
     }
 }
