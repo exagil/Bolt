@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Bolt</string>
+    <string name="duration">DURATION</string>
+    <string name="calories">CALORIES (CAL)</string>
+    <string name="average_pace">AVG. PACE</string>
+    <string name="distance">DISTANCE (MI)</string>
 </resources>
