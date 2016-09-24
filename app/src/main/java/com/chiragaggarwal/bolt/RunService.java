@@ -11,9 +11,10 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import javax.inject.Inject;
 
 public class RunService extends Service implements LocationChangeListener {
+    private LocationApiClient locationApiClient;
+
     @Inject
     public GoogleApiClient googleApiClient;
-    private LocationApiClient locationApiClient;
 
     @Override
     public void onCreate() {
