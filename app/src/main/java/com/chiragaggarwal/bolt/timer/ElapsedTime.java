@@ -19,4 +19,8 @@ public class ElapsedTime {
     public int hashCode() {
         return elapsedTimeInSeconds;
     }
+
+    public int seconds() {
+        return 0;
+    }
 }

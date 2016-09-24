@@ -44,4 +44,10 @@ public class ElapsedTimeTest {
         ElapsedTime anotherElapsedTime = new ElapsedTime();
         Assert.assertEquals(anotherElapsedTime.hashCode(), elapsedTime.hashCode());
     }
+
+    @Test
+    public void testThatSecondsAreZeroByDefault() {
+        ElapsedTime elapsedTime = new ElapsedTime();
+        Assert.assertEquals(0, elapsedTime.seconds());
+    }
 }
