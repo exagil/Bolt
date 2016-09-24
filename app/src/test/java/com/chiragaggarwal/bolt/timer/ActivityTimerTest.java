@@ -1,10 +1,9 @@
 package com.chiragaggarwal.bolt.timer;
 
-import com.chiragaggarwal.bolt.timer.ActivityTimer;
-import com.chiragaggarwal.bolt.timer.TimerUpdateListener;
-
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import static org.mockito.Mockito.atMost;
 
 public class ActivityTimerTest {
     @Test
@@ -13,5 +12,15 @@ public class ActivityTimerTest {
         ActivityTimer activityTimer = new ActivityTimer(timerUpdateListener);
         activityTimer.start();
         Mockito.verify(timerUpdateListener).onTimeTick();
+    }
+
+    @Test
+    public void testThatATimerWhichIsStoppedAfterItIsStartedIsTickedNoMoreThanOnce() throws InterruptedException {
+        TimerUpdateListener timerUpdateListener = Mockito.mock(TimerUpdateListener.class);
+        ActivityTimer activityTimer = new ActivityTimer(timerUpdateListener);
+        activityTimer.start();
+        activityTimer.stop();
+        Thread.sleep(2500);
+        Mockito.verify(timerUpdateListener, atMost(1)).onTimeTick();
     }
 }

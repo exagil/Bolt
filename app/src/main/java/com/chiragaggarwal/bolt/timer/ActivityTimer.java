@@ -5,7 +5,7 @@ import java.util.TimerTask;
 
 public class ActivityTimer {
     private static final long DELAY_IN_STARTING = 0L;
-    private static final long TICK_INTERVAL = 500L;
+    private static final long TICK_INTERVAL = 1000L;
     private Timer timer;
     private TimerUpdateListener timerUpdateListener;
 
@@ -21,5 +21,11 @@ public class ActivityTimer {
                 timerUpdateListener.onTimeTick();
             }
         }, DELAY_IN_STARTING, TICK_INTERVAL);
+    }
+
+    public void stop() {
+        timer.purge();
+        timer.cancel();
+        timer = new Timer();
     }
 }
