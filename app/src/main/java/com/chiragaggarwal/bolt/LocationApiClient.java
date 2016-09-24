@@ -66,4 +66,10 @@ public class LocationApiClient implements
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
     }
+
+    public void disconnect() {
+        googleApiClient.unregisterConnectionCallbacks(this);
+        googleApiClient.unregisterConnectionFailedListener(this);
+        googleApiClient.disconnect();
+    }
 }

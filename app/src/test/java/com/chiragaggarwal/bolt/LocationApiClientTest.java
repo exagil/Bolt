@@ -72,6 +72,17 @@ public class LocationApiClientTest {
     }
 
     @Test
+    public void testThatLocationApiClientDisconnectsSuccessfully() {
+        LocationChangeListener locationChangeListener = mock(LocationChangeListener.class);
+        GoogleApiClient googleApiClient = mock(GoogleApiClient.class);
+        LocationApiClient locationApiClient = new LocationApiClient(googleApiClient, locationChangeListener);
+        locationApiClient.disconnect();
+        verify(googleApiClient).unregisterConnectionCallbacks(locationApiClient);
+        verify(googleApiClient).unregisterConnectionFailedListener(locationApiClient);
+        verify(googleApiClient).disconnect();
+    }
+
+    @Test
     public void testThatLocationIsNotProvidedIfItDoesNotHaveSpeed() {
         LocationChangeListener locationChangeListener = mock(LocationChangeListener.class);
         GoogleApiClient googleApiClient = mock(GoogleApiClient.class);
