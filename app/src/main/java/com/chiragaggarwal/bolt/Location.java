@@ -48,6 +48,7 @@ public class Location {
         return result;
     }
 
+    @SuppressWarnings("unused")
     private android.location.Location toNative() {
         android.location.Location nativeLocation = new android.location.Location("");
         nativeLocation.setLatitude(this.latitude);
