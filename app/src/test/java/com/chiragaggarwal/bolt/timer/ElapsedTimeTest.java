@@ -50,4 +50,11 @@ public class ElapsedTimeTest {
         ElapsedTime elapsedTime = new ElapsedTime();
         Assert.assertEquals(0, elapsedTime.seconds());
     }
+
+    @Test
+    public void testThatElapsedTimeIsOneSecondWhenElapsedTimeIsIncreasedByOne() {
+        ElapsedTime elapsedTime = new ElapsedTime();
+        elapsedTime.increaseByOneSecond();
+        Assert.assertEquals(1, elapsedTime.seconds());
+    }
 }

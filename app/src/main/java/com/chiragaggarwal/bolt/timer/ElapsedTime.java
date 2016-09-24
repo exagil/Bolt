@@ -12,7 +12,7 @@ public class ElapsedTime {
     }
 
     public void increaseByOneSecond() {
-        this.elapsedTimeInSeconds = 1000;
+        this.elapsedTimeInSeconds = 1;
     }
 
     @Override
@@ -21,6 +21,6 @@ public class ElapsedTime {
     }
 
     public int seconds() {
-        return 0;
+        return elapsedTimeInSeconds;
     }
 }
