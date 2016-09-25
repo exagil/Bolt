@@ -8,7 +8,7 @@ public class ElapsedTime {
     private static final int ONE_SECOND = 1;
     private int elapsedTimeInSeconds;
 
-    public ElapsedTime() {
+    protected ElapsedTime() {
         this.elapsedTimeInSeconds = 0;
     }
 
@@ -25,7 +25,7 @@ public class ElapsedTime {
         return this.elapsedTimeInSeconds == thatElapsedTime.elapsedTimeInSeconds;
     }
 
-    public void increaseByOneSecond() {
+    protected void increaseByOneSecond() {
         this.elapsedTimeInSeconds += ONE_SECOND;
     }
 
