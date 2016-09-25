@@ -115,4 +115,18 @@ public class ElapsedTimeTest {
         elapsedTime.increaseByOneSecond();
         Assert.assertEquals(2, elapsedTime.hours());
     }
+
+    @Test
+    public void testThatElapsedTimeKnowsTheCorrectNumberOfMinutesWhenTimeIncludesHoursMinutesAndSeconds() {
+        ElapsedTime elapsedTime = new ElapsedTime();
+        elapsedTime.increaseByOneHour();
+        elapsedTime.increaseByOneHour();
+        elapsedTime.increaseByOneMinute();
+        elapsedTime.increaseByOneMinute();
+        elapsedTime.increaseByOneMinute();
+        elapsedTime.increaseByOneSecond();
+        elapsedTime.increaseByOneSecond();
+        elapsedTime.increaseByOneSecond();
+        Assert.assertEquals(3, elapsedTime.minutes());
+    }
 }

@@ -29,7 +29,7 @@ public class ElapsedTime {
     }
 
     public int minutes() {
-        return elapsedTimeInSeconds / 60;
+        return (elapsedTimeInSeconds - hours() * 3600) / 60;
     }
 
     public void increaseByOneMinute() {
