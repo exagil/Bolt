@@ -1,5 +1,5 @@
 package com.chiragaggarwal.bolt.timer;
 
 public interface TimerUpdateListener {
-    void onTimeTick();
+    void onTimeTick(ElapsedTime elapsedTime);
 }
