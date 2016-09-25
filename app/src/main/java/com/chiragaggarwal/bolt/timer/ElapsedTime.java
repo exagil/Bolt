@@ -23,4 +23,8 @@ public class ElapsedTime {
     public int seconds() {
         return elapsedTimeInSeconds;
     }
+
+    public int minutes() {
+        return 0;
+    }
 }
