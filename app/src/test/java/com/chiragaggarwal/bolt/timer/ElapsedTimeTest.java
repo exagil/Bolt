@@ -65,7 +65,7 @@ public class ElapsedTimeTest {
     }
 
     @Test
-    public void testThatItKnowsHowsTheNumberOfMinutesWhenElapsedTimeIsInMinutes() {
+    public void testThatItKnowsTheNumberOfMinutesWhenElapsedTimeIsInMinutes() {
         ElapsedTime elapsedTime = new ElapsedTime();
         elapsedTime.increaseByOneMinute();
         Assert.assertEquals(1, elapsedTime.minutes());
@@ -93,5 +93,12 @@ public class ElapsedTimeTest {
     public void testThatHoursAreZeroByDefault() {
         ElapsedTime elapsedTime = new ElapsedTime();
         Assert.assertEquals(0, elapsedTime.hours());
+    }
+
+    @Test
+    public void testThatItKnowsTheNumberOfHoursWhenElapsedTimeIsInHours() {
+        ElapsedTime elapsedTime = new ElapsedTime();
+        elapsedTime.increaseByOneHour();
+        Assert.assertEquals(1, elapsedTime.hours());
     }
 }
