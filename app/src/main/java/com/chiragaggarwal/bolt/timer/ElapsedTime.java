@@ -1,6 +1,9 @@
 package com.chiragaggarwal.bolt.timer;
 
 public class ElapsedTime {
+    private static final int SECONDS_IN_ONE_MINUTE = 60;
+    private static final int SECONDS_IN_ONE_HOUR = 3600;
+    private static final int ONE_SECOND = 1;
     private int elapsedTimeInSeconds;
 
     public ElapsedTime() {
@@ -16,7 +19,7 @@ public class ElapsedTime {
     }
 
     public void increaseByOneSecond() {
-        this.elapsedTimeInSeconds += 1;
+        this.elapsedTimeInSeconds += ONE_SECOND;
     }
 
     @Override
@@ -25,22 +28,22 @@ public class ElapsedTime {
     }
 
     public int seconds() {
-        return elapsedTimeInSeconds % 60;
+        return elapsedTimeInSeconds % SECONDS_IN_ONE_MINUTE;
     }
 
     public int minutes() {
-        return (elapsedTimeInSeconds - hours() * 3600) / 60;
+        return (elapsedTimeInSeconds - hours() * SECONDS_IN_ONE_HOUR) / SECONDS_IN_ONE_MINUTE;
     }
 
     public void increaseByOneMinute() {
-        elapsedTimeInSeconds += 60;
+        elapsedTimeInSeconds += SECONDS_IN_ONE_MINUTE;
     }
 
     public int hours() {
-        return elapsedTimeInSeconds / 3600;
+        return elapsedTimeInSeconds / SECONDS_IN_ONE_HOUR;
     }
 
     public void increaseByOneHour() {
-        elapsedTimeInSeconds += 3600;
+        elapsedTimeInSeconds += SECONDS_IN_ONE_HOUR;
     }
 }
