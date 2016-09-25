@@ -1,5 +1,7 @@
 package com.chiragaggarwal.bolt.timer;
 
+import android.support.annotation.VisibleForTesting;
+
 public class ElapsedTime {
     private static final int SECONDS_IN_ONE_MINUTE = 60;
     private static final int SECONDS_IN_ONE_HOUR = 3600;
@@ -8,6 +10,11 @@ public class ElapsedTime {
 
     public ElapsedTime() {
         this.elapsedTimeInSeconds = 0;
+    }
+
+    @VisibleForTesting
+    ElapsedTime(int elapsedTimeInSeconds) {
+        this.elapsedTimeInSeconds = elapsedTimeInSeconds;
     }
 
     @Override
@@ -35,7 +42,8 @@ public class ElapsedTime {
         return (elapsedTimeInSeconds - hours() * SECONDS_IN_ONE_HOUR) / SECONDS_IN_ONE_MINUTE;
     }
 
-    public void increaseByOneMinute() {
+    @VisibleForTesting
+    void increaseByOneMinute() {
         elapsedTimeInSeconds += SECONDS_IN_ONE_MINUTE;
     }
 
@@ -43,7 +51,8 @@ public class ElapsedTime {
         return elapsedTimeInSeconds / SECONDS_IN_ONE_HOUR;
     }
 
-    public void increaseByOneHour() {
+    @VisibleForTesting
+    void increaseByOneHour() {
         elapsedTimeInSeconds += SECONDS_IN_ONE_HOUR;
     }
 }

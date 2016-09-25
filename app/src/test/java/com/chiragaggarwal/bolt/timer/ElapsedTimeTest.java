@@ -80,11 +80,7 @@ public class ElapsedTimeTest {
 
     @Test
     public void testThatItKnowsSecondsCorrectlyWhenMinutesExist() {
-        ElapsedTime elapsedTime = new ElapsedTime();
-        elapsedTime.increaseByOneMinute();
-        elapsedTime.increaseByOneSecond();
-        elapsedTime.increaseByOneSecond();
-        elapsedTime.increaseByOneSecond();
+        ElapsedTime elapsedTime = new ElapsedTime(63);
         Assert.assertEquals(3, elapsedTime.seconds());
         Assert.assertEquals(1, elapsedTime.minutes());
     }
@@ -104,29 +100,13 @@ public class ElapsedTimeTest {
 
     @Test
     public void testThatElapsedTimeKnowsTheCorrectNumberOfHoursWhenTimeIncludesHoursMinutesAndSeconds() {
-        ElapsedTime elapsedTime = new ElapsedTime();
-        elapsedTime.increaseByOneHour();
-        elapsedTime.increaseByOneHour();
-        elapsedTime.increaseByOneMinute();
-        elapsedTime.increaseByOneMinute();
-        elapsedTime.increaseByOneMinute();
-        elapsedTime.increaseByOneSecond();
-        elapsedTime.increaseByOneSecond();
-        elapsedTime.increaseByOneSecond();
+        ElapsedTime elapsedTime = new ElapsedTime(7383);
         Assert.assertEquals(2, elapsedTime.hours());
     }
 
     @Test
     public void testThatElapsedTimeKnowsTheCorrectNumberOfMinutesWhenTimeIncludesHoursMinutesAndSeconds() {
-        ElapsedTime elapsedTime = new ElapsedTime();
-        elapsedTime.increaseByOneHour();
-        elapsedTime.increaseByOneHour();
-        elapsedTime.increaseByOneMinute();
-        elapsedTime.increaseByOneMinute();
-        elapsedTime.increaseByOneMinute();
-        elapsedTime.increaseByOneSecond();
-        elapsedTime.increaseByOneSecond();
-        elapsedTime.increaseByOneSecond();
+        ElapsedTime elapsedTime = new ElapsedTime(7383);
         Assert.assertEquals(3, elapsedTime.minutes());
     }
 }
