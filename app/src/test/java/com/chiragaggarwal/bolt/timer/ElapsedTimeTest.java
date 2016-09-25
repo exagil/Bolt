@@ -63,4 +63,11 @@ public class ElapsedTimeTest {
         ElapsedTime elapsedTime = new ElapsedTime();
         Assert.assertEquals(0, elapsedTime.minutes());
     }
+
+    @Test
+    public void testThatItKnowsHowsTheNumberOfMinutesWhenElapsedTimeIsInMinutes() {
+        ElapsedTime elapsedTime = new ElapsedTime();
+        elapsedTime.increaseByOneMinute();
+        Assert.assertEquals(1, elapsedTime.minutes());
+    }
 }

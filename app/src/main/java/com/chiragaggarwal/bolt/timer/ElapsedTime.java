@@ -25,6 +25,10 @@ public class ElapsedTime {
     }
 
     public int minutes() {
-        return 0;
+        return elapsedTimeInSeconds / 60;
+    }
+
+    public void increaseByOneMinute() {
+        elapsedTimeInSeconds += 60;
     }
 }
