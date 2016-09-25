@@ -41,6 +41,6 @@ public class ElapsedTime {
     }
 
     public void increaseByOneHour() {
-        elapsedTimeInSeconds = 3600;
+        elapsedTimeInSeconds += 3600;
     }
 }
