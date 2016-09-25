@@ -77,4 +77,15 @@ public class ElapsedTimeTest {
         elapsedTime.increaseByOneMinute();
         Assert.assertEquals(0, elapsedTime.seconds());
     }
+
+    @Test
+    public void testThatItKnowsSecondsCorrectlyWhenMinutesExist() {
+        ElapsedTime elapsedTime = new ElapsedTime();
+        elapsedTime.increaseByOneMinute();
+        elapsedTime.increaseByOneSecond();
+        elapsedTime.increaseByOneSecond();
+        elapsedTime.increaseByOneSecond();
+        Assert.assertEquals(3, elapsedTime.seconds());
+        Assert.assertEquals(1, elapsedTime.minutes());
+    }
 }

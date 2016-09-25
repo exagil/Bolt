@@ -3,6 +3,10 @@ package com.chiragaggarwal.bolt.timer;
 public class ElapsedTime {
     private int elapsedTimeInSeconds;
 
+    public ElapsedTime() {
+        this.elapsedTimeInSeconds = 0;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -12,7 +16,7 @@ public class ElapsedTime {
     }
 
     public void increaseByOneSecond() {
-        this.elapsedTimeInSeconds = 1;
+        this.elapsedTimeInSeconds += 1;
     }
 
     @Override
@@ -21,8 +25,7 @@ public class ElapsedTime {
     }
 
     public int seconds() {
-        if (elapsedTimeInSeconds >= 60) return 0;
-        return elapsedTimeInSeconds;
+        return elapsedTimeInSeconds % 60;
     }
 
     public int minutes() {
