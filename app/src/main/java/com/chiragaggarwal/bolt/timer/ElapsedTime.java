@@ -35,4 +35,8 @@ public class ElapsedTime {
     public void increaseByOneMinute() {
         elapsedTimeInSeconds += 60;
     }
+
+    public int hours() {
+        return 0;
+    }
 }

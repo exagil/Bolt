@@ -88,4 +88,10 @@ public class ElapsedTimeTest {
         Assert.assertEquals(3, elapsedTime.seconds());
         Assert.assertEquals(1, elapsedTime.minutes());
     }
+
+    @Test
+    public void testThatHoursAreZeroByDefault() {
+        ElapsedTime elapsedTime = new ElapsedTime();
+        Assert.assertEquals(0, elapsedTime.hours());
+    }
 }
