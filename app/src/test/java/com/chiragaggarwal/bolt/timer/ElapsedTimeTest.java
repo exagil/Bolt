@@ -70,4 +70,11 @@ public class ElapsedTimeTest {
         elapsedTime.increaseByOneMinute();
         Assert.assertEquals(1, elapsedTime.minutes());
     }
+
+    @Test
+    public void testThatSecondsAreZeroWhenElapsedTimeIsOneMinute() {
+        ElapsedTime elapsedTime = new ElapsedTime();
+        elapsedTime.increaseByOneMinute();
+        Assert.assertEquals(0, elapsedTime.seconds());
+    }
 }

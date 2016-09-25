@@ -21,6 +21,7 @@ public class ElapsedTime {
     }
 
     public int seconds() {
+        if (elapsedTimeInSeconds >= 60) return 0;
         return elapsedTimeInSeconds;
     }
 
