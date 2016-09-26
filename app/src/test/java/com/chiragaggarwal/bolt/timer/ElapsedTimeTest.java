@@ -117,4 +117,31 @@ public class ElapsedTimeTest {
         Assert.assertEquals(58, elapsedTime.minutes());
         Assert.assertEquals(21, elapsedTime.seconds());
     }
+
+    @Test
+    public void testThatElapsedTimeKnowsHowToCloneItself() throws CloneNotSupportedException {
+        ElapsedTime elapsedTime = new ElapsedTime(82701);
+        Assert.assertEquals(elapsedTime, elapsedTime.clone());
+    }
+
+    @Test
+    public void testThatCloneOfElapsedTimeIsNotTheSameItWasClonedFrom() throws CloneNotSupportedException {
+        ElapsedTime elapsedTime = new ElapsedTime(82701);
+        Assert.assertTrue(elapsedTime != elapsedTime.clone());
+    }
+
+    @Test
+    public void testThatClonedElapsedTimeWithDifferentTimeInComparisonToAnElapsedTimeAreNotSame() throws CloneNotSupportedException {
+        ElapsedTime elapsedTime = new ElapsedTime(82701);
+        ElapsedTime elapsedTimeClone = ((ElapsedTime) elapsedTime.clone());
+        elapsedTimeClone.increaseByOneHour();
+        Assert.assertFalse(elapsedTime.equals(elapsedTimeClone));
+    }
+
+    @Test
+    public void testThatElapsedTimeAndItsCloneAreOfSameType() throws CloneNotSupportedException {
+        ElapsedTime elapsedTime = new ElapsedTime(82701);
+        ElapsedTime elapsedTimeClone = ((ElapsedTime) elapsedTime.clone());
+        Assert.assertEquals(elapsedTime.getClass(), elapsedTimeClone.getClass());
+    }
 }

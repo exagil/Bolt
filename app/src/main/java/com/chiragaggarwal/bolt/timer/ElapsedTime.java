@@ -2,7 +2,7 @@ package com.chiragaggarwal.bolt.timer;
 
 import android.support.annotation.VisibleForTesting;
 
-public class ElapsedTime {
+public class ElapsedTime implements Cloneable {
     private static final int SECONDS_IN_ONE_MINUTE = 60;
     private static final int SECONDS_IN_ONE_HOUR = 3600;
     private static final int ONE_SECOND = 1;
@@ -54,5 +54,14 @@ public class ElapsedTime {
     @VisibleForTesting
     void increaseByOneHour() {
         elapsedTimeInSeconds += SECONDS_IN_ONE_HOUR;
+    }
+
+    @Override
+    public Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            return new ElapsedTime(this.elapsedTimeInSeconds);
+        }
     }
 }
