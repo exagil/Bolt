@@ -20,7 +20,8 @@ public class ActivityTimer {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                timerUpdateListener.onTimeTick(elapsedTime);
+                ElapsedTime elapsedTimeClone = ((ElapsedTime) elapsedTime.clone());
+                timerUpdateListener.onTimeTick(elapsedTimeClone);
                 elapsedTime.increaseByOneSecond();
             }
         }, DELAY_IN_STARTING, TICK_INTERVAL);
