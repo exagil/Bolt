@@ -1,6 +1,10 @@
 package com.chiragaggarwal.bolt;
 
-public class Location {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Location implements Parcelable {
+    public static final String TAG = "com.chiragaggarwal.bolt.Location";
     private final double latitude;
     private final double longitude;
     private final boolean hasAccuracy;
@@ -70,4 +74,39 @@ public class Location {
         return this.hasAccuracy && this.accuracy <= 20;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeDouble(this.latitude);
+        dest.writeDouble(this.longitude);
+        dest.writeByte(this.hasAccuracy ? (byte) 1 : (byte) 0);
+        dest.writeFloat(this.accuracy);
+        dest.writeByte(this.hasSpeed ? (byte) 1 : (byte) 0);
+        dest.writeFloat(this.speed);
+    }
+
+    protected Location(Parcel in) {
+        this.latitude = in.readDouble();
+        this.longitude = in.readDouble();
+        this.hasAccuracy = in.readByte() != 0;
+        this.accuracy = in.readFloat();
+        this.hasSpeed = in.readByte() != 0;
+        this.speed = in.readFloat();
+    }
+
+    public static final Creator<Location> CREATOR = new Creator<Location>() {
+        @Override
+        public Location createFromParcel(Parcel source) {
+            return new Location(source);
+        }
+
+        @Override
+        public Location[] newArray(int size) {
+            return new Location[size];
+        }
+    };
 }
