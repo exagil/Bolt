@@ -9,16 +9,19 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import com.chiragaggarwal.bolt.timer.ElapsedTime;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RunActivity extends AppCompatActivity {
     private RunServiceBroadcastReceiver runServiceBroadcastReceiver;
+    private LocalBroadcastManager localBroadcastManager;
+    private RunServiceViewModel runServiceViewModel;
 
     @BindView(R.id.button_start_activity)
     TextView textStartActivity;
-    private LocalBroadcastManager localBroadcastManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,7 @@ public class RunActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         runServiceBroadcastReceiver = new RunServiceBroadcastReceiver();
         localBroadcastManager = LocalBroadcastManager.getInstance(this);
+        runServiceViewModel = new RunServiceViewModel();
     }
 
     @Override
@@ -53,6 +57,13 @@ public class RunActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
+            if (action.equals(RunService.ACTION_TIME_TICK)) {
+                ElapsedTime elapsedTime = intent.getParcelableExtra(ElapsedTime.TAG);
+                runServiceViewModel.setElapsedTime(elapsedTime);
+            } else if (action.equals(RunService.ACTION_FETCH_ACCURATE_LOCATION)) {
+                Location location = intent.getParcelableExtra(Location.TAG);
+                runServiceViewModel.setLocation(location);
+            }
         }
     }
 }

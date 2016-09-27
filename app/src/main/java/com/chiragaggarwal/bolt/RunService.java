@@ -16,6 +16,7 @@ import javax.inject.Inject;
 
 public class RunService extends Service implements LocationChangeListener, TimerUpdateListener {
     public static final String ACTION_TIME_TICK = "com.chiragaggarwal.bolt.RunService.ACTION_TIME_TICK";
+    public static final String ACTION_FETCH_ACCURATE_LOCATION = "com.chiragaggarwal.bolt.RunService.ACTION_FETCH_ACCURATE_LOCATION";
     private LocationApiClient locationApiClient;
     private ActivityTimer activityTimer;
 
@@ -52,7 +53,9 @@ public class RunService extends Service implements LocationChangeListener, Timer
 
     @Override
     public void onFetchAccurateLocation(Location location) {
-
+        Intent timeTickBroadcastIntent = new Intent(RunService.ACTION_FETCH_ACCURATE_LOCATION);
+        timeTickBroadcastIntent.putExtra(Location.TAG, location);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(timeTickBroadcastIntent);
     }
 
     @Override
