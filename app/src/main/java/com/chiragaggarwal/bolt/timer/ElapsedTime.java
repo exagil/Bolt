@@ -1,8 +1,10 @@
 package com.chiragaggarwal.bolt.timer;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.VisibleForTesting;
 
-public class ElapsedTime implements Cloneable {
+public class ElapsedTime implements Cloneable, Parcelable {
     private static final int SECONDS_IN_ONE_MINUTE = 60;
     private static final int SECONDS_IN_ONE_HOUR = 3600;
     private static final int ONE_SECOND = 1;
@@ -64,4 +66,30 @@ public class ElapsedTime implements Cloneable {
             return new ElapsedTime(this.elapsedTimeInSeconds);
         }
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(elapsedTimeInSeconds);
+    }
+
+    protected ElapsedTime(Parcel in) {
+        elapsedTimeInSeconds = in.readInt();
+    }
+
+    public static final Creator<ElapsedTime> CREATOR = new Creator<ElapsedTime>() {
+        @Override
+        public ElapsedTime createFromParcel(Parcel in) {
+            return new ElapsedTime(in);
+        }
+
+        @Override
+        public ElapsedTime[] newArray(int size) {
+            return new ElapsedTime[size];
+        }
+    };
 }
