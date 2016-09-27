@@ -5,6 +5,7 @@ import android.os.Parcelable;
 import android.support.annotation.VisibleForTesting;
 
 public class ElapsedTime implements Cloneable, Parcelable {
+    public static final String TAG = "com.chiragaggarwal.bolt.timer.ElapsedTime";
     private static final int SECONDS_IN_ONE_MINUTE = 60;
     private static final int SECONDS_IN_ONE_HOUR = 3600;
     private static final int ONE_SECOND = 1;

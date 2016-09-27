@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 
 import com.chiragaggarwal.bolt.timer.ActivityTimer;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
@@ -14,6 +15,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import javax.inject.Inject;
 
 public class RunService extends Service implements LocationChangeListener, TimerUpdateListener {
+    public static final String ACTION_TIME_TICK = "com.chiragaggarwal.bolt.RunService.ACTION_TIME_TICK";
     private LocationApiClient locationApiClient;
     private ActivityTimer activityTimer;
 
@@ -55,6 +57,9 @@ public class RunService extends Service implements LocationChangeListener, Timer
 
     @Override
     public void onTimeTick(ElapsedTime elapsedTime) {
+        Intent timeTickBroadcastIntent = new Intent(RunService.ACTION_TIME_TICK);
+        timeTickBroadcastIntent.putExtra(ElapsedTime.TAG, elapsedTime);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(timeTickBroadcastIntent);
     }
 
     public class RunServiceBinder extends Binder {
