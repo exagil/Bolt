@@ -23,6 +23,9 @@ public class RunActivity extends AppCompatActivity {
     @BindView(R.id.button_start_activity)
     TextView textStartActivity;
 
+    @BindView(R.id.text_timer)
+    TextView textTimer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +33,7 @@ public class RunActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         runServiceBroadcastReceiver = new RunServiceBroadcastReceiver();
         localBroadcastManager = LocalBroadcastManager.getInstance(this);
-        runServiceViewModel = new RunServiceViewModel();
+        runServiceViewModel = new RunServiceViewModel(textTimer);
     }
 
     @Override
