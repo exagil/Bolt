@@ -20,4 +20,8 @@ public class RunPresenter {
             runViewModel.setRunningAsStarted();
         }
     }
+
+    public void init() {
+        runViewModel.setRunningAsStarted();
+    }
 }
