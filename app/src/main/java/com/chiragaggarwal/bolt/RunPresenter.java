@@ -10,6 +10,9 @@ public class RunPresenter {
     }
 
     public void onToggleRunClick() {
-        runView.startRun();
+        if (serviceStateMonitor.isRunning(RunService.class))
+            runView.stopRun();
+        else
+            runView.startRun();
     }
 }
