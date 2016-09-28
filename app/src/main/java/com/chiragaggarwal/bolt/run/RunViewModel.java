@@ -1,9 +1,11 @@
-package com.chiragaggarwal.bolt;
+package com.chiragaggarwal.bolt.run;
 
 import android.content.res.Resources;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
+import com.chiragaggarwal.bolt.BR;
+import com.chiragaggarwal.bolt.R;
 import com.chiragaggarwal.bolt.location.Location;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 

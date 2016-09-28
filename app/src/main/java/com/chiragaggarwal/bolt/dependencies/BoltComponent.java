@@ -1,7 +1,7 @@
 package com.chiragaggarwal.bolt.dependencies;
 
-import com.chiragaggarwal.bolt.RunActivity;
-import com.chiragaggarwal.bolt.RunService;
+import com.chiragaggarwal.bolt.run.RunActivity;
+import com.chiragaggarwal.bolt.run.RunService;
 
 import javax.inject.Singleton;
 

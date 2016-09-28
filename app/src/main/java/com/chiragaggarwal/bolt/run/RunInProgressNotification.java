@@ -1,8 +1,10 @@
-package com.chiragaggarwal.bolt;
+package com.chiragaggarwal.bolt.run;
 
 import android.app.Notification;
 import android.content.Context;
 import android.support.v4.app.NotificationCompat;
+
+import com.chiragaggarwal.bolt.R;
 
 public class RunInProgressNotification {
     private Context context;

@@ -1,4 +1,6 @@
-package com.chiragaggarwal.bolt;
+package com.chiragaggarwal.bolt.run;
+
+import com.chiragaggarwal.bolt.ServiceStateMonitor;
 
 public class RunPresenter {
     private RunView runView;

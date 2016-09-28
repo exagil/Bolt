@@ -13,7 +13,7 @@
         android:name=".BoltApplication"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".RunActivity">
+        <activity android:name=".run.RunActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +22,7 @@
         </activity>
 
         <service
-            android:name=".RunService"
+            android:name=".run.RunService"
             android:exported="false" />
 
     </application>
