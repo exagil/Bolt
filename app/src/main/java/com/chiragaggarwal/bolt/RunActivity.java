@@ -38,6 +38,7 @@ public class RunActivity extends AppCompatActivity implements RunView {
     @Override
     protected void onResume() {
         super.onResume();
+        runPresenter.init();
         IntentFilter runServiceIntentFilter = new IntentFilter();
         runServiceIntentFilter.addAction(RunService.ACTION_TIME_TICK);
         localBroadcastManager.registerReceiver(runServiceBroadcastReceiver, runServiceIntentFilter);
