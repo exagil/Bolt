@@ -30,4 +30,12 @@ public class RunServiceViewModel extends BaseObservable {
     private String formatWithLeadingZero(int timeElement) {
         return String.format(FORMAT_LEADING_ZERO, timeElement);
     }
+
+    public void setRunningAsStarted() {
+
+    }
+
+    public void setRunningAsStopped() {
+
+    }
 }
