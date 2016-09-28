@@ -22,6 +22,9 @@ public class RunPresenter {
     }
 
     public void init() {
-        runViewModel.setRunningAsStarted();
+        if (serviceStateMonitor.isRunning(RunService.class))
+            runViewModel.setRunningAsStarted();
+        else
+            runViewModel.setRunningAsStopped();
     }
 }

@@ -38,4 +38,15 @@ public class RunPresenterTest {
         runPresenter.init();
         Mockito.verify(runViewModel).setRunningAsStarted();
     }
+
+    @Test
+    public void testThatPresenterInitializesTheRunAsStoppedWhenTheRunIsNotInProgress() {
+        RunView runView = Mockito.mock(RunView.class);
+        ServiceStateMonitor serviceStateMonitor = Mockito.mock(ServiceStateMonitor.class);
+        RunServiceViewModel runViewModel = Mockito.mock(RunServiceViewModel.class);
+        Mockito.when(serviceStateMonitor.isRunning(RunService.class)).thenReturn(false);
+        RunPresenter runPresenter = new RunPresenter(runView, runViewModel, serviceStateMonitor);
+        runPresenter.init();
+        Mockito.verify(runViewModel).setRunningAsStopped();
+    }
 }
