@@ -1,10 +1,10 @@
-package com.chiragaggarwal.bolt;
+package com.chiragaggarwal.bolt.location;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Location implements Parcelable {
-    public static final String TAG = "com.chiragaggarwal.bolt.Location";
+    public static final String TAG = "com.chiragaggarwal.bolt.location.Location";
     private final double latitude;
     private final double longitude;
     private final boolean hasAccuracy;

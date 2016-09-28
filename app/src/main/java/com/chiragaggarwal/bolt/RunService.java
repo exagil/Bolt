@@ -9,6 +9,9 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 
+import com.chiragaggarwal.bolt.location.Location;
+import com.chiragaggarwal.bolt.location.LocationApiClient;
+import com.chiragaggarwal.bolt.location.LocationChangeListener;
 import com.chiragaggarwal.bolt.timer.ActivityTimer;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 import com.chiragaggarwal.bolt.timer.TimerUpdateListener;

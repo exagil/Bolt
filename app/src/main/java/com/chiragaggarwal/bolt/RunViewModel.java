@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
+import com.chiragaggarwal.bolt.location.Location;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
 public class RunViewModel extends BaseObservable {

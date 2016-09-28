@@ -11,6 +11,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.chiragaggarwal.bolt.databinding.ActivityMainBinding;
+import com.chiragaggarwal.bolt.location.Location;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
 import javax.inject.Inject;

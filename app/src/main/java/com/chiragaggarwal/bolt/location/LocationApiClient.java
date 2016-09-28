@@ -1,4 +1,4 @@
-package com.chiragaggarwal.bolt;
+package com.chiragaggarwal.bolt.location;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
