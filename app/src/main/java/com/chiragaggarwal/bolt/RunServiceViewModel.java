@@ -39,7 +39,9 @@ public class RunServiceViewModel extends BaseObservable {
 
     public void setRunningAsStopped() {
         isRunning = false;
+        elapsedTime = null;
         notifyPropertyChanged(BR.toggleRunButtonText);
+        notifyPropertyChanged(BR.elapsedTime);
     }
 
     @Bindable

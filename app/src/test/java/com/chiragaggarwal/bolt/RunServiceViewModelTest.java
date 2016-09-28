@@ -84,4 +84,13 @@ public class RunServiceViewModelTest {
         runViewModel.setRunningAsStopped();
         Assert.assertEquals("Start Activity", runViewModel.getToggleRunButtonText());
     }
+
+    @Test
+    public void testThatElapsedTimeIsZeroWhenRunIsStopped() {
+        RunServiceViewModel runViewModel = new RunServiceViewModel();
+        runViewModel.setRunningAsStarted();
+        runViewModel.setElapsedTime(new ElapsedTime(5000));
+        runViewModel.setRunningAsStopped();
+        Assert.assertEquals("00:00:00", runViewModel.getElapsedTime());
+    }
 }
