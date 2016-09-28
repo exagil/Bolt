@@ -1,21 +1,26 @@
 package com.chiragaggarwal.bolt;
 
-import android.widget.TextView;
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
 
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
-public class RunServiceViewModel {
-    public static final String COLON = ":";
-    public static final String FORMAT_LEADING_ZERO = "%02d";
-    private TextView textTimer;
+public class RunServiceViewModel extends BaseObservable {
+    private static final String COLON = ":";
+    private static final String FORMAT_LEADING_ZERO = "%02d";
+    private static final String TIME_DEFAULT = "00:00:00";
 
-    public RunServiceViewModel(TextView textTimer) {
-        this.textTimer = textTimer;
-    }
+    private ElapsedTime elapsedTime;
 
     public void setElapsedTime(ElapsedTime elapsedTime) {
-        String elapsedTimeToDisplay = formatWithLeadingZero(elapsedTime.hours()) + COLON + formatWithLeadingZero(elapsedTime.minutes()) + COLON + formatWithLeadingZero(elapsedTime.seconds());
-        textTimer.setText(elapsedTimeToDisplay);
+        this.elapsedTime = elapsedTime;
+        notifyPropertyChanged(BR.elapsedTime);
+    }
+
+    @Bindable
+    public String getElapsedTime() {
+        if (elapsedTime == null) return TIME_DEFAULT;
+        return formatWithLeadingZero(elapsedTime.hours()) + COLON + formatWithLeadingZero(elapsedTime.minutes()) + COLON + formatWithLeadingZero(elapsedTime.seconds());
     }
 
     public void setLocation(Location location) {

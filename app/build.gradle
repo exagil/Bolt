@@ -25,7 +25,7 @@ android {
     }
 
     dataBinding {
-        enabled = false
+        enabled = true
     }
 }
 

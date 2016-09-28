@@ -4,14 +4,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
 
+import com.chiragaggarwal.bolt.databinding.ActivityMainBinding;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -20,20 +20,15 @@ public class RunActivity extends AppCompatActivity {
     private LocalBroadcastManager localBroadcastManager;
     private RunServiceViewModel runServiceViewModel;
 
-    @BindView(R.id.button_start_activity)
-    TextView textStartActivity;
-
-    @BindView(R.id.text_timer)
-    TextView textTimer;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        runServiceViewModel = new RunServiceViewModel();
+        activityMainBinding.setRunServiceViewModel(runServiceViewModel);
         ButterKnife.bind(this);
         runServiceBroadcastReceiver = new RunServiceBroadcastReceiver();
         localBroadcastManager = LocalBroadcastManager.getInstance(this);
-        runServiceViewModel = new RunServiceViewModel(textTimer);
     }
 
     @Override

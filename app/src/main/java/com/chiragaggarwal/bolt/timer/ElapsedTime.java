@@ -11,12 +11,12 @@ public class ElapsedTime implements Cloneable, Parcelable {
     private static final int ONE_SECOND = 1;
     private int elapsedTimeInSeconds;
 
-    protected ElapsedTime() {
+    public ElapsedTime() {
         this.elapsedTimeInSeconds = 0;
     }
 
     @VisibleForTesting
-    ElapsedTime(int elapsedTimeInSeconds) {
+    public ElapsedTime(int elapsedTimeInSeconds) {
         this.elapsedTimeInSeconds = elapsedTimeInSeconds;
     }
 
@@ -28,7 +28,7 @@ public class ElapsedTime implements Cloneable, Parcelable {
         return this.elapsedTimeInSeconds == thatElapsedTime.elapsedTimeInSeconds;
     }
 
-    protected void increaseByOneSecond() {
+    public void increaseByOneSecond() {
         this.elapsedTimeInSeconds += ONE_SECOND;
     }
 
@@ -46,7 +46,7 @@ public class ElapsedTime implements Cloneable, Parcelable {
     }
 
     @VisibleForTesting
-    void increaseByOneMinute() {
+    public void increaseByOneMinute() {
         elapsedTimeInSeconds += SECONDS_IN_ONE_MINUTE;
     }
 
@@ -55,7 +55,7 @@ public class ElapsedTime implements Cloneable, Parcelable {
     }
 
     @VisibleForTesting
-    void increaseByOneHour() {
+    public void increaseByOneHour() {
         elapsedTimeInSeconds += SECONDS_IN_ONE_HOUR;
     }
 

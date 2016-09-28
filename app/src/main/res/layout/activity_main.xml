@@ -1,35 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".RunActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/text_timer"
-        android:text="00:00:00"
-        style="@style/text_timer" />
+    <data>
 
-    <TextView
-        android:id="@+id/text_duration"
-        style="@style/text_duration"
-        android:text="@string/duration" />
+        <variable
+            name="runServiceViewModel"
+            type="com.chiragaggarwal.bolt.RunServiceViewModel" />
 
-    <LinearLayout
-        android:id="@+id/layout_run_stats"
-        style="@style/layout_run_stats">
+    </data>
 
-        <include layout="@layout/calories" />
+    <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".RunActivity">
 
-        <include layout="@layout/average_pace" />
+        <TextView
+            android:id="@+id/text_timer"
+            style="@style/text_timer"
+            android:text="@{runServiceViewModel.elapsedTime}" />
 
-        <include layout="@layout/distance" />
+        <TextView
+            android:id="@+id/text_duration"
+            style="@style/text_duration"
+            android:text="@string/duration" />
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layout_run_stats"
+            style="@style/layout_run_stats">
 
-    <TextView
-        android:id="@+id/button_start_activity"
-        style="@style/button_start_activity"
-        android:text="@string/start_activity" />
+            <include layout="@layout/calories" />
 
-</RelativeLayout>
+            <include layout="@layout/average_pace" />
+
+            <include layout="@layout/distance" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/button_start_activity"
+            style="@style/button_start_activity"
+            android:text="@string/start_activity" />
+
+    </RelativeLayout>
+</layout>
