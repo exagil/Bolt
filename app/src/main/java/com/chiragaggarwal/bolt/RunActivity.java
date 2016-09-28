@@ -16,7 +16,6 @@ import com.chiragaggarwal.bolt.timer.ElapsedTime;
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class RunActivity extends AppCompatActivity implements RunView {
     private RunServiceBroadcastReceiver runServiceBroadcastReceiver;
@@ -75,7 +74,7 @@ public class RunActivity extends AppCompatActivity implements RunView {
     }
 
     private void initialise(ActivityMainBinding activityMainBinding) {
-        runServiceViewModel = new RunServiceViewModel();
+        runServiceViewModel = new RunServiceViewModel(getResources());
         runPresenter = new RunPresenter(this, runServiceViewModel, serviceStateMonitor);
         activityMainBinding.setRunServiceViewModel(runServiceViewModel);
         activityMainBinding.setRunPresenter(runPresenter);

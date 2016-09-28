@@ -1,5 +1,6 @@
 package com.chiragaggarwal.bolt;
 
+import android.content.res.Resources;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
@@ -12,6 +13,11 @@ public class RunServiceViewModel extends BaseObservable {
 
     private ElapsedTime elapsedTime;
     private boolean isRunning;
+    private Resources resources;
+
+    public RunServiceViewModel(Resources resources) {
+        this.resources = resources;
+    }
 
     public void setElapsedTime(ElapsedTime elapsedTime) {
         this.elapsedTime = elapsedTime;
@@ -46,6 +52,6 @@ public class RunServiceViewModel extends BaseObservable {
 
     @Bindable
     public String getToggleRunButtonText() {
-        return (isRunning) ? "Stop Activity" : "Start Activity";
+        return (isRunning) ? resources.getString(R.string.stop_activity) : resources.getString(R.string.start_activity);
     }
 }
