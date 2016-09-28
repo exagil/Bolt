@@ -1,5 +1,6 @@
 package com.chiragaggarwal.bolt;
 
+import com.chiragaggarwal.bolt.common.ServiceStateMonitor;
 import com.chiragaggarwal.bolt.run.RunPresenter;
 import com.chiragaggarwal.bolt.run.RunService;
 import com.chiragaggarwal.bolt.run.RunView;

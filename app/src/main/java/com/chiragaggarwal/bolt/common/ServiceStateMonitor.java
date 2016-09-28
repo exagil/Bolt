@@ -1,4 +1,4 @@
-package com.chiragaggarwal.bolt;
+package com.chiragaggarwal.bolt.common;
 
 import android.app.ActivityManager;
 import android.content.Context;

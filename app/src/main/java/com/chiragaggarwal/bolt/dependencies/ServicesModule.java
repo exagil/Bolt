@@ -2,7 +2,7 @@ package com.chiragaggarwal.bolt.dependencies;
 
 import android.content.Context;
 
-import com.chiragaggarwal.bolt.ServiceStateMonitor;
+import com.chiragaggarwal.bolt.common.ServiceStateMonitor;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 

@@ -12,7 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.chiragaggarwal.bolt.BoltApplication;
 import com.chiragaggarwal.bolt.R;
-import com.chiragaggarwal.bolt.ServiceStateMonitor;
+import com.chiragaggarwal.bolt.common.ServiceStateMonitor;
 import com.chiragaggarwal.bolt.databinding.ActivityMainBinding;
 import com.chiragaggarwal.bolt.location.Location;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
