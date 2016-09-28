@@ -1,4 +1,4 @@
-package com.chiragaggarwal.bolt;
+package com.chiragaggarwal.bolt.run;
 
 import com.chiragaggarwal.bolt.common.ServiceStateMonitor;
 import com.chiragaggarwal.bolt.run.RunPresenter;

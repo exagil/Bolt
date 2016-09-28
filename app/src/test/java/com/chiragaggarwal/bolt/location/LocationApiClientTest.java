@@ -1,4 +1,4 @@
-package com.chiragaggarwal.bolt;
+package com.chiragaggarwal.bolt.location;
 
 
 import com.google.android.gms.common.api.GoogleApiClient;

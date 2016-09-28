@@ -1,7 +1,8 @@
-package com.chiragaggarwal.bolt;
+package com.chiragaggarwal.bolt.run;
 
 import android.content.res.Resources;
 
+import com.chiragaggarwal.bolt.R;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
 import junit.framework.Assert;
