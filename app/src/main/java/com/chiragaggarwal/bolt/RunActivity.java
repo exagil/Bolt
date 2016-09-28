@@ -6,29 +6,34 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.chiragaggarwal.bolt.databinding.ActivityMainBinding;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
+import javax.inject.Inject;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class RunActivity extends AppCompatActivity {
+public class RunActivity extends AppCompatActivity implements RunView {
     private RunServiceBroadcastReceiver runServiceBroadcastReceiver;
     private LocalBroadcastManager localBroadcastManager;
     private RunServiceViewModel runServiceViewModel;
+    private RunPresenter runPresenter;
+
+    @Inject
+    public ServiceStateMonitor serviceStateMonitor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        runServiceViewModel = new RunServiceViewModel();
-        activityMainBinding.setRunServiceViewModel(runServiceViewModel);
         ButterKnife.bind(this);
-        runServiceBroadcastReceiver = new RunServiceBroadcastReceiver();
-        localBroadcastManager = LocalBroadcastManager.getInstance(this);
+        ((BoltApplication) getApplication()).getBoltComponent().inject(this);
+        initialise(activityMainBinding);
     }
 
     @Override
@@ -47,8 +52,17 @@ public class RunActivity extends AppCompatActivity {
 
     @OnClick(R.id.button_start_activity)
     public void onTextStartActivityClick() {
-        Intent runServiceIntent = new Intent(this, RunService.class);
-        startService(runServiceIntent);
+        runPresenter.onToggleRunClick();
+    }
+
+    @Override
+    public void startRun() {
+        startService(runServiceIntent());
+    }
+
+    @Override
+    public void stopRun() {
+        stopService(runServiceIntent());
     }
 
     private class RunServiceBroadcastReceiver extends BroadcastReceiver {
@@ -63,5 +77,18 @@ public class RunActivity extends AppCompatActivity {
                 runServiceViewModel.setLocation(location);
             }
         }
+    }
+
+    private void initialise(ActivityMainBinding activityMainBinding) {
+        runServiceViewModel = new RunServiceViewModel();
+        runPresenter = new RunPresenter(this, serviceStateMonitor);
+        activityMainBinding.setRunServiceViewModel(runServiceViewModel);
+        runServiceBroadcastReceiver = new RunServiceBroadcastReceiver();
+        localBroadcastManager = LocalBroadcastManager.getInstance(this);
+    }
+
+    @NonNull
+    private Intent runServiceIntent() {
+        return new Intent(this, RunService.class);
     }
 }
