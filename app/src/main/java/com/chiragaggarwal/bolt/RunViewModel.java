@@ -6,7 +6,7 @@ import android.databinding.Bindable;
 
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
-public class RunServiceViewModel extends BaseObservable {
+public class RunViewModel extends BaseObservable {
     private static final String COLON = ":";
     private static final String FORMAT_LEADING_ZERO = "%02d";
     private static final String TIME_DEFAULT = "00:00:00";
@@ -15,7 +15,7 @@ public class RunServiceViewModel extends BaseObservable {
     private boolean isRunning;
     private Resources resources;
 
-    public RunServiceViewModel(Resources resources) {
+    public RunViewModel(Resources resources) {
         this.resources = resources;
     }
 

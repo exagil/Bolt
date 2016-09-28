@@ -8,7 +8,7 @@ public class RunPresenterTest {
     public void testThatRunIsStartedWhenClickedOnToggleRunAndWhenRunServiceIsNotRunningInBackground() {
         RunView runView = Mockito.mock(RunView.class);
         ServiceStateMonitor serviceStateMonitor = Mockito.mock(ServiceStateMonitor.class);
-        RunServiceViewModel runViewModel = Mockito.mock(RunServiceViewModel.class);
+        com.chiragaggarwal.bolt.RunViewModel runViewModel = Mockito.mock(com.chiragaggarwal.bolt.RunViewModel.class);
         Mockito.when(serviceStateMonitor.isRunning(RunService.class)).thenReturn(false);
         RunPresenter runPresenter = new RunPresenter(runView, runViewModel, serviceStateMonitor);
         runPresenter.onToggleRunClick();
@@ -20,7 +20,7 @@ public class RunPresenterTest {
     public void testThatRunIsStoppedWhenClickedOnToggleRunAndRunServiceIsRunningInBackground() {
         RunView runView = Mockito.mock(RunView.class);
         ServiceStateMonitor serviceStateMonitor = Mockito.mock(ServiceStateMonitor.class);
-        RunServiceViewModel runViewModel = Mockito.mock(RunServiceViewModel.class);
+        com.chiragaggarwal.bolt.RunViewModel runViewModel = Mockito.mock(com.chiragaggarwal.bolt.RunViewModel.class);
         Mockito.when(serviceStateMonitor.isRunning(RunService.class)).thenReturn(true);
         RunPresenter runPresenter = new RunPresenter(runView, runViewModel, serviceStateMonitor);
         runPresenter.onToggleRunClick();
@@ -32,7 +32,7 @@ public class RunPresenterTest {
     public void testThatPresenterInitializesTheRunAsStartedWhenTheRunIsAlreadyInProgress() {
         RunView runView = Mockito.mock(RunView.class);
         ServiceStateMonitor serviceStateMonitor = Mockito.mock(ServiceStateMonitor.class);
-        RunServiceViewModel runViewModel = Mockito.mock(RunServiceViewModel.class);
+        com.chiragaggarwal.bolt.RunViewModel runViewModel = Mockito.mock(com.chiragaggarwal.bolt.RunViewModel.class);
         Mockito.when(serviceStateMonitor.isRunning(RunService.class)).thenReturn(true);
         RunPresenter runPresenter = new RunPresenter(runView, runViewModel, serviceStateMonitor);
         runPresenter.init();
@@ -43,7 +43,7 @@ public class RunPresenterTest {
     public void testThatPresenterInitializesTheRunAsStoppedWhenTheRunIsNotInProgress() {
         RunView runView = Mockito.mock(RunView.class);
         ServiceStateMonitor serviceStateMonitor = Mockito.mock(ServiceStateMonitor.class);
-        RunServiceViewModel runViewModel = Mockito.mock(RunServiceViewModel.class);
+        com.chiragaggarwal.bolt.RunViewModel runViewModel = Mockito.mock(com.chiragaggarwal.bolt.RunViewModel.class);
         Mockito.when(serviceStateMonitor.isRunning(RunService.class)).thenReturn(false);
         RunPresenter runPresenter = new RunPresenter(runView, runViewModel, serviceStateMonitor);
         runPresenter.init();

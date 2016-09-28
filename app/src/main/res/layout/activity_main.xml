@@ -4,8 +4,8 @@
     <data>
 
         <variable
-            name="runServiceViewModel"
-            type="com.chiragaggarwal.bolt.RunServiceViewModel" />
+            name="runViewModel"
+            type="com.chiragaggarwal.bolt.RunViewModel" />
 
         <variable
             name="runPresenter"
@@ -21,7 +21,7 @@
         <TextView
             android:id="@+id/text_timer"
             style="@style/text_timer"
-            android:text="@{runServiceViewModel.elapsedTime}" />
+            android:text="@{runViewModel.elapsedTime}" />
 
         <TextView
             android:id="@+id/text_duration"
@@ -44,7 +44,7 @@
             android:id="@+id/button_start_activity"
             style="@style/button_start_activity"
             android:onClick="@{() -> runPresenter.onToggleRunClick()}"
-            android:text="@{runServiceViewModel.toggleRunButtonText}" />
+            android:text="@{runViewModel.toggleRunButtonText}" />
 
     </RelativeLayout>
 </layout>

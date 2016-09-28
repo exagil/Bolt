@@ -2,10 +2,10 @@ package com.chiragaggarwal.bolt;
 
 public class RunPresenter {
     private RunView runView;
-    private RunServiceViewModel runViewModel;
+    private RunViewModel runViewModel;
     private ServiceStateMonitor serviceStateMonitor;
 
-    public RunPresenter(RunView runView, RunServiceViewModel runViewModel, ServiceStateMonitor serviceStateMonitor) {
+    public RunPresenter(RunView runView, RunViewModel runViewModel, ServiceStateMonitor serviceStateMonitor) {
         this.runView = runView;
         this.runViewModel = runViewModel;
         this.serviceStateMonitor = serviceStateMonitor;

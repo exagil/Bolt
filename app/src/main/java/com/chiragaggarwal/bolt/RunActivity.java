@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 public class RunActivity extends AppCompatActivity implements RunView {
     private RunServiceBroadcastReceiver runServiceBroadcastReceiver;
     private LocalBroadcastManager localBroadcastManager;
-    private RunServiceViewModel runServiceViewModel;
+    private RunViewModel runViewModel;
     private RunPresenter runPresenter;
 
     @Inject
@@ -66,18 +66,18 @@ public class RunActivity extends AppCompatActivity implements RunView {
             String action = intent.getAction();
             if (action.equals(RunService.ACTION_TIME_TICK)) {
                 ElapsedTime elapsedTime = intent.getParcelableExtra(ElapsedTime.TAG);
-                runServiceViewModel.setElapsedTime(elapsedTime);
+                runViewModel.setElapsedTime(elapsedTime);
             } else if (action.equals(RunService.ACTION_FETCH_ACCURATE_LOCATION)) {
                 Location location = intent.getParcelableExtra(Location.TAG);
-                runServiceViewModel.setLocation(location);
+                runViewModel.setLocation(location);
             }
         }
     }
 
     private void initialise(ActivityMainBinding activityMainBinding) {
-        runServiceViewModel = new RunServiceViewModel(getResources());
-        runPresenter = new RunPresenter(this, runServiceViewModel, serviceStateMonitor);
-        activityMainBinding.setRunServiceViewModel(runServiceViewModel);
+        runViewModel = new RunViewModel(getResources());
+        runPresenter = new RunPresenter(this, runViewModel, serviceStateMonitor);
+        activityMainBinding.setRunViewModel(runViewModel);
         activityMainBinding.setRunPresenter(runPresenter);
         runServiceBroadcastReceiver = new RunServiceBroadcastReceiver();
         localBroadcastManager = LocalBroadcastManager.getInstance(this);
