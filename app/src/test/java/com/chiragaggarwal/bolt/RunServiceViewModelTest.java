@@ -63,4 +63,25 @@ public class RunServiceViewModelTest {
         runServiceViewModel.setElapsedTime(elapsedTime);
         Assert.assertEquals("22:58:21", runServiceViewModel.getElapsedTime());
     }
+
+    @Test
+    public void testThatToggleRunButtonTextIsStartActivityByDefault() {
+        RunServiceViewModel runViewModel = new RunServiceViewModel();
+        Assert.assertEquals("Start Activity", runViewModel.getToggleRunButtonText());
+    }
+
+    @Test
+    public void testThatToggleRunButtonTextIsStopActivityWhenRunning() {
+        RunServiceViewModel runViewModel = new RunServiceViewModel();
+        runViewModel.setRunningAsStarted();
+        Assert.assertEquals("Stop Activity", runViewModel.getToggleRunButtonText());
+    }
+
+    @Test
+    public void testThatToggleRunButtonTextIsStartActivityWhenNotRunning() {
+        RunServiceViewModel runViewModel = new RunServiceViewModel();
+        runViewModel.setRunningAsStarted();
+        runViewModel.setRunningAsStopped();
+        Assert.assertEquals("Start Activity", runViewModel.getToggleRunButtonText());
+    }
 }

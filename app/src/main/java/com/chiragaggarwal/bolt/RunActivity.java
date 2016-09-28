@@ -81,7 +81,7 @@ public class RunActivity extends AppCompatActivity implements RunView {
 
     private void initialise(ActivityMainBinding activityMainBinding) {
         runServiceViewModel = new RunServiceViewModel();
-        runPresenter = new RunPresenter(this, serviceStateMonitor);
+        runPresenter = new RunPresenter(this, runServiceViewModel, serviceStateMonitor);
         activityMainBinding.setRunServiceViewModel(runServiceViewModel);
         runServiceBroadcastReceiver = new RunServiceBroadcastReceiver();
         localBroadcastManager = LocalBroadcastManager.getInstance(this);

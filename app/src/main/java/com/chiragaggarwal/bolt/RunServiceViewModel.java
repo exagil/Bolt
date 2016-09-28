@@ -11,6 +11,7 @@ public class RunServiceViewModel extends BaseObservable {
     private static final String TIME_DEFAULT = "00:00:00";
 
     private ElapsedTime elapsedTime;
+    private boolean isRunning;
 
     public void setElapsedTime(ElapsedTime elapsedTime) {
         this.elapsedTime = elapsedTime;
@@ -32,10 +33,17 @@ public class RunServiceViewModel extends BaseObservable {
     }
 
     public void setRunningAsStarted() {
-
+        isRunning = true;
+        notifyPropertyChanged(BR.toggleRunButtonText);
     }
 
     public void setRunningAsStopped() {
+        isRunning = false;
+        notifyPropertyChanged(BR.toggleRunButtonText);
+    }
 
+    @Bindable
+    public String getToggleRunButtonText() {
+        return (isRunning) ? "Stop Activity" : "Start Activity";
     }
 }
