@@ -50,11 +50,6 @@ public class RunActivity extends AppCompatActivity implements RunView {
         localBroadcastManager.unregisterReceiver(runServiceBroadcastReceiver);
     }
 
-    @OnClick(R.id.button_start_activity)
-    public void onTextStartActivityClick() {
-        runPresenter.onToggleRunClick();
-    }
-
     @Override
     public void startRun() {
         startService(runServiceIntent());
@@ -83,6 +78,7 @@ public class RunActivity extends AppCompatActivity implements RunView {
         runServiceViewModel = new RunServiceViewModel();
         runPresenter = new RunPresenter(this, runServiceViewModel, serviceStateMonitor);
         activityMainBinding.setRunServiceViewModel(runServiceViewModel);
+        activityMainBinding.setRunPresenter(runPresenter);
         runServiceBroadcastReceiver = new RunServiceBroadcastReceiver();
         localBroadcastManager = LocalBroadcastManager.getInstance(this);
     }

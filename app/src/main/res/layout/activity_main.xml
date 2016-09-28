@@ -7,6 +7,10 @@
             name="runServiceViewModel"
             type="com.chiragaggarwal.bolt.RunServiceViewModel" />
 
+        <variable
+            name="runPresenter"
+            type="com.chiragaggarwal.bolt.RunPresenter" />
+
     </data>
 
     <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
@@ -39,7 +43,8 @@
         <TextView
             android:id="@+id/button_start_activity"
             style="@style/button_start_activity"
-            android:text="@string/start_activity" />
+            android:onClick="@{() -> runPresenter.onToggleRunClick()}"
+            android:text="@{runServiceViewModel.toggleRunButtonText}" />
 
     </RelativeLayout>
 </layout>
