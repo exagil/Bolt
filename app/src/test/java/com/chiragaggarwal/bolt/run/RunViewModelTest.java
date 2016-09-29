@@ -3,6 +3,7 @@ package com.chiragaggarwal.bolt.run;
 import android.content.res.Resources;
 
 import com.chiragaggarwal.bolt.R;
+import com.chiragaggarwal.bolt.location.UserLocation;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
 import junit.framework.Assert;
@@ -113,5 +114,13 @@ public class RunViewModelTest {
     public void testThatPaceIsZeroByDefault() {
         RunViewModel runViewModel = new RunViewModel(resources);
         Assert.assertEquals("00:00", runViewModel.getPace());
+    }
+
+    @Test
+    public void testThatItKnowsHowToFormatThePaceCorrectlyWhenItIsLessThanTen() {
+        RunViewModel runViewModel = new RunViewModel(resources);
+        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, false, 1.3f);
+        runViewModel.setLocation(userLocation);
+        Assert.assertEquals("01:30", runViewModel.getPace());
     }
 }

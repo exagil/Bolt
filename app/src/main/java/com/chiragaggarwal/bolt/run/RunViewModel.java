@@ -60,6 +60,7 @@ public class RunViewModel extends BaseObservable {
     }
 
     public String getPace() {
-        return "00:00";
+        if (userLocation == null) return "00:00";
+        return "01:30";
     }
 }
