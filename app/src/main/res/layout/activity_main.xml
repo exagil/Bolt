@@ -5,11 +5,11 @@
 
         <variable
             name="runViewModel"
-            type="com.chiragaggarwal.bolt.RunViewModel" />
+            type="com.chiragaggarwal.bolt.run.RunViewModel" />
 
         <variable
             name="runPresenter"
-            type="com.chiragaggarwal.bolt.RunPresenter" />
+            type="com.chiragaggarwal.bolt.run.RunPresenter" />
 
     </data>
 
