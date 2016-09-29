@@ -108,4 +108,10 @@ public class RunViewModelTest {
         runViewModel.setRunningAsStopped();
         Assert.assertEquals("00:00:00", runViewModel.getElapsedTime());
     }
+
+    @Test
+    public void testThatPaceIsZeroByDefault() {
+        RunViewModel runViewModel = new RunViewModel(resources);
+        Assert.assertEquals("00:00", runViewModel.getPace());
+    }
 }

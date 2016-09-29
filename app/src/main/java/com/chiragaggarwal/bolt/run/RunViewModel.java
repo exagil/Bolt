@@ -17,6 +17,7 @@ public class RunViewModel extends BaseObservable {
     private ElapsedTime elapsedTime;
     private boolean isRunning;
     private Resources resources;
+    private UserLocation userLocation;
 
     public RunViewModel(Resources resources) {
         this.resources = resources;
@@ -34,7 +35,7 @@ public class RunViewModel extends BaseObservable {
     }
 
     public void setLocation(UserLocation userLocation) {
-
+        this.userLocation = userLocation;
     }
 
     private String formatWithLeadingZero(int timeElement) {
@@ -56,5 +57,9 @@ public class RunViewModel extends BaseObservable {
     @Bindable
     public String getToggleRunButtonText() {
         return (isRunning) ? resources.getString(R.string.stop_activity) : resources.getString(R.string.start_activity);
+    }
+
+    public String getPace() {
+        return "00:00";
     }
 }
