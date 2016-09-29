@@ -17,7 +17,8 @@ public class RunInProgressNotification {
 
     public Notification build() {
         return new NotificationCompat.Builder(context).
-                setSmallIcon(R.mipmap.ic_notif).
+                setSmallIcon(R.drawable.ic_stat_man_sprinting).
+                setColor(context.getResources().getColor(R.color.colorPrimary)).
                 setContentTitle(context.getString(R.string.app_name)).
                 setContentText(context.getString(R.string.run_in_progress_notification_text)).
                 setSubText(String.format(context.getString(R.string.format_elapsed_time), runViewModel.getElapsedTime())).
