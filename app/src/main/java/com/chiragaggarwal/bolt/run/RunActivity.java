@@ -14,7 +14,7 @@ import com.chiragaggarwal.bolt.BoltApplication;
 import com.chiragaggarwal.bolt.R;
 import com.chiragaggarwal.bolt.common.ServiceStateMonitor;
 import com.chiragaggarwal.bolt.databinding.ActivityMainBinding;
-import com.chiragaggarwal.bolt.location.Location;
+import com.chiragaggarwal.bolt.location.UserLocation;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
 import javax.inject.Inject;
@@ -72,8 +72,8 @@ public class RunActivity extends AppCompatActivity implements RunView {
                 ElapsedTime elapsedTime = intent.getParcelableExtra(ElapsedTime.TAG);
                 runViewModel.setElapsedTime(elapsedTime);
             } else if (action.equals(RunService.ACTION_FETCH_ACCURATE_LOCATION)) {
-                Location location = intent.getParcelableExtra(Location.TAG);
-                runViewModel.setLocation(location);
+                UserLocation userLocation = intent.getParcelableExtra(UserLocation.TAG);
+                runViewModel.setLocation(userLocation);
             }
         }
     }

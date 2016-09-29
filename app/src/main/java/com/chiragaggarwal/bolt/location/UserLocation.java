@@ -3,8 +3,8 @@ package com.chiragaggarwal.bolt.location;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Location implements Parcelable {
-    public static final String TAG = "com.chiragaggarwal.bolt.location.Location";
+public class UserLocation implements Parcelable {
+    public static final String TAG = "com.chiragaggarwal.bolt.location.UserLocation";
     private final double latitude;
     private final double longitude;
     private final boolean hasAccuracy;
@@ -12,7 +12,7 @@ public class Location implements Parcelable {
     private final boolean hasSpeed;
     private final float speed;
 
-    public Location(double latitude, double longitude, boolean hasAccuracy, float accuracy, boolean hasSpeed, float speed) {
+    public UserLocation(double latitude, double longitude, boolean hasAccuracy, float accuracy, boolean hasSpeed, float speed) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.hasAccuracy = hasAccuracy;
@@ -26,14 +26,14 @@ public class Location implements Parcelable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Location location = (Location) o;
+        UserLocation userLocation = (UserLocation) o;
 
-        if (Double.compare(location.latitude, latitude) != 0) return false;
-        if (Double.compare(location.longitude, longitude) != 0) return false;
-        if (hasAccuracy != location.hasAccuracy) return false;
-        if (accuracy != location.accuracy) return false;
-        if (hasSpeed != location.hasSpeed) return false;
-        return Float.compare(location.speed, speed) == 0;
+        if (Double.compare(userLocation.latitude, latitude) != 0) return false;
+        if (Double.compare(userLocation.longitude, longitude) != 0) return false;
+        if (hasAccuracy != userLocation.hasAccuracy) return false;
+        if (accuracy != userLocation.accuracy) return false;
+        if (hasSpeed != userLocation.hasSpeed) return false;
+        return Float.compare(userLocation.speed, speed) == 0;
 
     }
 
@@ -89,7 +89,7 @@ public class Location implements Parcelable {
         dest.writeFloat(this.speed);
     }
 
-    protected Location(Parcel in) {
+    protected UserLocation(Parcel in) {
         this.latitude = in.readDouble();
         this.longitude = in.readDouble();
         this.hasAccuracy = in.readByte() != 0;
@@ -98,15 +98,15 @@ public class Location implements Parcelable {
         this.speed = in.readFloat();
     }
 
-    public static final Creator<Location> CREATOR = new Creator<Location>() {
+    public static final Creator<UserLocation> CREATOR = new Creator<UserLocation>() {
         @Override
-        public Location createFromParcel(Parcel source) {
-            return new Location(source);
+        public UserLocation createFromParcel(Parcel source) {
+            return new UserLocation(source);
         }
 
         @Override
-        public Location[] newArray(int size) {
-            return new Location[size];
+        public UserLocation[] newArray(int size) {
+            return new UserLocation[size];
         }
     };
 }

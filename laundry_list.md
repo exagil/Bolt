@@ -1,4 +1,4 @@
 Laundry List
 ============
 
-- Add permission check for requesting location updates
+- Add permission check for requesting userLocation updates

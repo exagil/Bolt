@@ -6,7 +6,7 @@ import android.databinding.Bindable;
 
 import com.chiragaggarwal.bolt.BR;
 import com.chiragaggarwal.bolt.R;
-import com.chiragaggarwal.bolt.location.Location;
+import com.chiragaggarwal.bolt.location.UserLocation;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
 public class RunViewModel extends BaseObservable {
@@ -33,7 +33,7 @@ public class RunViewModel extends BaseObservable {
         return formatWithLeadingZero(elapsedTime.hours()) + COLON + formatWithLeadingZero(elapsedTime.minutes()) + COLON + formatWithLeadingZero(elapsedTime.seconds());
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(UserLocation userLocation) {
 
     }
 

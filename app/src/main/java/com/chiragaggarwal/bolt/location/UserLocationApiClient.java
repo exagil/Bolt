@@ -1,5 +1,6 @@
 package com.chiragaggarwal.bolt.location;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,7 +11,7 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
-public class LocationApiClient implements
+public class UserLocationApiClient implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
@@ -20,11 +21,11 @@ public class LocationApiClient implements
     private static final float SMALLEST_DISPLACEMENT_IN_METERS = 1.0f;
     public static final int LOCATION_UPDATE_INTERVAL_IN_SECONDS = 2;
     private GoogleApiClient googleApiClient;
-    private LocationChangeListener locationChangeListener;
+    private UserLocationChangeListener userLocationChangeListener;
 
-    public LocationApiClient(GoogleApiClient googleApiClient, LocationChangeListener locationChangeListener) {
+    public UserLocationApiClient(GoogleApiClient googleApiClient, UserLocationChangeListener userLocationChangeListener) {
         this.googleApiClient = googleApiClient;
-        this.locationChangeListener = locationChangeListener;
+        this.userLocationChangeListener = userLocationChangeListener;
     }
 
     public void connect() {
@@ -34,8 +35,8 @@ public class LocationApiClient implements
     }
 
     @Override
-    public void onLocationChanged(android.location.Location nativeLocation) {
-        Location location = new Location(
+    public void onLocationChanged(Location nativeLocation) {
+        UserLocation userLocation = new UserLocation(
                 nativeLocation.getLatitude(),
                 nativeLocation.getLongitude(),
                 nativeLocation.hasAccuracy(),
@@ -43,8 +44,8 @@ public class LocationApiClient implements
                 nativeLocation.hasSpeed(),
                 nativeLocation.getSpeed()
         );
-        if (location.isValid())
-            locationChangeListener.onFetchAccurateLocation(location);
+        if (userLocation.isValid())
+            userLocationChangeListener.onFetchAccurateLocation(userLocation);
     }
 
     @SuppressWarnings("MissingPermission")

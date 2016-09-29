@@ -10,9 +10,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 
 import com.chiragaggarwal.bolt.BoltApplication;
-import com.chiragaggarwal.bolt.location.Location;
-import com.chiragaggarwal.bolt.location.LocationApiClient;
-import com.chiragaggarwal.bolt.location.LocationChangeListener;
+import com.chiragaggarwal.bolt.location.UserLocation;
+import com.chiragaggarwal.bolt.location.UserLocationApiClient;
+import com.chiragaggarwal.bolt.location.UserLocationChangeListener;
 import com.chiragaggarwal.bolt.timer.ActivityTimer;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 import com.chiragaggarwal.bolt.timer.TimerUpdateListener;
@@ -20,11 +20,11 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import javax.inject.Inject;
 
-public class RunService extends Service implements LocationChangeListener, TimerUpdateListener {
+public class RunService extends Service implements UserLocationChangeListener, TimerUpdateListener {
     public static final String ACTION_TIME_TICK = "com.chiragaggarwal.bolt.run.RunService.ACTION_TIME_TICK";
     public static final String ACTION_FETCH_ACCURATE_LOCATION = "com.chiragaggarwal.bolt.run.RunService.ACTION_FETCH_ACCURATE_LOCATION";
     private static final int NOTIFICATION_ID = 1;
-    private LocationApiClient locationApiClient;
+    private UserLocationApiClient userLocationApiClient;
     private ActivityTimer activityTimer;
     private RunViewModel runViewModel;
 
@@ -35,7 +35,7 @@ public class RunService extends Service implements LocationChangeListener, Timer
     public void onCreate() {
         super.onCreate();
         ((BoltApplication) getApplicationContext()).getBoltComponent().inject(this);
-        locationApiClient = new LocationApiClient(googleApiClient, this);
+        userLocationApiClient = new UserLocationApiClient(googleApiClient, this);
         activityTimer = new ActivityTimer(this);
         runViewModel = new RunViewModel(getResources());
     }
@@ -43,7 +43,7 @@ public class RunService extends Service implements LocationChangeListener, Timer
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         startForeground(NOTIFICATION_ID, new RunInProgressNotification(this, runViewModel).build());
-        locationApiClient.connect();
+        userLocationApiClient.connect();
         activityTimer.start();
         return Service.START_STICKY;
     }
@@ -51,7 +51,7 @@ public class RunService extends Service implements LocationChangeListener, Timer
     @Override
     public void onDestroy() {
         stopForeground(true);
-        locationApiClient.disconnect();
+        userLocationApiClient.disconnect();
         activityTimer.stop();
         super.onDestroy();
     }
@@ -63,9 +63,9 @@ public class RunService extends Service implements LocationChangeListener, Timer
     }
 
     @Override
-    public void onFetchAccurateLocation(Location location) {
+    public void onFetchAccurateLocation(UserLocation userLocation) {
         Intent timeTickBroadcastIntent = new Intent(RunService.ACTION_FETCH_ACCURATE_LOCATION);
-        timeTickBroadcastIntent.putExtra(Location.TAG, location);
+        timeTickBroadcastIntent.putExtra(UserLocation.TAG, userLocation);
         LocalBroadcastManager.getInstance(this).sendBroadcast(timeTickBroadcastIntent);
     }
 
