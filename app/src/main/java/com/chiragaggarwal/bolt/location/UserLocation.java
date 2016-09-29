@@ -11,6 +11,7 @@ public class UserLocation implements Parcelable {
     private final float accuracy;
     private final boolean hasSpeed;
     private final float speed;
+    private long visitedAt;
 
     public UserLocation(double latitude, double longitude, boolean hasAccuracy, float accuracy, boolean hasSpeed, float speed) {
         this.latitude = latitude;
@@ -19,6 +20,7 @@ public class UserLocation implements Parcelable {
         this.accuracy = accuracy;
         this.hasSpeed = hasSpeed;
         this.speed = speed;
+        this.visitedAt = System.currentTimeMillis();
     }
 
     @Override
@@ -87,6 +89,7 @@ public class UserLocation implements Parcelable {
         dest.writeFloat(this.accuracy);
         dest.writeByte(this.hasSpeed ? (byte) 1 : (byte) 0);
         dest.writeFloat(this.speed);
+        dest.writeLong(this.visitedAt);
     }
 
     protected UserLocation(Parcel in) {
@@ -96,6 +99,7 @@ public class UserLocation implements Parcelable {
         this.accuracy = in.readFloat();
         this.hasSpeed = in.readByte() != 0;
         this.speed = in.readFloat();
+        this.visitedAt = in.readLong();
     }
 
     public static final Creator<UserLocation> CREATOR = new Creator<UserLocation>() {
