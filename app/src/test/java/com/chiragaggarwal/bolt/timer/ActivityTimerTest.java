@@ -7,15 +7,6 @@ import static org.mockito.Mockito.atMost;
 
 public class ActivityTimerTest {
     @Test
-    public void testThatTimerIsTicksWhenItIsStarted() {
-        TimerUpdateListener timerUpdateListener = Mockito.mock(TimerUpdateListener.class);
-        ActivityTimer activityTimer = new ActivityTimer(timerUpdateListener);
-        ElapsedTime elapsedTime = new ElapsedTime(0);
-        activityTimer.start();
-        Mockito.verify(timerUpdateListener).onTimeTick(elapsedTime);
-    }
-
-    @Test
     public void testThatATimerWhichIsStoppedAfterItIsStartedIsTickedNoMoreThanOnce() throws InterruptedException {
         TimerUpdateListener timerUpdateListener = Mockito.mock(TimerUpdateListener.class);
         ActivityTimer activityTimer = new ActivityTimer(timerUpdateListener);
