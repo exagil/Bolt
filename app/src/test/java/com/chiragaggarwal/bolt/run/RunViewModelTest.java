@@ -119,7 +119,7 @@ public class RunViewModelTest {
     @Test
     public void testThatItOnlyProvidesTheFirstDecimalPlaceOfAnySpeedWhenFormatting() {
         RunViewModel runViewModel = new RunViewModel(resources);
-        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, false, 0.98765f);
+        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, true, 0.98765f);
         runViewModel.setLocation(userLocation);
         Assert.assertEquals("0.9", runViewModel.getPace());
     }
@@ -127,7 +127,7 @@ public class RunViewModelTest {
     @Test
     public void testThatItProvidesADigitAtOnesPlaceWhileFormattingANumberWhichDoesNotHaveADigitAtTensPlace() {
         RunViewModel runViewModel = new RunViewModel(resources);
-        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, false, 1.98765f);
+        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, true, 1.98765f);
         runViewModel.setLocation(userLocation);
         Assert.assertEquals("1.9", runViewModel.getPace());
     }
@@ -135,8 +135,16 @@ public class RunViewModelTest {
     @Test
     public void testThatItProvidesADigitAtTensPlaceWhileFormattingANumberWhichHasADigitAtTensPlace() {
         RunViewModel runViewModel = new RunViewModel(resources);
-        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, false, 11.98765f);
+        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, true, 11.98765f);
         runViewModel.setLocation(userLocation);
         Assert.assertEquals("11.9", runViewModel.getPace());
+    }
+
+    @Test
+    public void testThatDistanceIsZeroByDefault() {
+        RunViewModel runViewModel = new RunViewModel(resources);
+        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, true, 11.98765f);
+        runViewModel.setLocation(userLocation);
+        Assert.assertEquals("0.00", runViewModel.getDistance());
     }
 }

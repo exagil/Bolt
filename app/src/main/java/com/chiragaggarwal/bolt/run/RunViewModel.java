@@ -68,4 +68,8 @@ public class RunViewModel extends BaseObservable {
         paceDecimalFormat.setRoundingMode(RoundingMode.DOWN);
         return paceDecimalFormat.format(userLocation.speed);
     }
+
+    public String getDistance() {
+        return "0.00";
+    }
 }
