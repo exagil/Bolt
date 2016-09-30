@@ -84,4 +84,8 @@ public class RunViewModel extends BaseObservable {
     private boolean isLastLocationKnown() {
         return lastKnowsUserLocation != null;
     }
+
+    public String getNotificationSubText() {
+        return "Elapsed Time: " + getElapsedTime() + "\nDistance: " + getDistance();
+    }
 }
