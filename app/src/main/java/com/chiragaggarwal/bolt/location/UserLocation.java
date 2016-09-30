@@ -1,7 +1,9 @@
 package com.chiragaggarwal.bolt.location;
 
+import android.location.Location;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 public class UserLocation implements Parcelable {
     public static final String TAG = "com.chiragaggarwal.bolt.location.UserLocation";
@@ -54,7 +56,7 @@ public class UserLocation implements Parcelable {
 
     @SuppressWarnings("unused")
     private android.location.Location toNative() {
-        android.location.Location nativeLocation = new android.location.Location("");
+        Location nativeLocation = new Location("");
         nativeLocation.setLatitude(this.latitude);
         nativeLocation.setLongitude(this.longitude);
         nativeLocation.setSpeed(speed);
@@ -109,4 +111,8 @@ public class UserLocation implements Parcelable {
             return new UserLocation[size];
         }
     };
+
+    public float distanceTo(@NonNull UserLocation userLocation) {
+        return this.toNative().distanceTo(userLocation.toNative());
+    }
 }
