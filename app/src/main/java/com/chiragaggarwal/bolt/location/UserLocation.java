@@ -10,7 +10,7 @@ public class UserLocation implements Parcelable {
     private final boolean hasAccuracy;
     private final float accuracy;
     private final boolean hasSpeed;
-    private final float speed;
+    public final float speed;
 
     public UserLocation(double latitude, double longitude, boolean hasAccuracy, float accuracy, boolean hasSpeed, float speed) {
         this.latitude = latitude;

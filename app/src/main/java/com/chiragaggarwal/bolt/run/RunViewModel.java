@@ -9,6 +9,9 @@ import com.chiragaggarwal.bolt.R;
 import com.chiragaggarwal.bolt.location.UserLocation;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class RunViewModel extends BaseObservable {
     private static final String COLON = ":";
     private static final String FORMAT_LEADING_ZERO = "%02d";
@@ -61,6 +64,8 @@ public class RunViewModel extends BaseObservable {
 
     public String getPace() {
         if (userLocation == null) return "00:00";
-        return "01:30";
+        DecimalFormat paceDecimalFormat = new DecimalFormat("#.#");
+        paceDecimalFormat.setRoundingMode(RoundingMode.DOWN);
+        return paceDecimalFormat.format(userLocation.speed);
     }
 }
