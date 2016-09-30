@@ -8,4 +8,5 @@
     <string name="stop_activity">STOP ACTIVITY</string>
     <string name="run_in_progress_notification_text">Running activity with Bolt</string>
     <string name="format_elapsed_time">Elapsed Time: %s</string>
+    <string name="format_distance">Distance: %s</string>
 </resources>

@@ -86,6 +86,8 @@ public class RunViewModel extends BaseObservable {
     }
 
     public String getNotificationSubText() {
-        return "Elapsed Time: " + getElapsedTime() + "\nDistance: " + getDistance();
+        String elapsedTime = String.format(resources.getString(R.string.format_elapsed_time), getElapsedTime());
+        String distance = String.format(resources.getString(R.string.format_distance), getDistance());
+        return elapsedTime + "\n" + distance;
     }
 }

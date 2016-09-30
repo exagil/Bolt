@@ -150,12 +150,16 @@ public class RunViewModelTest {
 
     @Test
     public void testThatItKnowsTheNotificationSubTextWhenNoElapsedTimeOrDistanceExists() {
+        Mockito.when(resources.getString(R.string.format_elapsed_time)).thenReturn("Elapsed Time: %s");
+        Mockito.when(resources.getString(R.string.format_distance)).thenReturn("Distance: %s");
         RunViewModel runViewModel = new RunViewModel(resources);
         Assert.assertEquals("Elapsed Time: 00:00:00\nDistance: 0.00", runViewModel.getNotificationSubText());
     }
 
     @Test
     public void testThatItKnowsTheNotificationSubTextWhenElapsedTimeIsPresentButOnlyOneDistanceExists() {
+        Mockito.when(resources.getString(R.string.format_elapsed_time)).thenReturn("Elapsed Time: %s");
+        Mockito.when(resources.getString(R.string.format_distance)).thenReturn("Distance: %s");
         UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, true, 11.98765f);
         RunViewModel runViewModel = new RunViewModel(resources);
         runViewModel.setElapsedTime(new ElapsedTime(123));
