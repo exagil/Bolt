@@ -20,7 +20,8 @@ public class RunViewModel extends BaseObservable {
     private ElapsedTime elapsedTime;
     private boolean isRunning;
     private Resources resources;
-    private UserLocation userLocation;
+    private UserLocation lastKnowsUserLocation;
+    private float totalDistanceCoveredInMeters;
 
     public RunViewModel(Resources resources) {
         this.resources = resources;
@@ -37,8 +38,12 @@ public class RunViewModel extends BaseObservable {
         return formatWithLeadingZero(elapsedTime.hours()) + COLON + formatWithLeadingZero(elapsedTime.minutes()) + COLON + formatWithLeadingZero(elapsedTime.seconds());
     }
 
-    public void setLocation(UserLocation userLocation) {
-        this.userLocation = userLocation;
+    public void setLocation(UserLocation currentUserLocation) {
+        if (isLastLocationKnown()) {
+            float distanceCovered = this.lastKnowsUserLocation.distanceTo(currentUserLocation);
+            this.totalDistanceCoveredInMeters += distanceCovered;
+        }
+        this.lastKnowsUserLocation = currentUserLocation;
     }
 
     private String formatWithLeadingZero(int timeElement) {
@@ -63,13 +68,20 @@ public class RunViewModel extends BaseObservable {
     }
 
     public String getPace() {
-        if (userLocation == null) return "00:00";
+        if (lastKnowsUserLocation == null) return "0.0";
         DecimalFormat paceDecimalFormat = new DecimalFormat("#.#");
         paceDecimalFormat.setRoundingMode(RoundingMode.DOWN);
-        return paceDecimalFormat.format(userLocation.speed);
+        return paceDecimalFormat.format(lastKnowsUserLocation.speed);
     }
 
     public String getDistance() {
-        return "0.00";
+        if (totalDistanceCoveredInMeters == 0) return "0.00";
+        DecimalFormat paceDecimalFormat = new DecimalFormat("#.##");
+        paceDecimalFormat.setRoundingMode(RoundingMode.DOWN);
+        return paceDecimalFormat.format(totalDistanceCoveredInMeters);
+    }
+
+    private boolean isLastLocationKnown() {
+        return lastKnowsUserLocation != null;
     }
 }
