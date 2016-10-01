@@ -7,6 +7,7 @@ public class UserLocations {
     private List<UserLocation> userLocationList;
     private UserLocation lastVisitedUserLocation;
     private float totalDistanceInKilometers;
+    private float currentPaceInKilometersPerHour;
 
     public UserLocations() {
         this.userLocationList = new ArrayList<>();
@@ -21,5 +22,10 @@ public class UserLocations {
             totalDistanceInKilometers += lastVisitedUserLocation.distanceInKilometersTo(userLocation);
         userLocationList.add(userLocation);
         lastVisitedUserLocation = userLocation;
+        currentPaceInKilometersPerHour = userLocation.speedInKilometersPerHour();
+    }
+
+    public float currentPaceInKilometersPerHour() {
+        return currentPaceInKilometersPerHour;
     }
 }
