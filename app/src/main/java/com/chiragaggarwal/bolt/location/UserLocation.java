@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 public class UserLocation implements Parcelable {
     public static final String TAG = "com.chiragaggarwal.bolt.location.UserLocation";
     public static final float METERS_IN_ONE_KILOMETER = 1000F;
+    public static final float M_TO_KMPH_CONVERSION_FACTOR = 3.6F;
     private final double latitude;
     private final double longitude;
     private final boolean hasAccuracy;
@@ -115,5 +116,9 @@ public class UserLocation implements Parcelable {
 
     public float distanceInKilometersTo(@NonNull UserLocation userLocation) {
         return this.toNative().distanceTo(userLocation.toNative()) / METERS_IN_ONE_KILOMETER;
+    }
+
+    public float speedInKilometersPerHour() {
+        return speed * M_TO_KMPH_CONVERSION_FACTOR;
     }
 }

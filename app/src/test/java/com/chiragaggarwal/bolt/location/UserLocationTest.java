@@ -1,5 +1,7 @@
 package com.chiragaggarwal.bolt.location;
 
+import junit.framework.Assert;
+
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
@@ -41,8 +43,8 @@ public class UserLocationTest {
 
     @Test
     public void testThatTwoSameLocationsHaveTheSameHashCode() {
-        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 16, true, 3.16f);
-        UserLocation anotherUserLocation = new UserLocation(12.9611d, 77.6472d, true, 16, true, 3.16f);
+        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 6, true, 3.16f);
+        UserLocation anotherUserLocation = new UserLocation(12.9611d, 77.6472d, true, 6, true, 3.16f);
         assertEquals(userLocation.hashCode(), anotherUserLocation.hashCode());
     }
 
@@ -53,8 +55,8 @@ public class UserLocationTest {
     }
 
     @Test
-    public void testThatAUserLocationWhichHasAccuracyOfTwentyIsValid() {
-        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 20, true, 100f);
+    public void testThatAUserLocationWhichHasAccuracyOfTenIsValid() {
+        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 10, true, 100f);
         assertTrue(userLocation.isValid());
     }
 
@@ -65,32 +67,38 @@ public class UserLocationTest {
     }
 
     @Test
-    public void testThatAUserLocationWithAccuracyBelowTwentyIsValid() {
-        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, true, 100f);
+    public void testThatAUserLocationWithAccuracyBelowTenIsValid() {
+        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 9, true, 100f);
         assertTrue(userLocation.isValid());
     }
 
     @Test
     public void testThatAUserLocationWithoutSpeedIsNotValid() {
-        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, false, 3.16f);
+        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 9, false, 3.16f);
         assertFalse(userLocation.isValid());
     }
 
     @Test
     public void testThatAUserLocationWithSpeedMoreThanOneHundredMetersPerSecondIsNotValid() {
-        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, true, 101f);
+        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 9, true, 101f);
         assertFalse(userLocation.isValid());
     }
 
     @Test
     public void testThatAUserLocationWithSpeedAsOneHundredMetersPerSecondIsValid() {
-        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, true, 100f);
+        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 9, true, 100f);
         assertTrue(userLocation.isValid());
     }
 
     @Test
     public void testThatLocationWithSpeedLessThanHundredMetersPerSecondAreValid() {
-        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, true, 90f);
+        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 9, true, 90f);
         assertTrue(userLocation.isValid());
+    }
+
+    @Test
+    public void testThatItKnowsTheCurrentSpeedInKilometersPerHour() {
+        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 16, true, 3.16F);
+        Assert.assertEquals(11.376F, userLocation.speedInKilometersPerHour());
     }
 }
