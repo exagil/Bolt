@@ -21,7 +21,7 @@ public class RunInProgressNotification {
                 setColor(context.getResources().getColor(R.color.colorPrimary)).
                 setContentTitle(context.getString(R.string.app_name)).
                 setContentText(context.getString(R.string.run_in_progress_notification_text)).
-                setSubText(String.format(context.getString(R.string.format_elapsed_time), runViewModel.getElapsedTime())).
+                setSubText(runViewModel.getNotificationSubText()).
                 build();
     }
 }

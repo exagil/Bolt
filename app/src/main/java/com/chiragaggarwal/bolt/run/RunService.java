@@ -65,6 +65,7 @@ public class RunService extends Service implements UserLocationChangeListener, T
     @Override
     public void onFetchAccurateLocation(UserLocation userLocation) {
         runViewModel.setLocation(userLocation);
+        updateNotification(runViewModel);
         Intent timeTickBroadcastIntent = new Intent(RunService.ACTION_FETCH_ACCURATE_LOCATION);
         timeTickBroadcastIntent.putExtra(UserLocation.TAG, userLocation);
         LocalBroadcastManager.getInstance(this).sendBroadcast(timeTickBroadcastIntent);

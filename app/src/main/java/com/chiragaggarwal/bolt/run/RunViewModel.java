@@ -44,10 +44,8 @@ public class RunViewModel extends BaseObservable {
             this.totalDistanceCoveredInMeters += distanceCovered;
         }
         this.lastKnowsUserLocation = currentUserLocation;
-    }
-
-    private String formatWithLeadingZero(int timeElement) {
-        return String.format(FORMAT_LEADING_ZERO, timeElement);
+        notifyPropertyChanged(BR.pace);
+        notifyPropertyChanged(BR.distance);
     }
 
     public void setRunningAsStarted() {
@@ -67,6 +65,7 @@ public class RunViewModel extends BaseObservable {
         return (isRunning) ? resources.getString(R.string.stop_activity) : resources.getString(R.string.start_activity);
     }
 
+    @Bindable
     public String getPace() {
         if (lastKnowsUserLocation == null) return "0.0";
         DecimalFormat paceDecimalFormat = new DecimalFormat("#.#");
@@ -74,6 +73,7 @@ public class RunViewModel extends BaseObservable {
         return paceDecimalFormat.format(lastKnowsUserLocation.speed);
     }
 
+    @Bindable
     public String getDistance() {
         if (totalDistanceCoveredInMeters == 0) return "0.00";
         DecimalFormat paceDecimalFormat = new DecimalFormat("#.##");
@@ -81,13 +81,17 @@ public class RunViewModel extends BaseObservable {
         return paceDecimalFormat.format(totalDistanceCoveredInMeters);
     }
 
-    private boolean isLastLocationKnown() {
-        return lastKnowsUserLocation != null;
-    }
-
     public String getNotificationSubText() {
         String elapsedTime = String.format(resources.getString(R.string.format_elapsed_time), getElapsedTime());
         String distance = String.format(resources.getString(R.string.format_distance), getDistance());
         return elapsedTime + "\n" + distance;
+    }
+
+    private boolean isLastLocationKnown() {
+        return lastKnowsUserLocation != null;
+    }
+
+    private String formatWithLeadingZero(int timeElement) {
+        return String.format(FORMAT_LEADING_ZERO, timeElement);
     }
 }
