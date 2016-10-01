@@ -56,6 +56,7 @@ public class RunViewModel extends BaseObservable {
     public void setRunningAsStopped() {
         isRunning = false;
         elapsedTime = null;
+        totalDistanceCoveredInMeters = 0;
         notifyPropertyChanged(BR.toggleRunButtonText);
         notifyPropertyChanged(BR.elapsedTime);
     }

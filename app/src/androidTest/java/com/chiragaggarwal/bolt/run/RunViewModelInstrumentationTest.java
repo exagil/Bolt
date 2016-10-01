@@ -42,4 +42,15 @@ public class RunViewModelInstrumentationTest {
         runViewModel.setElapsedTime(new ElapsedTime(128));
         Assert.assertEquals("Elapsed Time: 00:02:08\nDistance: 15.49", runViewModel.getNotificationSubText());
     }
+
+    @Test
+    public void testThatDistanceIsZeroKilometersWhenRunningIsStopped() {
+        RunViewModel runViewModel = new RunViewModel(resources);
+        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, true, 11.98765f);
+        runViewModel.setLocation(userLocation);
+        UserLocation secondUserLocation = new UserLocation(12.9612d, 77.6473d, true, 19, true, 11.98765f);
+        runViewModel.setLocation(secondUserLocation);
+        runViewModel.setRunningAsStopped();
+        Assert.assertEquals("0.00", runViewModel.getDistance());
+    }
 }
