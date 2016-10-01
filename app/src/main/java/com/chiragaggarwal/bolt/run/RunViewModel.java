@@ -7,6 +7,7 @@ import android.databinding.Bindable;
 import com.chiragaggarwal.bolt.BR;
 import com.chiragaggarwal.bolt.R;
 import com.chiragaggarwal.bolt.location.UserLocation;
+import com.chiragaggarwal.bolt.location.UserLocations;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
 import java.math.RoundingMode;
@@ -27,6 +28,7 @@ public class RunViewModel extends BaseObservable {
     private Resources resources;
     private UserLocation lastKnowsUserLocation;
     private float totalDistanceCoveredInKiloMeters;
+    private UserLocations userLocations;
 
     public RunViewModel(Resources resources) {
         this.resources = resources;
@@ -74,10 +76,10 @@ public class RunViewModel extends BaseObservable {
 
     @Bindable
     public String getPace() {
-        if (lastKnowsUserLocation == null) return PACE_DEFAULT;
+        if (hasUserNotMovedAtAll()) return PACE_DEFAULT;
         DecimalFormat paceDecimalFormat = new DecimalFormat(FORMAT_PACE);
         paceDecimalFormat.setRoundingMode(RoundingMode.DOWN);
-        return paceDecimalFormat.format(lastKnowsUserLocation.speed);
+        return paceDecimalFormat.format(userLocations.currentPaceInKilometersPerHour());
     }
 
     @Bindable
@@ -101,5 +103,13 @@ public class RunViewModel extends BaseObservable {
 
     private String formatWithLeadingZero(int timeElement) {
         return String.format(FORMAT_LEADING_ZERO, timeElement);
+    }
+
+    public void updateVisitedUserLocations(UserLocations userLocations) {
+        this.userLocations = userLocations;
+    }
+
+    private boolean hasUserNotMovedAtAll() {
+        return userLocations == null;
     }
 }

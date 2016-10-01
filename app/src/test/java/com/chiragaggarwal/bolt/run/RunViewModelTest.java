@@ -4,6 +4,7 @@ import android.content.res.Resources;
 
 import com.chiragaggarwal.bolt.R;
 import com.chiragaggarwal.bolt.location.UserLocation;
+import com.chiragaggarwal.bolt.location.UserLocations;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
 import junit.framework.Assert;
@@ -119,25 +120,31 @@ public class RunViewModelTest {
     @Test
     public void testThatItOnlyProvidesTheFirstDecimalPlaceOfAnySpeedWhenFormatting() {
         RunViewModel runViewModel = new RunViewModel(resources);
-        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, true, 0.98765f);
-        runViewModel.setLocation(userLocation);
-        Assert.assertEquals("0.9", runViewModel.getPace());
+        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 9, true, 0.1F);
+        UserLocations userLocations = new UserLocations();
+        userLocations.add(userLocation);
+        runViewModel.updateVisitedUserLocations(userLocations);
+        Assert.assertEquals("0.3", runViewModel.getPace());
     }
 
     @Test
     public void testThatItProvidesADigitAtOnesPlaceWhileFormattingANumberWhichDoesNotHaveADigitAtTensPlace() {
         RunViewModel runViewModel = new RunViewModel(resources);
         UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, true, 1.98765f);
-        runViewModel.setLocation(userLocation);
-        Assert.assertEquals("1.9", runViewModel.getPace());
+        UserLocations userLocations = new UserLocations();
+        userLocations.add(userLocation);
+        runViewModel.updateVisitedUserLocations(userLocations);
+        Assert.assertEquals("7.1", runViewModel.getPace());
     }
 
     @Test
     public void testThatItProvidesADigitAtTensPlaceWhileFormattingANumberWhichHasADigitAtTensPlace() {
         RunViewModel runViewModel = new RunViewModel(resources);
-        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, true, 11.98765f);
-        runViewModel.setLocation(userLocation);
-        Assert.assertEquals("11.9", runViewModel.getPace());
+        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, true, 5.2F);
+        UserLocations userLocations = new UserLocations();
+        userLocations.add(userLocation);
+        runViewModel.updateVisitedUserLocations(userLocations);
+        Assert.assertEquals("18.7", runViewModel.getPace());
     }
 
     @Test
