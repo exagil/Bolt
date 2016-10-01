@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -36,7 +37,9 @@
 
             <include layout="@layout/average_pace" />
 
-            <include layout="@layout/distance" />
+            <include
+                layout="@layout/distance"
+                bind:runViewModel="@{runViewModel}" />
 
         </LinearLayout>
 

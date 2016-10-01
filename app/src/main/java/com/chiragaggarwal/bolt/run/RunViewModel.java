@@ -16,6 +16,11 @@ public class RunViewModel extends BaseObservable {
     private static final String COLON = ":";
     private static final String FORMAT_LEADING_ZERO = "%02d";
     private static final String TIME_DEFAULT = "00:00:00";
+    private static final String DISTANCE_DEFAULT = "0.00";
+    private static final String FORMATTED_TOTAL_DISTANCE_ZERO = "0";
+    private static final String FORMAT_DISTANCE = "#.##";
+    private static final String FORMAT_PACE = "#.#";
+    private static final String PACE_DEFAULT = "0.0";
 
     private ElapsedTime elapsedTime;
     private boolean isRunning;
@@ -59,6 +64,7 @@ public class RunViewModel extends BaseObservable {
         totalDistanceCoveredInKiloMeters = 0;
         notifyPropertyChanged(BR.toggleRunButtonText);
         notifyPropertyChanged(BR.elapsedTime);
+        notifyPropertyChanged(BR.distance);
     }
 
     @Bindable
@@ -68,18 +74,19 @@ public class RunViewModel extends BaseObservable {
 
     @Bindable
     public String getPace() {
-        if (lastKnowsUserLocation == null) return "0.0";
-        DecimalFormat paceDecimalFormat = new DecimalFormat("#.#");
+        if (lastKnowsUserLocation == null) return PACE_DEFAULT;
+        DecimalFormat paceDecimalFormat = new DecimalFormat(FORMAT_PACE);
         paceDecimalFormat.setRoundingMode(RoundingMode.DOWN);
         return paceDecimalFormat.format(lastKnowsUserLocation.speed);
     }
 
     @Bindable
     public String getDistance() {
-        if (totalDistanceCoveredInKiloMeters == 0) return "0.00";
-        DecimalFormat paceDecimalFormat = new DecimalFormat("#.##");
+        if (totalDistanceCoveredInKiloMeters == 0) return DISTANCE_DEFAULT;
+        DecimalFormat paceDecimalFormat = new DecimalFormat(FORMAT_DISTANCE);
         paceDecimalFormat.setRoundingMode(RoundingMode.DOWN);
-        return paceDecimalFormat.format(totalDistanceCoveredInKiloMeters);
+        String formattedTotalDistanceCoveredInKilometers = paceDecimalFormat.format(totalDistanceCoveredInKiloMeters);
+        return formattedTotalDistanceCoveredInKilometers.equals(FORMATTED_TOTAL_DISTANCE_ZERO) ? DISTANCE_DEFAULT : formattedTotalDistanceCoveredInKilometers;
     }
 
     public String getNotificationSubText() {

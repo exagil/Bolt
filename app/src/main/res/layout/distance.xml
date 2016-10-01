@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout_distance"
-    style="@style/layout_stats_element">
+<layout>
 
-    <TextView
-        android:id="@+id/text_distance"
-        style="@style/text_stats_measure"
-        android:text="0.00" />
+    <data>
 
-    <TextView
-        android:id="@+id/text_label_distance"
-        style="@style/text_stats_label"
-        android:text="@string/distance" />
+        <variable
+            name="runViewModel"
+            type="com.chiragaggarwal.bolt.run.RunViewModel" />
 
-</LinearLayout>
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/layout_distance"
+        style="@style/layout_stats_element">
+
+        <TextView
+            android:id="@+id/text_distance"
+            style="@style/text_stats_measure"
+            android:text="@{runViewModel.distance}" />
+
+        <TextView
+            android:id="@+id/text_label_distance"
+            style="@style/text_stats_label"
+            android:text="@string/distance" />
+
+    </LinearLayout>
+
+</layout>

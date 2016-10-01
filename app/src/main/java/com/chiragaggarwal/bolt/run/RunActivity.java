@@ -45,6 +45,7 @@ public class RunActivity extends AppCompatActivity implements RunView {
         runPresenter.init();
         IntentFilter runServiceIntentFilter = new IntentFilter();
         runServiceIntentFilter.addAction(RunService.ACTION_TIME_TICK);
+        runServiceIntentFilter.addAction(RunService.ACTION_FETCH_ACCURATE_LOCATION);
         localBroadcastManager.registerReceiver(runServiceBroadcastReceiver, runServiceIntentFilter);
     }
 

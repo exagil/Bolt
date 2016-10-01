@@ -28,7 +28,7 @@ public class RunViewModelInstrumentationTest {
         runViewModel.setLocation(userLocation);
         UserLocation secondUserLocation = new UserLocation(12.9612d, 77.6473d, true, 19, true, 11.98765f);
         runViewModel.setLocation(secondUserLocation);
-        Assert.assertEquals("15.49", runViewModel.getDistance());
+        Assert.assertEquals("0.01", runViewModel.getDistance());
     }
 
     @Test
@@ -40,7 +40,7 @@ public class RunViewModelInstrumentationTest {
         UserLocation secondUserLocation = new UserLocation(12.9612d, 77.6473d, true, 19, true, 11.98765f);
         runViewModel.setLocation(secondUserLocation);
         runViewModel.setElapsedTime(new ElapsedTime(128));
-        Assert.assertEquals("Elapsed Time: 00:02:08\nDistance: 15.49", runViewModel.getNotificationSubText());
+        Assert.assertEquals("Elapsed Time: 00:02:08\nDistance: 0.01", runViewModel.getNotificationSubText());
     }
 
     @Test
@@ -51,6 +51,21 @@ public class RunViewModelInstrumentationTest {
         UserLocation secondUserLocation = new UserLocation(12.9612d, 77.6473d, true, 19, true, 11.98765f);
         runViewModel.setLocation(secondUserLocation);
         runViewModel.setRunningAsStopped();
+        Assert.assertEquals("0.00", runViewModel.getDistance());
+    }
+
+    @Test
+    public void testThatDistanceIsZeroByDefault() {
+        RunViewModel runViewModel = new RunViewModel(resources);
+        Assert.assertEquals("0.00", runViewModel.getDistance());
+    }
+
+    @Test
+    public void testThatVeryMinorDistancesTravelledAreNotTakenIntoConsiderationWhenShowingTotalDistance() {
+        RunViewModel runViewModel = new RunViewModel(resources);
+        runViewModel.setLocation(new UserLocation(-6.1805294D, 106.8088036D, true, 1, true, 10));
+        runViewModel.setLocation(new UserLocation(-6.1805228D, 106.8088433D, true, 1, true, 10));
+        runViewModel.setLocation(new UserLocation(-6.1805211D, 106.8088532D, true, 1, true, 10));
         Assert.assertEquals("0.00", runViewModel.getDistance());
     }
 }
