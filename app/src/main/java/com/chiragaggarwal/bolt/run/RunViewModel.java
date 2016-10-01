@@ -21,7 +21,7 @@ public class RunViewModel extends BaseObservable {
     private boolean isRunning;
     private Resources resources;
     private UserLocation lastKnowsUserLocation;
-    private float totalDistanceCoveredInMeters;
+    private float totalDistanceCoveredInKiloMeters;
 
     public RunViewModel(Resources resources) {
         this.resources = resources;
@@ -40,8 +40,8 @@ public class RunViewModel extends BaseObservable {
 
     public void setLocation(UserLocation currentUserLocation) {
         if (isLastLocationKnown()) {
-            float distanceCovered = this.lastKnowsUserLocation.distanceTo(currentUserLocation);
-            this.totalDistanceCoveredInMeters += distanceCovered;
+            float distanceCovered = this.lastKnowsUserLocation.distanceInKilometersTo(currentUserLocation);
+            this.totalDistanceCoveredInKiloMeters += distanceCovered;
         }
         this.lastKnowsUserLocation = currentUserLocation;
         notifyPropertyChanged(BR.pace);
@@ -56,7 +56,7 @@ public class RunViewModel extends BaseObservable {
     public void setRunningAsStopped() {
         isRunning = false;
         elapsedTime = null;
-        totalDistanceCoveredInMeters = 0;
+        totalDistanceCoveredInKiloMeters = 0;
         notifyPropertyChanged(BR.toggleRunButtonText);
         notifyPropertyChanged(BR.elapsedTime);
     }
@@ -76,10 +76,10 @@ public class RunViewModel extends BaseObservable {
 
     @Bindable
     public String getDistance() {
-        if (totalDistanceCoveredInMeters == 0) return "0.00";
+        if (totalDistanceCoveredInKiloMeters == 0) return "0.00";
         DecimalFormat paceDecimalFormat = new DecimalFormat("#.##");
         paceDecimalFormat.setRoundingMode(RoundingMode.DOWN);
-        return paceDecimalFormat.format(totalDistanceCoveredInMeters);
+        return paceDecimalFormat.format(totalDistanceCoveredInKiloMeters);
     }
 
     public String getNotificationSubText() {

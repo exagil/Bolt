@@ -22,7 +22,7 @@ public class RunViewModelInstrumentationTest {
     }
 
     @Test
-    public void testThatItKnowsHowToFormatDistanceCorrectly() {
+    public void testThatItKnowsHowToFormatDistanceInKilometersCorrectly() {
         RunViewModel runViewModel = new RunViewModel(resources);
         UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, true, 11.98765f);
         runViewModel.setLocation(userLocation);
@@ -32,7 +32,7 @@ public class RunViewModelInstrumentationTest {
     }
 
     @Test
-    public void testThatItKnowsTheNotificationSubTextWhenElapsedTimeAndDistanceIsPresent() {
+    public void testThatItKnowsTheNotificationSubTextWhenElapsedTimeAndDistanceInKilometersIsPresent() {
         UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, true, 11.98765f);
         RunViewModel runViewModel = new RunViewModel(resources);
         runViewModel.setElapsedTime(new ElapsedTime(123));
