@@ -51,5 +51,12 @@
             android:onClick="@{() -> runPresenter.onToggleRunClick()}"
             android:text="@{runViewModel.toggleRunButtonText}" />
 
+        <FrameLayout
+            android:id="@+id/frame_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/button_start_activity"
+            android:layout_below="@id/layout_run_stats" />
+
     </RelativeLayout>
 </layout>

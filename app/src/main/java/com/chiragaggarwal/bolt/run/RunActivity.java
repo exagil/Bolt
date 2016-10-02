@@ -9,16 +9,19 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.chiragaggarwal.bolt.BoltApplication;
 import com.chiragaggarwal.bolt.R;
 import com.chiragaggarwal.bolt.common.ServiceStateMonitor;
 import com.chiragaggarwal.bolt.databinding.ActivityMainBinding;
 import com.chiragaggarwal.bolt.location.UserLocations;
+import com.chiragaggarwal.bolt.run.map.RunMapFragment;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RunActivity extends AppCompatActivity implements RunView {
@@ -26,6 +29,9 @@ public class RunActivity extends AppCompatActivity implements RunView {
     private LocalBroadcastManager localBroadcastManager;
     private RunViewModel runViewModel;
     private RunPresenter runPresenter;
+
+    @BindView(R.id.frame_map)
+    public View frameMap;
 
     @Inject
     public ServiceStateMonitor serviceStateMonitor;
@@ -86,6 +92,7 @@ public class RunActivity extends AppCompatActivity implements RunView {
         activityMainBinding.setRunPresenter(runPresenter);
         runServiceBroadcastReceiver = new RunServiceBroadcastReceiver();
         localBroadcastManager = LocalBroadcastManager.getInstance(this);
+        getFragmentManager().beginTransaction().add(R.id.frame_map, new RunMapFragment()).commit();
     }
 
     @NonNull
