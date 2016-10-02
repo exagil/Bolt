@@ -25,6 +25,7 @@ public class RunService extends Service implements UserLocationChangeListener, T
     public static final String ACTION_TIME_TICK = "com.chiragaggarwal.bolt.run.RunService.ACTION_TIME_TICK";
     public static final String ACTION_FETCH_ACCURATE_LOCATION = "com.chiragaggarwal.bolt.run.RunService.ACTION_FETCH_ACCURATE_LOCATION";
     private static final int NOTIFICATION_ID = 1;
+
     private UserLocationApiClient userLocationApiClient;
     private ActivityTimer activityTimer;
     private RunViewModel runViewModel;
