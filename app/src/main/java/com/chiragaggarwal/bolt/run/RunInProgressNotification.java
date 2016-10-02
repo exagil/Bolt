@@ -16,12 +16,19 @@ public class RunInProgressNotification {
     }
 
     public Notification build() {
-        return new NotificationCompat.Builder(context).
+        String notificationTitle = context.getString(R.string.app_name);
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context).
+                setContentTitle(notificationTitle).
+                setContentText(runViewModel.getNotificationSubText()).
+                setPriority(NotificationCompat.PRIORITY_MAX).
+                setCategory(NotificationCompat.CATEGORY_STATUS).
                 setSmallIcon(R.drawable.ic_stat_man_sprinting).
-                setColor(context.getResources().getColor(R.color.colorPrimary)).
-                setContentTitle(context.getString(R.string.app_name)).
-                setContentText(context.getString(R.string.run_in_progress_notification_text)).
-                setSubText(runViewModel.getNotificationSubText()).
-                build();
+                setColor(context.getResources().getColor(R.color.colorPrimary));
+        NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle().
+                setBigContentTitle(notificationTitle).
+                addLine(context.getString(R.string.run_in_progress_notification_text)).
+                addLine(runViewModel.getNotificationElapsedTime()).
+                addLine(runViewModel.getNotificationDistance());
+        return notificationBuilder.setStyle(inboxStyle).build();
     }
 }

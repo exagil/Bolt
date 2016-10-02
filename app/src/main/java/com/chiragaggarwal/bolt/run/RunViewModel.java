@@ -102,4 +102,12 @@ public class RunViewModel extends BaseObservable {
     private boolean hasTimerNotStartedYet() {
         return elapsedTime == null;
     }
+
+    public String getNotificationElapsedTime() {
+        return String.format(resources.getString(R.string.format_elapsed_time), getElapsedTime());
+    }
+
+    public String getNotificationDistance() {
+        return String.format(resources.getString(R.string.format_distance), getDistance());
+    }
 }

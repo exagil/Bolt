@@ -6,7 +6,6 @@ import android.support.test.InstrumentationRegistry;
 
 import com.chiragaggarwal.bolt.location.UserLocation;
 import com.chiragaggarwal.bolt.location.UserLocations;
-import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
 import junit.framework.Assert;
 
@@ -36,18 +35,16 @@ public class RunViewModelInstrumentationTest {
     }
 
     @Test
-    public void testThatItKnowsTheNotificationSubTextWhenElapsedTimeAndDistanceInKilometersIsPresent() {
+    public void testThatItKnowsTheNotificationDistanceWhenTwoOrMoreAndUserLocationsArePresent() {
         RunViewModel runViewModel = new RunViewModel(resources);
         UserLocations userLocations = new UserLocations();
         UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, true, 11.98765f);
         userLocations.add(userLocation);
         runViewModel.updateVisitedUserLocations(userLocations);
-        runViewModel.setElapsedTime(new ElapsedTime(123));
         UserLocation secondUserLocation = new UserLocation(12.9612d, 77.6473d, true, 19, true, 11.98765f);
         userLocations.add(secondUserLocation);
         runViewModel.updateVisitedUserLocations(userLocations);
-        runViewModel.setElapsedTime(new ElapsedTime(128));
-        Assert.assertEquals("Elapsed Time: 00:02:08\nDistance: 0.01", runViewModel.getNotificationSubText());
+        Assert.assertEquals("Distance: 0.01", runViewModel.getNotificationDistance());
     }
 
     @Test
