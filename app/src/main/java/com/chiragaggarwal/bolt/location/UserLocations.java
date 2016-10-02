@@ -1,6 +1,9 @@
 package com.chiragaggarwal.bolt.location;
 
-public class UserLocations {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class UserLocations implements Parcelable {
     private UserLocation lastVisitedUserLocation;
     private float totalDistanceInKilometers;
     private float currentPaceInKilometersPerHour;
@@ -46,4 +49,37 @@ public class UserLocations {
         result = 31 * result + (currentPaceInKilometersPerHour != +0.0f ? Float.floatToIntBits(currentPaceInKilometersPerHour) : 0);
         return result;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(this.lastVisitedUserLocation, flags);
+        dest.writeFloat(this.totalDistanceInKilometers);
+        dest.writeFloat(this.currentPaceInKilometersPerHour);
+    }
+
+    public UserLocations() {
+    }
+
+    protected UserLocations(Parcel in) {
+        this.lastVisitedUserLocation = in.readParcelable(UserLocation.class.getClassLoader());
+        this.totalDistanceInKilometers = in.readFloat();
+        this.currentPaceInKilometersPerHour = in.readFloat();
+    }
+
+    public static final Parcelable.Creator<UserLocations> CREATOR = new Parcelable.Creator<UserLocations>() {
+        @Override
+        public UserLocations createFromParcel(Parcel source) {
+            return new UserLocations(source);
+        }
+
+        @Override
+        public UserLocations[] newArray(int size) {
+            return new UserLocations[size];
+        }
+    };
 }
