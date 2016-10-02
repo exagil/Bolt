@@ -21,6 +21,7 @@ public class RunViewModel extends BaseObservable {
     private static final String FORMAT_DISTANCE = "#.##";
     private static final String FORMAT_PACE = "#.#";
     private static final String PACE_DEFAULT = "0.0";
+    public static final String COMMA = ", ";
 
     private ElapsedTime elapsedTime;
     private boolean isRunning;
@@ -82,7 +83,7 @@ public class RunViewModel extends BaseObservable {
     public String getNotificationSubText() {
         String elapsedTime = String.format(resources.getString(R.string.format_elapsed_time), getElapsedTime());
         String distance = String.format(resources.getString(R.string.format_distance), getDistance());
-        return elapsedTime + "\n" + distance;
+        return resources.getString(R.string.run_in_progress_notification_text) + COMMA + elapsedTime + COMMA + distance;
     }
 
     private String formatWithLeadingZero(int timeElement) {
