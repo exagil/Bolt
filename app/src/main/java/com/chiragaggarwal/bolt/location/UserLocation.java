@@ -75,7 +75,7 @@ public class UserLocation implements Parcelable {
     }
 
     private boolean hasValidAccuracy() {
-        return this.hasAccuracy && this.accuracy <= 10;
+        return this.hasAccuracy && this.accuracy <= 20;
     }
 
     @Override

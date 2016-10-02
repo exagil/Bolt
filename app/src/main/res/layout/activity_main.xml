@@ -35,7 +35,9 @@
 
             <include layout="@layout/calories" />
 
-            <include layout="@layout/average_pace" />
+            <include
+                layout="@layout/average_pace"
+                bind:runViewModel="@{runViewModel}" />
 
             <include
                 layout="@layout/distance"

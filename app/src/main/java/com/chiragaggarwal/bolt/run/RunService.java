@@ -13,6 +13,7 @@ import com.chiragaggarwal.bolt.BoltApplication;
 import com.chiragaggarwal.bolt.location.UserLocation;
 import com.chiragaggarwal.bolt.location.UserLocationApiClient;
 import com.chiragaggarwal.bolt.location.UserLocationChangeListener;
+import com.chiragaggarwal.bolt.location.UserLocations;
 import com.chiragaggarwal.bolt.timer.ActivityTimer;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 import com.chiragaggarwal.bolt.timer.TimerUpdateListener;
@@ -27,6 +28,7 @@ public class RunService extends Service implements UserLocationChangeListener, T
     private UserLocationApiClient userLocationApiClient;
     private ActivityTimer activityTimer;
     private RunViewModel runViewModel;
+    private UserLocations userLocations;
 
     @Inject
     public GoogleApiClient googleApiClient;
@@ -38,6 +40,7 @@ public class RunService extends Service implements UserLocationChangeListener, T
         userLocationApiClient = new UserLocationApiClient(googleApiClient, this);
         activityTimer = new ActivityTimer(this);
         runViewModel = new RunViewModel(getResources());
+        userLocations = new UserLocations();
     }
 
     @Override
@@ -64,11 +67,12 @@ public class RunService extends Service implements UserLocationChangeListener, T
 
     @Override
     public void onFetchAccurateLocation(UserLocation userLocation) {
-        runViewModel.setLocation(userLocation);
+        this.userLocations.add(userLocation);
+        runViewModel.updateVisitedUserLocations(userLocations);
         updateNotification(runViewModel);
-        Intent timeTickBroadcastIntent = new Intent(RunService.ACTION_FETCH_ACCURATE_LOCATION);
-        timeTickBroadcastIntent.putExtra(UserLocation.TAG, userLocation);
-        LocalBroadcastManager.getInstance(this).sendBroadcast(timeTickBroadcastIntent);
+        Intent userLocationsBroadcastIntent = new Intent(RunService.ACTION_FETCH_ACCURATE_LOCATION);
+        userLocationsBroadcastIntent.putExtra(UserLocations.TAG, userLocations);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(userLocationsBroadcastIntent);
     }
 
     @Override

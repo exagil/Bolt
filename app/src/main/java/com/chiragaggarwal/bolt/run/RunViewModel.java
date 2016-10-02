@@ -6,7 +6,6 @@ import android.databinding.Bindable;
 
 import com.chiragaggarwal.bolt.BR;
 import com.chiragaggarwal.bolt.R;
-import com.chiragaggarwal.bolt.location.UserLocation;
 import com.chiragaggarwal.bolt.location.UserLocations;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
@@ -26,8 +25,6 @@ public class RunViewModel extends BaseObservable {
     private ElapsedTime elapsedTime;
     private boolean isRunning;
     private Resources resources;
-    private UserLocation lastKnowsUserLocation;
-    private float totalDistanceCoveredInKiloMeters;
     private UserLocations userLocations;
 
     public RunViewModel(Resources resources) {
@@ -41,18 +38,8 @@ public class RunViewModel extends BaseObservable {
 
     @Bindable
     public String getElapsedTime() {
-        if (elapsedTime == null) return TIME_DEFAULT;
+        if (hasTimerNotStartedYet()) return TIME_DEFAULT;
         return formatWithLeadingZero(elapsedTime.hours()) + COLON + formatWithLeadingZero(elapsedTime.minutes()) + COLON + formatWithLeadingZero(elapsedTime.seconds());
-    }
-
-    public void setLocation(UserLocation currentUserLocation) {
-        if (isLastLocationKnown()) {
-            float distanceCovered = this.lastKnowsUserLocation.distanceInKilometersTo(currentUserLocation);
-            this.totalDistanceCoveredInKiloMeters += distanceCovered;
-        }
-        this.lastKnowsUserLocation = currentUserLocation;
-        notifyPropertyChanged(BR.pace);
-        notifyPropertyChanged(BR.distance);
     }
 
     public void setRunningAsStarted() {
@@ -67,6 +54,7 @@ public class RunViewModel extends BaseObservable {
         notifyPropertyChanged(BR.toggleRunButtonText);
         notifyPropertyChanged(BR.elapsedTime);
         notifyPropertyChanged(BR.distance);
+        notifyPropertyChanged(BR.pace);
     }
 
     @Bindable
@@ -84,7 +72,7 @@ public class RunViewModel extends BaseObservable {
 
     @Bindable
     public String getDistance() {
-        if (userLocations == null) return DISTANCE_DEFAULT;
+        if (hasUserNotMovedAtAll()) return DISTANCE_DEFAULT;
         DecimalFormat paceDecimalFormat = new DecimalFormat(FORMAT_DISTANCE);
         paceDecimalFormat.setRoundingMode(RoundingMode.DOWN);
         String formattedTotalDistanceCoveredInKilometers = paceDecimalFormat.format(userLocations.totalDistanceInKilometers());
@@ -97,19 +85,21 @@ public class RunViewModel extends BaseObservable {
         return elapsedTime + "\n" + distance;
     }
 
-    private boolean isLastLocationKnown() {
-        return lastKnowsUserLocation != null;
-    }
-
     private String formatWithLeadingZero(int timeElement) {
         return String.format(FORMAT_LEADING_ZERO, timeElement);
     }
 
     public void updateVisitedUserLocations(UserLocations userLocations) {
         this.userLocations = userLocations;
+        notifyPropertyChanged(BR.distance);
+        notifyPropertyChanged(BR.pace);
     }
 
     private boolean hasUserNotMovedAtAll() {
         return userLocations == null;
+    }
+
+    private boolean hasTimerNotStartedYet() {
+        return elapsedTime == null;
     }
 }

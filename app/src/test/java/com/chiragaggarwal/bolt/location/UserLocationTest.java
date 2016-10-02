@@ -55,19 +55,19 @@ public class UserLocationTest {
     }
 
     @Test
-    public void testThatAUserLocationWhichHasAccuracyOfTenIsValid() {
-        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 10, true, 100f);
+    public void testThatAUserLocationWhichHasAccuracyOfTwentyIsValid() {
+        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 20, true, 100f);
         assertTrue(userLocation.isValid());
     }
 
     @Test
     public void testThatAUserLocationWhichDoesNotHaveAccuracyOfValidMeasureIsInvalid() {
-        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, false, 100, true, 100f);
+        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 100, true, 100f);
         assertFalse(userLocation.isValid());
     }
 
     @Test
-    public void testThatAUserLocationWithAccuracyBelowTenIsValid() {
+    public void testThatAUserLocationWithAccuracyBelowTwentyIsValid() {
         UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 9, true, 100f);
         assertTrue(userLocation.isValid());
     }
