@@ -150,8 +150,16 @@ public class RunViewModelTest {
     @Test
     public void testThatDistanceIsZeroKilometersByDefault() {
         RunViewModel runViewModel = new RunViewModel(resources);
+        Assert.assertEquals("0.00", runViewModel.getDistance());
+    }
+
+    @Test
+    public void testThatTotalDistanceIsZeroWhenUserHasOnlyRunAcrossOneLocation() {
+        RunViewModel runViewModel = new RunViewModel(resources);
         UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 19, true, 11.98765f);
-        runViewModel.setLocation(userLocation);
+        UserLocations userLocations = new UserLocations();
+        userLocations.add(userLocation);
+        runViewModel.updateVisitedUserLocations(userLocations);
         Assert.assertEquals("0.00", runViewModel.getDistance());
     }
 

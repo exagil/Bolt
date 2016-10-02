@@ -63,7 +63,7 @@ public class RunViewModel extends BaseObservable {
     public void setRunningAsStopped() {
         isRunning = false;
         elapsedTime = null;
-        totalDistanceCoveredInKiloMeters = 0;
+        userLocations = null;
         notifyPropertyChanged(BR.toggleRunButtonText);
         notifyPropertyChanged(BR.elapsedTime);
         notifyPropertyChanged(BR.distance);
@@ -84,10 +84,10 @@ public class RunViewModel extends BaseObservable {
 
     @Bindable
     public String getDistance() {
-        if (totalDistanceCoveredInKiloMeters == 0) return DISTANCE_DEFAULT;
+        if (userLocations == null) return DISTANCE_DEFAULT;
         DecimalFormat paceDecimalFormat = new DecimalFormat(FORMAT_DISTANCE);
         paceDecimalFormat.setRoundingMode(RoundingMode.DOWN);
-        String formattedTotalDistanceCoveredInKilometers = paceDecimalFormat.format(totalDistanceCoveredInKiloMeters);
+        String formattedTotalDistanceCoveredInKilometers = paceDecimalFormat.format(userLocations.totalDistanceInKilometers());
         return formattedTotalDistanceCoveredInKilometers.equals(FORMATTED_TOTAL_DISTANCE_ZERO) ? DISTANCE_DEFAULT : formattedTotalDistanceCoveredInKilometers;
     }
 
