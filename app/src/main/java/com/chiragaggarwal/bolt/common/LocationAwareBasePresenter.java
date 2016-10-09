@@ -1,5 +1,6 @@
 package com.chiragaggarwal.bolt.common;
 
+import android.Manifest;
 import android.content.pm.PackageManager;
 
 public class LocationAwareBasePresenter {
@@ -22,16 +23,28 @@ public class LocationAwareBasePresenter {
     }
 
     public void handleLocationPermissionResponse(int requestCode, String[] permissions, int[] grantResults) {
-        if (hasLocationPermissionNotBeenGranted(grantResults))
+        if (hasLocationPermissionNotBeenGranted(permissions, grantResults))
             locationAwareBaseView.showPermissionRequiredNotice();
         else
             updateLocation();
     }
 
-    private boolean hasLocationPermissionNotBeenGranted(int[] grantResults) {
+    private boolean hasLocationPermissionNotBeenGranted(String[] permissions, int[] grantResults) {
         if (grantResults.length == 0) return true;
-        for (int grantResult : grantResults)
-            if (grantResult == PackageManager.PERMISSION_DENIED) return true;
+        for (int permissionIndex = 0; permissionIndex < permissions.length; permissionIndex++) {
+            String permission = permissions[permissionIndex];
+            int grantResult = grantResults[permissionIndex];
+            if (isLocationPermission(permission) && isDenied(grantResult))
+                return true;
+        }
         return false;
+    }
+
+    private boolean isDenied(int grantResult) {
+        return grantResult == PackageManager.PERMISSION_DENIED;
+    }
+
+    private boolean isLocationPermission(String permission) {
+        return permission.equals(Manifest.permission.ACCESS_FINE_LOCATION) || permission.equals(Manifest.permission.ACCESS_COARSE_LOCATION);
     }
 }
