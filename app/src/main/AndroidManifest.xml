@@ -33,6 +33,10 @@
             android:name=".run.RunService"
             android:exported="false" />
 
+        <service
+            android:name=".location.OneOffLocationUpdateService"
+            android:exported="false" />
+
     </application>
 
 </manifest>
