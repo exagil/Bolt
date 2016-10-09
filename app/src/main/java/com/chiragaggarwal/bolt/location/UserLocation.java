@@ -6,14 +6,16 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
 public class UserLocation implements Parcelable {
-    public static final float METERS_IN_ONE_KILOMETER = 1000F;
-    public static final float M_TO_KMPH_CONVERSION_FACTOR = 3.6F;
-    private final double latitude;
-    private final double longitude;
+    public static final String TAG = "com.chiragaggarwal.bolt.location.UserLocation.TAG";
+    private static final float METERS_IN_ONE_KILOMETER = 1000F;
+    private static final float M_TO_KMPH_CONVERSION_FACTOR = 3.6F;
+
+    public final double latitude;
+    public final double longitude;
     private final boolean hasAccuracy;
     private final float accuracy;
     private final boolean hasSpeed;
-    public final float speed;
+    private final float speed;
 
     public UserLocation(double latitude, double longitude, boolean hasAccuracy, float accuracy, boolean hasSpeed, float speed) {
         this.latitude = latitude;
