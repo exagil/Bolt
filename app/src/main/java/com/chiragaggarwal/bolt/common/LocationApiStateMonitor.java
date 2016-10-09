@@ -17,12 +17,12 @@ public class LocationApiStateMonitor {
         return doesNotHaveCoarseLocationPermission() || doesNotHaveFineLocationPermission();
     }
 
-    public boolean isGpsEnabled() {
+    public boolean isGpsNotEnabled() {
         LocationManager locationManager = (LocationManager) activityContext.getSystemService(Context.LOCATION_SERVICE);
         try {
-            return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+            return !locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         } catch (Exception e) {
-            return false;
+            return true;
         }
     }
 
