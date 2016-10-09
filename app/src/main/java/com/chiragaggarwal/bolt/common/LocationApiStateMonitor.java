@@ -3,17 +3,27 @@ package com.chiragaggarwal.bolt.common;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.support.v4.content.ContextCompat;
 
-public class LocationApiStateManager {
+public class LocationApiStateMonitor {
     private Context activityContext;
 
-    public LocationApiStateManager(Context activityContext) {
+    public LocationApiStateMonitor(Context activityContext) {
         this.activityContext = activityContext;
     }
 
     public boolean doesNotHaveLocationPermission() {
         return doesNotHaveCoarseLocationPermission() || doesNotHaveFineLocationPermission();
+    }
+
+    public boolean isGpsEnabled() {
+        LocationManager locationManager = (LocationManager) activityContext.getSystemService(Context.LOCATION_SERVICE);
+        try {
+            return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     private boolean doesNotHaveFineLocationPermission() {
