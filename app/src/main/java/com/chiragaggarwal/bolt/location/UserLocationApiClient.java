@@ -16,12 +16,13 @@ public class UserLocationApiClient implements
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
 
-    public static final int LOCATION_REQUEST_PRIORITY = 100;
+    private static final int LOCATION_REQUEST_PRIORITY = 100;
     private static final long FASTEST_LOCATION_UPDATE_INTERVAL_IN_SECONDS = 1;
     private static final float SMALLEST_DISPLACEMENT_IN_METERS = 1.0f;
-    public static final int LOCATION_UPDATE_INTERVAL_IN_SECONDS = 2;
+    private static final int LOCATION_UPDATE_INTERVAL_IN_SECONDS = 2;
     private GoogleApiClient googleApiClient;
     private UserLocationChangeListener userLocationChangeListener;
+    private boolean runAsOneOff = false;
 
     public UserLocationApiClient(GoogleApiClient googleApiClient, UserLocationChangeListener userLocationChangeListener) {
         this.googleApiClient = googleApiClient;
@@ -29,9 +30,7 @@ public class UserLocationApiClient implements
     }
 
     public void connect() {
-        googleApiClient.registerConnectionCallbacks(this);
-        googleApiClient.registerConnectionFailedListener(this);
-        googleApiClient.connect();
+        connectViaGoogleApiClient();
     }
 
     @Override
@@ -46,6 +45,8 @@ public class UserLocationApiClient implements
         );
         if (userLocation.isValid())
             userLocationChangeListener.onFetchAccurateLocation(userLocation);
+        if (runAsOneOff)
+            disconnectFromGoogleApiClient();
     }
 
     @SuppressWarnings("MissingPermission")
@@ -69,6 +70,21 @@ public class UserLocationApiClient implements
     }
 
     public void disconnect() {
+        disconnectFromGoogleApiClient();
+    }
+
+    public void connectForOneOffUpdate() {
+        runAsOneOff = true;
+        connectViaGoogleApiClient();
+    }
+
+    private void connectViaGoogleApiClient() {
+        googleApiClient.registerConnectionCallbacks(this);
+        googleApiClient.registerConnectionFailedListener(this);
+        googleApiClient.connect();
+    }
+
+    private void disconnectFromGoogleApiClient() {
         googleApiClient.unregisterConnectionCallbacks(this);
         googleApiClient.unregisterConnectionFailedListener(this);
         googleApiClient.disconnect();
