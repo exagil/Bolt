@@ -1,5 +1,7 @@
 package com.chiragaggarwal.bolt.location;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import junit.framework.Assert;
 
 import org.junit.Test;
@@ -100,5 +102,12 @@ public class UserLocationTest {
     public void testThatItKnowsTheCurrentSpeedInKilometersPerHour() {
         UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 16, true, 3.16F);
         Assert.assertEquals(11.376F, userLocation.speedInKilometersPerHour());
+    }
+
+    @Test
+    public void testThatItKnowsItsCorrespondingLatLngs() {
+        UserLocation userLocation = new UserLocation(1.1d, 2.2d, true, 10f, true, 10f);
+        LatLng expectedLatLng = new LatLng(1.1d, 2.2d);
+        Assert.assertEquals(expectedLatLng, userLocation.toLatLng());
     }
 }

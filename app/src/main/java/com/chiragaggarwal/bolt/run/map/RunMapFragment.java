@@ -15,7 +15,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.UiSettings;
-import com.google.android.gms.maps.model.LatLng;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -87,7 +86,7 @@ public class RunMapFragment extends Fragment implements OnMapReadyCallback {
     public void updateLocation(UserLocation userLocation) {
         mapView.setVisibility(View.VISIBLE);
         googleMap.setMyLocationEnabled(true);
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(userLocation.latitude, userLocation.longitude), ZOOM_LEVEL_STREETS);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(userLocation.toLatLng(), ZOOM_LEVEL_STREETS);
         googleMap.moveCamera(cameraUpdate);
     }
 }

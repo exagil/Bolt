@@ -5,13 +5,15 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
+import com.google.android.gms.maps.model.LatLng;
+
 public class UserLocation implements Parcelable {
     public static final String TAG = "com.chiragaggarwal.bolt.location.UserLocation.TAG";
     private static final float METERS_IN_ONE_KILOMETER = 1000F;
     private static final float M_TO_KMPH_CONVERSION_FACTOR = 3.6F;
 
-    public final double latitude;
-    public final double longitude;
+    private final double latitude;
+    private final double longitude;
     private final boolean hasAccuracy;
     private final float accuracy;
     private final boolean hasSpeed;
@@ -121,5 +123,9 @@ public class UserLocation implements Parcelable {
 
     public float speedInKilometersPerHour() {
         return speed * M_TO_KMPH_CONVERSION_FACTOR;
+    }
+
+    public LatLng toLatLng() {
+        return new LatLng(latitude, longitude);
     }
 }
