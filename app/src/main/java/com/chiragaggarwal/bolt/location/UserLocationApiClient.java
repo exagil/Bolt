@@ -43,10 +43,12 @@ public class UserLocationApiClient implements
                 nativeLocation.hasSpeed(),
                 nativeLocation.getSpeed()
         );
-        if (userLocation.isValid())
+        if (runAsOneOff) {
             userLocationChangeListener.onFetchAccurateLocation(userLocation);
-        if (runAsOneOff)
             disconnectFromGoogleApiClient();
+        } else if (userLocation.isValid()) {
+            userLocationChangeListener.onFetchAccurateLocation(userLocation);
+        }
     }
 
     @SuppressWarnings("MissingPermission")
@@ -56,8 +58,9 @@ public class UserLocationApiClient implements
                 setPriority(LOCATION_REQUEST_PRIORITY).
                 setInterval(LOCATION_UPDATE_INTERVAL_IN_SECONDS).
                 setFastestInterval(FASTEST_LOCATION_UPDATE_INTERVAL_IN_SECONDS).
-                setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY).
-                setSmallestDisplacement(SMALLEST_DISPLACEMENT_IN_METERS);
+                setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        if (!runAsOneOff)
+            locationRequest.setSmallestDisplacement(SMALLEST_DISPLACEMENT_IN_METERS);
         LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
     }
 

@@ -14,7 +14,6 @@ import dagger.Provides;
 @Module
 public class ServicesModule {
     @Provides
-    @Singleton
     public GoogleApiClient providesLocationEnabledGoogleApiClient(Context context) {
         return new GoogleApiClient.Builder(context)
                 .addApi(LocationServices.API)
