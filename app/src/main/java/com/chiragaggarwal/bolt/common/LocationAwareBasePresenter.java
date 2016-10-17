@@ -12,9 +12,9 @@ public class LocationAwareBasePresenter {
         this.locationApiStateMonitor = locationApiStateMonitor;
     }
 
-    public void updateLocation() {
+    public void updateLocation(boolean shouldShowLocationPermissionRationale) {
         if (locationApiStateMonitor.doesNotHaveLocationPermission()) {
-            locationAwareBaseView.requestLocationPermission();
+            requestPermissions(shouldShowLocationPermissionRationale);
         } else if (locationApiStateMonitor.isGpsNotEnabled()) {
             locationAwareBaseView.requestToEnableGps();
         } else {
@@ -22,11 +22,18 @@ public class LocationAwareBasePresenter {
         }
     }
 
-    public void handleLocationPermissionResponse(int requestCode, String[] permissions, int[] grantResults) {
+    public void handleLocationPermissionResponse(String[] permissions, int[] grantResults) {
         if (hasLocationPermissionNotBeenGranted(permissions, grantResults))
             locationAwareBaseView.showPermissionRequiredNotice();
         else
-            updateLocation();
+            updateLocation(false);
+    }
+
+    private void requestPermissions(boolean shouldShowLocationPermissionRationale) {
+        if (shouldShowLocationPermissionRationale) {
+            locationAwareBaseView.showPermissionRequiredNotice();
+        } else
+            locationAwareBaseView.requestPermissions();
     }
 
     private boolean hasLocationPermissionNotBeenGranted(String[] permissions, int[] grantResults) {
@@ -40,11 +47,11 @@ public class LocationAwareBasePresenter {
         return false;
     }
 
-    private boolean isDenied(int grantResult) {
-        return grantResult == PackageManager.PERMISSION_DENIED;
-    }
-
     private boolean isLocationPermission(String permission) {
         return permission.equals(Manifest.permission.ACCESS_FINE_LOCATION) || permission.equals(Manifest.permission.ACCESS_COARSE_LOCATION);
+    }
+
+    private boolean isDenied(int grantResult) {
+        return grantResult == PackageManager.PERMISSION_DENIED;
     }
 }

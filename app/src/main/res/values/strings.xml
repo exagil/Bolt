@@ -9,4 +9,12 @@
     <string name="run_in_progress_notification_text">Running activity with Bolt</string>
     <string name="format_elapsed_time">Elapsed Time: %s</string>
     <string name="format_distance">Distance: %s</string>
+    <string name="title_location_permission_required">Location Permission Required</string>
+    <string name="message_location_permission_required">Bolt needs the location permission to track the stats of your activity.</string>
+    <string name="exit">EXIT</string>
+    <string name="ok">OK</string>
+    <string name="title_location_services_disabled">Location Services Disabled</string>
+    <string name="message_location_permission_disabled">Please enable location services.\\nIt would help us provide accurate stats of your activity.</string>
+    <string name="enable">ENABLE</string>
+    <string name="cancel">CANCEL</string>
 </resources>

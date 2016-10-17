@@ -25,35 +25,25 @@ public class LocationAwareBasePresenterTest {
     public void testThatLocationIsFetchedWhenUserHasLocationPermissionAndGpsIsEnabled() {
         Mockito.when(locationApiStateMonitor.doesNotHaveLocationPermission()).thenReturn(false);
         Mockito.when(locationApiStateMonitor.isGpsNotEnabled()).thenReturn(false);
-        locationAwareBasePresenter.updateLocation();
+        locationAwareBasePresenter.updateLocation(false);
         Mockito.verify(locationAwareBaseView).fetchLocationOnce();
     }
 
     @Test
-    public void testThatLocationPermissionIsRequestedWhenTriedToUpdateLocationAndPermissionNotAvailable() {
+    public void testThatLocationPermissionIsRequestedWhenTriedToUpdateLocationWithPermissionNotAvailableAndRationaleNotRequired() {
         Mockito.when(locationApiStateMonitor.doesNotHaveLocationPermission()).thenReturn(true);
         Mockito.when(locationApiStateMonitor.isGpsNotEnabled()).thenReturn(false);
-        locationAwareBasePresenter.updateLocation();
-        Mockito.verify(locationAwareBaseView).requestLocationPermission();
+        locationAwareBasePresenter.updateLocation(false);
+        Mockito.verify(locationAwareBaseView).requestPermissions();
         Mockito.verify(locationAwareBaseView, never()).fetchLocationOnce();
     }
 
     @Test
-    public void testThatRequestToEnableGpsIsRaisedWhenGpsIsNotEnabled() {
-        Mockito.when(locationApiStateMonitor.doesNotHaveLocationPermission()).thenReturn(false);
-        Mockito.when(locationApiStateMonitor.isGpsNotEnabled()).thenReturn(true);
-        locationAwareBasePresenter.updateLocation();
-        Mockito.verify(locationAwareBaseView).requestToEnableGps();
-        Mockito.verify(locationAwareBaseView, never()).fetchLocationOnce();
-    }
-
-    @Test
-    public void testThatLocationPermissionIsRequestedWhenLocationPermissionIsNotPresentAndGpsIsNotEnabled() {
+    public void testThatPermissionRequiredNoticeIsShownWhenTriedToUpdateLocationWithPermissionNotAvailableAndRationaleRequired() {
         Mockito.when(locationApiStateMonitor.doesNotHaveLocationPermission()).thenReturn(true);
         Mockito.when(locationApiStateMonitor.isGpsNotEnabled()).thenReturn(true);
-        locationAwareBasePresenter.updateLocation();
-        Mockito.verify(locationAwareBaseView).requestLocationPermission();
-        Mockito.verify(locationAwareBaseView, never()).requestToEnableGps();
+        locationAwareBasePresenter.updateLocation(true);
+        Mockito.verify(locationAwareBaseView).showPermissionRequiredNotice();
         Mockito.verify(locationAwareBaseView, never()).fetchLocationOnce();
     }
 
@@ -64,7 +54,7 @@ public class LocationAwareBasePresenterTest {
                 Manifest.permission.ACCESS_COARSE_LOCATION
         };
         int[] grantResults = new int[]{};
-        locationAwareBasePresenter.handleLocationPermissionResponse(LocationAwareBaseActivity.REQUEST_CODE_LOCATION, requestedPermissions, grantResults);
+        locationAwareBasePresenter.handleLocationPermissionResponse(requestedPermissions, grantResults);
         Mockito.verify(locationAwareBaseView).showPermissionRequiredNotice();
     }
 
@@ -77,7 +67,7 @@ public class LocationAwareBasePresenterTest {
                 Manifest.permission.ACCESS_COARSE_LOCATION
         };
         int[] grantResults = new int[]{PackageManager.PERMISSION_GRANTED, PackageManager.PERMISSION_GRANTED};
-        locationAwareBasePresenter.handleLocationPermissionResponse(LocationAwareBaseActivity.REQUEST_CODE_LOCATION, requestedPermissions, grantResults);
+        locationAwareBasePresenter.handleLocationPermissionResponse(requestedPermissions, grantResults);
         Mockito.verify(locationAwareBaseView, never()).showPermissionRequiredNotice();
         Mockito.verify(locationAwareBaseView).requestToEnableGps();
     }
@@ -91,7 +81,7 @@ public class LocationAwareBasePresenterTest {
                 Manifest.permission.ACCESS_COARSE_LOCATION
         };
         int[] grantResults = new int[]{PackageManager.PERMISSION_GRANTED, PackageManager.PERMISSION_GRANTED};
-        locationAwareBasePresenter.handleLocationPermissionResponse(LocationAwareBaseActivity.REQUEST_CODE_LOCATION, requestedPermissions, grantResults);
+        locationAwareBasePresenter.handleLocationPermissionResponse(requestedPermissions, grantResults);
         Mockito.verify(locationAwareBaseView, never()).showPermissionRequiredNotice();
         Mockito.verify(locationAwareBaseView).fetchLocationOnce();
     }
@@ -103,7 +93,7 @@ public class LocationAwareBasePresenterTest {
                 Manifest.permission.ACCESS_COARSE_LOCATION
         };
         int[] grantResults = new int[]{PackageManager.PERMISSION_DENIED, PackageManager.PERMISSION_DENIED};
-        locationAwareBasePresenter.handleLocationPermissionResponse(LocationAwareBaseActivity.REQUEST_CODE_LOCATION, requestedPermissions, grantResults);
+        locationAwareBasePresenter.handleLocationPermissionResponse(requestedPermissions, grantResults);
         Mockito.verify(locationAwareBaseView).showPermissionRequiredNotice();
     }
 
@@ -117,7 +107,7 @@ public class LocationAwareBasePresenterTest {
                 Manifest.permission.ACCESS_COARSE_LOCATION
         };
         int[] grantResults = new int[]{PackageManager.PERMISSION_DENIED, PackageManager.PERMISSION_GRANTED, PackageManager.PERMISSION_GRANTED};
-        locationAwareBasePresenter.handleLocationPermissionResponse(LocationAwareBaseActivity.REQUEST_CODE_LOCATION, requestedPermissions, grantResults);
+        locationAwareBasePresenter.handleLocationPermissionResponse(requestedPermissions, grantResults);
         Mockito.verify(locationAwareBaseView).fetchLocationOnce();
     }
 }

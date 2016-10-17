@@ -1,5 +1,6 @@
 package com.chiragaggarwal.bolt.run;
 
+import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -8,13 +9,14 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.chiragaggarwal.bolt.BoltApplication;
 import com.chiragaggarwal.bolt.R;
+import com.chiragaggarwal.bolt.common.LocationAwareBaseActivity;
 import com.chiragaggarwal.bolt.common.ServiceStateMonitor;
 import com.chiragaggarwal.bolt.databinding.ActivityMainBinding;
+import com.chiragaggarwal.bolt.location.UserLocation;
 import com.chiragaggarwal.bolt.location.UserLocations;
 import com.chiragaggarwal.bolt.run.map.RunMapFragment;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
@@ -24,7 +26,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RunActivity extends AppCompatActivity implements RunView {
+public class RunActivity extends LocationAwareBaseActivity implements RunView {
     private RunServiceBroadcastReceiver runServiceBroadcastReceiver;
     private LocalBroadcastManager localBroadcastManager;
     private RunViewModel runViewModel;
@@ -43,6 +45,12 @@ public class RunActivity extends AppCompatActivity implements RunView {
         ButterKnife.bind(this);
         ((BoltApplication) getApplication()).getBoltComponent().inject(this);
         initialise(activityMainBinding);
+    }
+
+    @Override
+    public void onOneOffLocationUpdate(UserLocation userLocation) {
+        RunMapFragment runMapFragment = ((RunMapFragment) getFragmentManager().findFragmentById(R.id.frame_map));
+        runMapFragment.updateLocation(userLocation);
     }
 
     @Override
