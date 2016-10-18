@@ -28,6 +28,10 @@ public class UserLocations implements Parcelable {
         return lastVisitedUserLocation != null;
     }
 
+    public UserLocation latest() {
+        return lastVisitedUserLocation;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -128,4 +128,8 @@ public class UserLocation implements Parcelable {
     public LatLng toLatLng() {
         return new LatLng(latitude, longitude);
     }
+
+    public boolean exists() {
+        return true;
+    }
 }

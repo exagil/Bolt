@@ -110,4 +110,10 @@ public class UserLocationTest {
         LatLng expectedLatLng = new LatLng(1.1d, 2.2d);
         Assert.assertEquals(expectedLatLng, userLocation.toLatLng());
     }
+
+    @Test
+    public void testThatItExists() {
+        UserLocation userLocation = new UserLocation(1.1d, 2.2d, true, 10f, true, 10f);
+        Assert.assertTrue(userLocation.exists());
+    }
 }

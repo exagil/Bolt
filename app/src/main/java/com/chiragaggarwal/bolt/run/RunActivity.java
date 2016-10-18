@@ -1,6 +1,5 @@
 package com.chiragaggarwal.bolt.run;
 
-import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -49,8 +48,7 @@ public class RunActivity extends LocationAwareBaseActivity implements RunView {
 
     @Override
     public void onOneOffLocationUpdate(UserLocation userLocation) {
-        RunMapFragment runMapFragment = ((RunMapFragment) getFragmentManager().findFragmentById(R.id.frame_map));
-        runMapFragment.updateLocation(userLocation);
+        runMapFragment().updateLocation(userLocation);
     }
 
     @Override
@@ -77,9 +75,11 @@ public class RunActivity extends LocationAwareBaseActivity implements RunView {
     @Override
     public void stopRun() {
         stopService(runServiceIntent());
+        runMapFragment().clearMap();
     }
 
     private class RunServiceBroadcastReceiver extends BroadcastReceiver {
+
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
@@ -89,10 +89,10 @@ public class RunActivity extends LocationAwareBaseActivity implements RunView {
             } else if (action.equals(RunService.ACTION_FETCH_ACCURATE_LOCATION)) {
                 UserLocations userLocations = intent.getParcelableExtra(UserLocations.TAG);
                 runViewModel.updateVisitedUserLocations(userLocations);
+                runMapFragment().updateLocation(userLocations.latest());
             }
         }
     }
-
     private void initialise(ActivityMainBinding activityMainBinding) {
         runViewModel = new RunViewModel(getResources());
         runPresenter = new RunPresenter(this, runViewModel, serviceStateMonitor);
@@ -106,5 +106,9 @@ public class RunActivity extends LocationAwareBaseActivity implements RunView {
     @NonNull
     private Intent runServiceIntent() {
         return new Intent(this, RunService.class);
+    }
+
+    private RunMapFragment runMapFragment() {
+        return (RunMapFragment) getFragmentManager().findFragmentById(R.id.frame_map);
     }
 }
