@@ -8,7 +8,6 @@ import java.util.List;
 
 public class UserLocations implements Parcelable {
     public static final String TAG = "com.chiragaggarwal.bolt.location.UserLocations";
-    private UserLocation lastVisitedUserLocation = new NullUserLocation();
     private List<UserLocation> userLocationsCollection;
     private float totalDistanceInKilometers;
     private float currentPaceInKilometersPerHour;
@@ -23,10 +22,9 @@ public class UserLocations implements Parcelable {
 
     public void add(UserLocation userLocation) {
         if (hasUserMoved()) {
-            userLocationsCollection.add(userLocation);
-            totalDistanceInKilometers += lastVisitedUserLocation.distanceInKilometersTo(userLocation);
+            totalDistanceInKilometers += lastVisitedUserLocation().distanceInKilometersTo(userLocation);
         }
-        lastVisitedUserLocation = userLocation;
+        userLocationsCollection.add(userLocation);
         currentPaceInKilometersPerHour = userLocation.speedInKilometersPerHour();
     }
 
@@ -34,12 +32,25 @@ public class UserLocations implements Parcelable {
         return currentPaceInKilometersPerHour;
     }
 
-    private boolean hasUserMoved() {
-        return lastVisitedUserLocation != null;
+    public UserLocation latest() {
+        return lastVisitedUserLocation();
     }
 
-    public UserLocation latest() {
-        return lastVisitedUserLocation;
+    public float averagePaceInKilometersPerHour() {
+        if (userLocationsCollection.isEmpty())
+            return 0F;
+        float totalSpeedInKilometersPerHour = 0F;
+        for (UserLocation userLocation : userLocationsCollection)
+            totalSpeedInKilometersPerHour += userLocation.speedInKilometersPerHour();
+        return totalSpeedInKilometersPerHour / userLocationsCollection.size();
+    }
+
+    private UserLocation lastVisitedUserLocation() {
+        return userLocationsCollection.isEmpty() ? new NullUserLocation() : userLocationsCollection.get(userLocationsCollection.size() - 1);
+    }
+
+    private boolean hasUserMoved() {
+        return lastVisitedUserLocation().exists();
     }
 
     @Override
@@ -53,13 +64,13 @@ public class UserLocations implements Parcelable {
             return false;
         if (Float.compare(that.currentPaceInKilometersPerHour, currentPaceInKilometersPerHour) != 0)
             return false;
-        return lastVisitedUserLocation != null ? lastVisitedUserLocation.equals(that.lastVisitedUserLocation) : that.lastVisitedUserLocation == null;
+        return userLocationsCollection != null ? userLocationsCollection.equals(that.userLocationsCollection) : that.userLocationsCollection == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = lastVisitedUserLocation != null ? lastVisitedUserLocation.hashCode() : 0;
+        int result = userLocationsCollection != null ? userLocationsCollection.hashCode() : 0;
         result = 31 * result + (totalDistanceInKilometers != +0.0f ? Float.floatToIntBits(totalDistanceInKilometers) : 0);
         result = 31 * result + (currentPaceInKilometersPerHour != +0.0f ? Float.floatToIntBits(currentPaceInKilometersPerHour) : 0);
         return result;
@@ -72,18 +83,18 @@ public class UserLocations implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelable(this.lastVisitedUserLocation, flags);
+        dest.writeTypedList(this.userLocationsCollection);
         dest.writeFloat(this.totalDistanceInKilometers);
         dest.writeFloat(this.currentPaceInKilometersPerHour);
     }
 
     protected UserLocations(Parcel in) {
-        this.lastVisitedUserLocation = in.readParcelable(UserLocation.class.getClassLoader());
+        this.userLocationsCollection = in.createTypedArrayList(UserLocation.CREATOR);
         this.totalDistanceInKilometers = in.readFloat();
         this.currentPaceInKilometersPerHour = in.readFloat();
     }
 
-    public static final Parcelable.Creator<UserLocations> CREATOR = new Parcelable.Creator<UserLocations>() {
+    public static final Creator<UserLocations> CREATOR = new Creator<UserLocations>() {
         @Override
         public UserLocations createFromParcel(Parcel source) {
             return new UserLocations(source);
@@ -94,13 +105,4 @@ public class UserLocations implements Parcelable {
             return new UserLocations[size];
         }
     };
-
-    public float averagePaceInKilometersPerHour() {
-        if (userLocationsCollection.isEmpty())
-            return 0F;
-        float totalSpeedInKilometersPerHour = 0F;
-        for (UserLocation userLocation : userLocationsCollection)
-            totalSpeedInKilometersPerHour += userLocation.speedInKilometersPerHour();
-        return totalSpeedInKilometersPerHour / userLocationsCollection.size();
-    }
 }
