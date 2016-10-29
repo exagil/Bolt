@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 public class UserLocations implements Parcelable {
     public static final String TAG = "com.chiragaggarwal.bolt.location.UserLocations";
-    private UserLocation lastVisitedUserLocation;
+    private UserLocation lastVisitedUserLocation = new NullUserLocation();
     private float totalDistanceInKilometers;
     private float currentPaceInKilometersPerHour;
 
@@ -89,6 +89,6 @@ public class UserLocations implements Parcelable {
     };
 
     public float averagePaceInKilometersPerHour() {
-        return 0;
+        return lastVisitedUserLocation.speedInKilometersPerHour();
     }
 }

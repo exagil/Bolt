@@ -88,4 +88,9 @@ public class UserLocationsTest {
     public void testThatAveragePaceInKilometersPerHourIsZeroWhenUserHasNotTravelledAnyLocations() {
         Assert.assertEquals(0F, new UserLocations().averagePaceInKilometersPerHour());
     }
+
+    @Test
+    public void testThatAveragePaceInKilometersPerHourIsUsersLastTravelledLocationsPaceWhenOnlyOneLocationHasBeenTravelled() {
+        Assert.assertEquals(11.376F, userLocations.averagePaceInKilometersPerHour());
+    }
 }
