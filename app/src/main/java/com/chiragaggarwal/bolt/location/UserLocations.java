@@ -3,19 +3,29 @@ package com.chiragaggarwal.bolt.location;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserLocations implements Parcelable {
     public static final String TAG = "com.chiragaggarwal.bolt.location.UserLocations";
     private UserLocation lastVisitedUserLocation = new NullUserLocation();
+    private List<UserLocation> userLocationsCollection;
     private float totalDistanceInKilometers;
     private float currentPaceInKilometersPerHour;
+
+    public UserLocations() {
+        this.userLocationsCollection = new ArrayList<>();
+    }
 
     public float totalDistanceInKilometers() {
         return totalDistanceInKilometers;
     }
 
     public void add(UserLocation userLocation) {
-        if (hasUserMoved())
+        if (hasUserMoved()) {
+            userLocationsCollection.add(userLocation);
             totalDistanceInKilometers += lastVisitedUserLocation.distanceInKilometersTo(userLocation);
+        }
         lastVisitedUserLocation = userLocation;
         currentPaceInKilometersPerHour = userLocation.speedInKilometersPerHour();
     }
@@ -67,9 +77,6 @@ public class UserLocations implements Parcelable {
         dest.writeFloat(this.currentPaceInKilometersPerHour);
     }
 
-    public UserLocations() {
-    }
-
     protected UserLocations(Parcel in) {
         this.lastVisitedUserLocation = in.readParcelable(UserLocation.class.getClassLoader());
         this.totalDistanceInKilometers = in.readFloat();
@@ -89,6 +96,11 @@ public class UserLocations implements Parcelable {
     };
 
     public float averagePaceInKilometersPerHour() {
-        return lastVisitedUserLocation.speedInKilometersPerHour();
+        if (userLocationsCollection.isEmpty())
+            return 0F;
+        float totalSpeedInKilometersPerHour = 0F;
+        for (UserLocation userLocation : userLocationsCollection)
+            totalSpeedInKilometersPerHour += userLocation.speedInKilometersPerHour();
+        return totalSpeedInKilometersPerHour / userLocationsCollection.size();
     }
 }

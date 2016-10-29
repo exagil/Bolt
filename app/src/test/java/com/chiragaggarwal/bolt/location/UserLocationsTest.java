@@ -93,4 +93,11 @@ public class UserLocationsTest {
     public void testThatAveragePaceInKilometersPerHourIsUsersLastTravelledLocationsPaceWhenOnlyOneLocationHasBeenTravelled() {
         Assert.assertEquals(11.376F, userLocations.averagePaceInKilometersPerHour());
     }
+
+    @Test
+    public void testThatAveragePaceInKilometersPerHourIsAnAverageOfAllOfUsersTravelledLocationsPaceWhenBunchOfLocationHasBeenTravelled() {
+        userLocations.add(new UserLocation(12.9612d, 77.6473d, true, 16, true, 1.25F));
+        userLocations.add(new UserLocation(12.9615d, 77.6474d, true, 16, true, 0.75F));
+        Assert.assertEquals(6.192F, userLocations.averagePaceInKilometersPerHour());
+    }
 }
