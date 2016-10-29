@@ -111,4 +111,13 @@ public class UserLocationsTest {
         List<LatLng> expectedLatLngCollection = new ArrayList<>();
         Assert.assertEquals(expectedLatLngCollection, new UserLocations().toLatLngs());
     }
+
+    @Test
+    public void testThatItKnowsAboutTheLatLngsCollectionWhenUserLocationsNotEmpty() {
+        userLocations.add(new UserLocation(8.96D, 6.643D, true, 16, true, 3.16f));
+        List<LatLng> expectedLatLngCollection = new ArrayList<>();
+        expectedLatLngCollection.add(new LatLng(12.9611D, 77.6472D));
+        expectedLatLngCollection.add(new LatLng(8.96D, 6.643D));
+        Assert.assertEquals(expectedLatLngCollection, userLocations.toLatLngs());
+    }
 }

@@ -109,6 +109,9 @@ public class UserLocations implements Parcelable {
     };
 
     public List<LatLng> toLatLngs() {
-        return new ArrayList<>();
+        ArrayList<LatLng> latLngs = new ArrayList<>();
+        for (UserLocation userLocation : userLocationsCollection)
+            latLngs.add(userLocation.toLatLng());
+        return latLngs;
     }
 }
