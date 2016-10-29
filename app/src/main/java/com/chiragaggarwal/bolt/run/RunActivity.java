@@ -89,7 +89,7 @@ public class RunActivity extends LocationAwareBaseActivity implements RunView {
             } else if (action.equals(RunService.ACTION_FETCH_ACCURATE_LOCATION)) {
                 UserLocations userLocations = intent.getParcelableExtra(UserLocations.TAG);
                 runViewModel.updateVisitedUserLocations(userLocations);
-                runMapFragment().updateLocation(userLocations.latest());
+                runMapFragment().updateLocations(userLocations);
             }
         }
     }

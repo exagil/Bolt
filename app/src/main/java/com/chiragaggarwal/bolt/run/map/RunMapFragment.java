@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chiragaggarwal.bolt.R;
-import com.chiragaggarwal.bolt.location.NullUserLocation;
 import com.chiragaggarwal.bolt.location.UserLocation;
+import com.chiragaggarwal.bolt.location.UserLocations;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -24,9 +24,7 @@ import butterknife.ButterKnife;
 
 public class RunMapFragment extends Fragment implements OnMapReadyCallback, RunMapView {
     private static final int ZOOM_LEVEL_STREETS = 17;
-    private UserLocation lastUserLocation = new NullUserLocation();
     private GoogleMap googleMap;
-    private RunMapPresenter runMapPresenter;
 
     @BindView(R.id.map_view)
     public MapView mapView;
@@ -44,7 +42,6 @@ public class RunMapFragment extends Fragment implements OnMapReadyCallback, RunM
         super.onViewCreated(view, savedInstanceState);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
-        runMapPresenter = new RunMapPresenter(this);
     }
 
     @Override
@@ -91,15 +88,13 @@ public class RunMapFragment extends Fragment implements OnMapReadyCallback, RunM
     @SuppressWarnings("MissingPermission")
     public void updateLocation(UserLocation userLocation) {
         mapView.setVisibility(View.VISIBLE);
-        runMapPresenter.extendPolyline(lastUserLocation, userLocation);
         googleMap.setMyLocationEnabled(true);
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(userLocation.toLatLng(), ZOOM_LEVEL_STREETS);
         googleMap.moveCamera(cameraUpdate);
-        lastUserLocation = userLocation;
     }
 
     public void clearMap() {
-        googleMap.clear();
+        clearGoogleMap();
     }
 
     @Override
@@ -108,5 +103,26 @@ public class RunMapFragment extends Fragment implements OnMapReadyCallback, RunM
                 .add(lastLatLng)
                 .add(currentLatLng);
         googleMap.addPolyline(polylineOptions);
+    }
+
+    public void updateLocations(UserLocations userLocations) {
+        clearGoogleMap();
+        plotUpdatedPolyline(userLocations);
+        animateToLatestUserLocation(userLocations);
+    }
+
+    private void animateToLatestUserLocation(UserLocations userLocations) {
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(userLocations.latest().toLatLng());
+        googleMap.animateCamera(cameraUpdate);
+    }
+
+    private void plotUpdatedPolyline(UserLocations userLocations) {
+        PolylineOptions polylineOptions = new PolylineOptions()
+                .addAll(userLocations.toLatLngs());
+        googleMap.addPolyline(polylineOptions);
+    }
+
+    private void clearGoogleMap() {
+        googleMap.clear();
     }
 }
