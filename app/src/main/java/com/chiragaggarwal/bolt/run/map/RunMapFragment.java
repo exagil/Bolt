@@ -16,13 +16,12 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.UiSettings;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RunMapFragment extends Fragment implements OnMapReadyCallback, RunMapView {
+public class RunMapFragment extends Fragment implements OnMapReadyCallback {
     private static final int ZOOM_LEVEL_STREETS = 17;
     private GoogleMap googleMap;
 
@@ -95,14 +94,6 @@ public class RunMapFragment extends Fragment implements OnMapReadyCallback, RunM
 
     public void clearMap() {
         clearGoogleMap();
-    }
-
-    @Override
-    public void plotPolyline(LatLng lastLatLng, LatLng currentLatLng) {
-        PolylineOptions polylineOptions = new PolylineOptions()
-                .add(lastLatLng)
-                .add(currentLatLng);
-        googleMap.addPolyline(polylineOptions);
     }
 
     public void updateLocations(UserLocations userLocations) {
