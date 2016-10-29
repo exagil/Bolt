@@ -3,6 +3,8 @@ package com.chiragaggarwal.bolt.location;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -105,4 +107,8 @@ public class UserLocations implements Parcelable {
             return new UserLocations[size];
         }
     };
+
+    public List<LatLng> toLatLngs() {
+        return new ArrayList<>();
+    }
 }

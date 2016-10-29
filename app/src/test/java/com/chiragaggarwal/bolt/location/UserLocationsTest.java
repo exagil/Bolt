@@ -1,9 +1,14 @@
 package com.chiragaggarwal.bolt.location;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -99,5 +104,11 @@ public class UserLocationsTest {
         userLocations.add(new UserLocation(12.9612d, 77.6473d, true, 16, true, 1.25F));
         userLocations.add(new UserLocation(12.9615d, 77.6474d, true, 16, true, 0.75F));
         Assert.assertEquals(6.192F, userLocations.averagePaceInKilometersPerHour());
+    }
+
+    @Test
+    public void testThatLatLngsCollectionIsEmptyWhenNoUserLocationsArePresent() {
+        List<LatLng> expectedLatLngCollection = new ArrayList<>();
+        Assert.assertEquals(expectedLatLngCollection, new UserLocations().toLatLngs());
     }
 }
