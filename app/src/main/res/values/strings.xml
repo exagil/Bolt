@@ -2,8 +2,8 @@
     <string name="app_name">Bolt</string>
     <string name="duration">DURATION</string>
     <string name="calories">CALORIES (CAL)</string>
-    <string name="average_pace">AVG. PACE</string>
-    <string name="distance">DISTANCE (MI)</string>
+    <string name="current_pace">PACE (KMPH)</string>
+    <string name="distance">DISTANCE (KM)</string>
     <string name="start_activity">START ACTIVITY</string>
     <string name="stop_activity">STOP ACTIVITY</string>
     <string name="run_in_progress_notification_text">Running activity with Bolt</string>

@@ -34,7 +34,7 @@
         <item name="android:padding">16dp</item>
         <item name="android:layout_below">@id/text_duration</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:weightSum">3</item>
+        <item name="android:weightSum">2</item>
     </style>
 
     <style name="layout_stats_element">

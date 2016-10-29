@@ -10,16 +10,13 @@
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/layout_distance"
         style="@style/layout_stats_element">
 
         <TextView
-            android:id="@+id/text_distance"
             style="@style/text_stats_measure"
             android:text="@{runViewModel.distance}" />
 
         <TextView
-            android:id="@+id/text_label_distance"
             style="@style/text_stats_label"
             android:text="@string/distance" />
 

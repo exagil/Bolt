@@ -10,18 +10,16 @@
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/layout_average_pace"
         style="@style/layout_stats_element">
 
         <TextView
-            android:id="@+id/text_average_pace"
             style="@style/text_stats_measure"
             android:text="@{runViewModel.pace}" />
 
         <TextView
             android:id="@+id/text_label_average_pace"
             style="@style/text_stats_label"
-            android:text="@string/average_pace" />
+            android:text="@string/current_pace" />
 
     </LinearLayout>
 
