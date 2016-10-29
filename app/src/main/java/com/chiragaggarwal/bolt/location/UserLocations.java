@@ -87,4 +87,8 @@ public class UserLocations implements Parcelable {
             return new UserLocations[size];
         }
     };
+
+    public float averagePaceInKilometersPerHour() {
+        return 0;
+    }
 }

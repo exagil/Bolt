@@ -1,5 +1,7 @@
 package com.chiragaggarwal.bolt.location;
 
+import junit.framework.Assert;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -80,5 +82,10 @@ public class UserLocationsTest {
         UserLocations anotherUserLocations = new UserLocations();
         anotherUserLocations.add(userLocation);
         assertEquals(this.userLocations.hashCode(), anotherUserLocations.hashCode());
+    }
+
+    @Test
+    public void testThatAveragePaceInKilometersPerHourIsZeroWhenUserHasNotTravelledAnyLocations() {
+        Assert.assertEquals(0F, new UserLocations().averagePaceInKilometersPerHour());
     }
 }
