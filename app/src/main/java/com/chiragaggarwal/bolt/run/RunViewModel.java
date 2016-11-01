@@ -23,10 +23,10 @@ public class RunViewModel extends BaseObservable {
     private static final String PACE_DEFAULT = "0.0";
     public static final String COMMA = ", ";
 
+    public UserLocations userLocations;
     private ElapsedTime elapsedTime;
     private boolean isRunning;
     private Resources resources;
-    private UserLocations userLocations;
 
     public RunViewModel(Resources resources) {
         this.resources = resources;

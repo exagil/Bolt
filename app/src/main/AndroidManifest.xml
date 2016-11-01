@@ -29,6 +29,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".run.complete.RunCompleteActivity"
+            android:theme="@style/NotesTheme" />
+
         <service
             android:name=".run.RunService"
             android:exported="false" />

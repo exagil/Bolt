@@ -17,6 +17,7 @@ public class RunPresenter {
         if (serviceStateMonitor.isRunning(RunService.class)) {
             runView.stopRun();
             runViewModel.setRunningAsStopped();
+            runView.showRunCompleteScreen();
         } else {
             runView.startRun();
             runViewModel.setRunningAsStarted();

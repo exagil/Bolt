@@ -4,4 +4,6 @@ public interface RunView {
     void startRun();
 
     void stopRun();
+
+    void showRunCompleteScreen();
 }

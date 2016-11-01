@@ -17,6 +17,7 @@ import com.chiragaggarwal.bolt.common.ServiceStateMonitor;
 import com.chiragaggarwal.bolt.databinding.ActivityMainBinding;
 import com.chiragaggarwal.bolt.location.UserLocation;
 import com.chiragaggarwal.bolt.location.UserLocations;
+import com.chiragaggarwal.bolt.run.complete.RunCompleteActivity;
 import com.chiragaggarwal.bolt.run.map.RunMapFragment;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
@@ -76,6 +77,14 @@ public class RunActivity extends LocationAwareBaseActivity implements RunView {
     public void stopRun() {
         stopService(runServiceIntent());
         runMapFragment().clearMap();
+    }
+
+    @Override
+    public void showRunCompleteScreen() {
+        Intent intent = new Intent(this, RunCompleteActivity.class);
+        intent.putExtra(UserLocations.TAG, runViewModel.userLocations);
+        startActivity(intent);
+        finish();
     }
 
     private class RunServiceBroadcastReceiver extends BroadcastReceiver {

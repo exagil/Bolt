@@ -28,6 +28,7 @@ public class RunPresenterTest {
         runPresenter.onToggleRunClick();
         Mockito.verify(runView).stopRun();
         Mockito.verify(runViewModel).setRunningAsStopped();
+        Mockito.verify(runView).showRunCompleteScreen();
     }
 
     @Test
