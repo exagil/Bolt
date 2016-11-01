@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="color_map_background">#ebebe9eb</color>
     <color name="rating_gold">#e2c76a</color>
+    <color name="action_green">#4CAF50</color>
 </resources>
