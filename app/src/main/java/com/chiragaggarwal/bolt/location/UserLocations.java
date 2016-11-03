@@ -122,8 +122,4 @@ public class UserLocations implements Parcelable {
     private boolean isUserLocationsEmpty() {
         return userLocationsCollection.isEmpty();
     }
-
-    public float totalActivityTimeInSeconds() {
-        return 0;
-    }
 }
