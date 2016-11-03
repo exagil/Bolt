@@ -21,9 +21,9 @@ public class RunViewModel extends BaseObservable {
     private static final String FORMAT_DISTANCE = "#.##";
     private static final String FORMAT_PACE = "#.#";
     private static final String PACE_DEFAULT = "0.0";
-    public static final String COMMA = ", ";
+    private static final String COMMA = ", ";
 
-    public UserLocations userLocations;
+    public UserLocations userLocations = new UserLocations();
     private ElapsedTime elapsedTime;
     private boolean isRunning;
     private Resources resources;
@@ -51,7 +51,7 @@ public class RunViewModel extends BaseObservable {
     public void setRunningAsStopped() {
         isRunning = false;
         elapsedTime = null;
-        userLocations = null;
+        userLocations = new UserLocations();
         notifyPropertyChanged(BR.toggleRunButtonText);
         notifyPropertyChanged(BR.elapsedTime);
         notifyPropertyChanged(BR.distance);
@@ -97,7 +97,7 @@ public class RunViewModel extends BaseObservable {
     }
 
     private boolean hasUserNotMovedAtAll() {
-        return userLocations == null;
+        return userLocations.hasUserNotMovedAtAll();
     }
 
     private boolean hasTimerNotStartedYet() {
