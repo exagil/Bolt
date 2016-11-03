@@ -120,4 +120,14 @@ public class UserLocationsTest {
         expectedLatLngCollection.add(new LatLng(8.96D, 6.643D));
         Assert.assertEquals(expectedLatLngCollection, userLocations.toLatLngs());
     }
+
+    @Test
+    public void testThatItKnowsUserHasNotMovedWhenNoUserLocationsExist() {
+        Assert.assertTrue(new UserLocations().hasUserNotMovedAtAll());
+    }
+
+    @Test
+    public void testThatItKnowsThatTheUserHasMovedWhenUserLocationsExist() {
+        Assert.assertFalse(userLocations.hasUserNotMovedAtAll());
+    }
 }

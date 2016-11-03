@@ -39,7 +39,7 @@ public class UserLocations implements Parcelable {
     }
 
     public float averagePaceInKilometersPerHour() {
-        if (userLocationsCollection.isEmpty())
+        if (isUserLocationsEmpty())
             return 0F;
         float totalSpeedInKilometersPerHour = 0F;
         for (UserLocation userLocation : userLocationsCollection)
@@ -48,7 +48,7 @@ public class UserLocations implements Parcelable {
     }
 
     private UserLocation lastVisitedUserLocation() {
-        return userLocationsCollection.isEmpty() ? new NullUserLocation() : userLocationsCollection.get(userLocationsCollection.size() - 1);
+        return isUserLocationsEmpty() ? new NullUserLocation() : userLocationsCollection.get(userLocationsCollection.size() - 1);
     }
 
     private boolean hasUserMoved() {
@@ -113,5 +113,13 @@ public class UserLocations implements Parcelable {
         for (UserLocation userLocation : userLocationsCollection)
             latLngs.add(userLocation.toLatLng());
         return latLngs;
+    }
+
+    public boolean hasUserNotMovedAtAll() {
+        return isUserLocationsEmpty();
+    }
+
+    private boolean isUserLocationsEmpty() {
+        return userLocationsCollection.isEmpty();
     }
 }
