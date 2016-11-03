@@ -130,4 +130,9 @@ public class UserLocationsTest {
     public void testThatItKnowsThatTheUserHasMovedWhenUserLocationsExist() {
         Assert.assertFalse(userLocations.hasUserNotMovedAtAll());
     }
+
+    @Test
+    public void testThatTotalActivityTimeInSecondsIsZeroWhenNoLocationsHaveBeenTravelled() {
+        Assert.assertEquals(0F, new UserLocations().totalActivityTimeInSeconds());
+    }
 }
