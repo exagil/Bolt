@@ -23,13 +23,15 @@ public class RunViewModel extends BaseObservable {
     private static final String PACE_DEFAULT = "0.0";
     private static final String COMMA = ", ";
 
-    public UserLocations userLocations = new UserLocations();
+    public UserLocations userLocations;
     private ElapsedTime elapsedTime;
     private boolean isRunning;
     private Resources resources;
 
     public RunViewModel(Resources resources) {
         this.resources = resources;
+        userLocations = new UserLocations();
+        elapsedTime = new ElapsedTime();
     }
 
     public void setElapsedTime(ElapsedTime elapsedTime) {
@@ -50,7 +52,7 @@ public class RunViewModel extends BaseObservable {
 
     public void setRunningAsStopped() {
         isRunning = false;
-        elapsedTime = null;
+        elapsedTime = new ElapsedTime();
         userLocations = new UserLocations();
         notifyPropertyChanged(BR.toggleRunButtonText);
         notifyPropertyChanged(BR.elapsedTime);
@@ -101,7 +103,7 @@ public class RunViewModel extends BaseObservable {
     }
 
     private boolean hasTimerNotStartedYet() {
-        return elapsedTime == null;
+        return elapsedTime.isZero();
     }
 
     public String getNotificationElapsedTime() {
