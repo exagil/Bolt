@@ -18,10 +18,8 @@ public class UserLocation implements Parcelable {
     private final float accuracy;
     private final boolean hasSpeed;
     private final float speed;
-    private long timeVisitedAt;
 
     public UserLocation(double latitude, double longitude, boolean hasAccuracy, float accuracy, boolean hasSpeed, float speed) {
-        this.timeVisitedAt = System.currentTimeMillis();
         this.latitude = latitude;
         this.longitude = longitude;
         this.hasAccuracy = hasAccuracy;
@@ -83,6 +81,42 @@ public class UserLocation implements Parcelable {
         return this.hasAccuracy && this.accuracy <= 20;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeDouble(this.latitude);
+        dest.writeDouble(this.longitude);
+        dest.writeByte(this.hasAccuracy ? (byte) 1 : (byte) 0);
+        dest.writeFloat(this.accuracy);
+        dest.writeByte(this.hasSpeed ? (byte) 1 : (byte) 0);
+        dest.writeFloat(this.speed);
+    }
+
+    protected UserLocation(Parcel in) {
+        this.latitude = in.readDouble();
+        this.longitude = in.readDouble();
+        this.hasAccuracy = in.readByte() != 0;
+        this.accuracy = in.readFloat();
+        this.hasSpeed = in.readByte() != 0;
+        this.speed = in.readFloat();
+    }
+
+    public static final Creator<UserLocation> CREATOR = new Creator<UserLocation>() {
+        @Override
+        public UserLocation createFromParcel(Parcel source) {
+            return new UserLocation(source);
+        }
+
+        @Override
+        public UserLocation[] newArray(int size) {
+            return new UserLocation[size];
+        }
+    };
+
     public float distanceInKilometersTo(@NonNull UserLocation userLocation) {
         return this.toNative().distanceTo(userLocation.toNative()) / METERS_IN_ONE_KILOMETER;
     }
@@ -98,42 +132,4 @@ public class UserLocation implements Parcelable {
     public boolean exists() {
         return true;
     }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeDouble(this.latitude);
-        dest.writeDouble(this.longitude);
-        dest.writeByte(this.hasAccuracy ? (byte) 1 : (byte) 0);
-        dest.writeFloat(this.accuracy);
-        dest.writeByte(this.hasSpeed ? (byte) 1 : (byte) 0);
-        dest.writeFloat(this.speed);
-        dest.writeLong(this.timeVisitedAt);
-    }
-
-    protected UserLocation(Parcel in) {
-        this.latitude = in.readDouble();
-        this.longitude = in.readDouble();
-        this.hasAccuracy = in.readByte() != 0;
-        this.accuracy = in.readFloat();
-        this.hasSpeed = in.readByte() != 0;
-        this.speed = in.readFloat();
-        this.timeVisitedAt = in.readLong();
-    }
-
-    public static final Creator<UserLocation> CREATOR = new Creator<UserLocation>() {
-        @Override
-        public UserLocation createFromParcel(Parcel source) {
-            return new UserLocation(source);
-        }
-
-        @Override
-        public UserLocation[] newArray(int size) {
-            return new UserLocation[size];
-        }
-    };
 }
