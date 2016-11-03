@@ -144,4 +144,15 @@ public class ElapsedTimeTest {
         ElapsedTime elapsedTimeClone = ((ElapsedTime) elapsedTime.clone());
         Assert.assertEquals(elapsedTime.getClass(), elapsedTimeClone.getClass());
     }
+
+    @Test
+    public void testThatElapsedTimeIsZeroByDefault() {
+        Assert.assertTrue(new ElapsedTime().isZero());
+    }
+
+    @Test
+    public void testThatElapsedTimeIsNotZeroWhenSomeTimeHasPassed() {
+        ElapsedTime elapsedTime = new ElapsedTime(82701);
+        Assert.assertFalse(elapsedTime.isZero());
+    }
 }

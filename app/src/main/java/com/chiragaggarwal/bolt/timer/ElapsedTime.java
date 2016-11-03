@@ -93,4 +93,8 @@ public class ElapsedTime implements Cloneable, Parcelable {
             return new ElapsedTime[size];
         }
     };
+
+    public boolean isZero() {
+        return elapsedTimeInSeconds == 0;
+    }
 }
