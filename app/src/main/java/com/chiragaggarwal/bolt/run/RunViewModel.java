@@ -24,7 +24,7 @@ public class RunViewModel extends BaseObservable {
     private static final String COMMA = ", ";
 
     public UserLocations userLocations;
-    private ElapsedTime elapsedTime;
+    public ElapsedTime elapsedTime;
     private boolean isRunning;
     private Resources resources;
 

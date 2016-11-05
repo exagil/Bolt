@@ -16,8 +16,8 @@ public class RunPresenter {
     public void onToggleRunClick() {
         if (serviceStateMonitor.isRunning(RunService.class)) {
             runView.stopRun();
-            runViewModel.setRunningAsStopped();
             runView.showRunCompleteScreen();
+            runViewModel.setRunningAsStopped();
         } else {
             runView.startRun();
             runViewModel.setRunningAsStarted();

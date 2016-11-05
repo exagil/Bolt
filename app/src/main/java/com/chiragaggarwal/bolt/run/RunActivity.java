@@ -83,6 +83,7 @@ public class RunActivity extends LocationAwareBaseActivity implements RunView {
     public void showRunCompleteScreen() {
         Intent intent = new Intent(this, RunCompleteActivity.class);
         intent.putExtra(UserLocations.TAG, runViewModel.userLocations);
+        intent.putExtra(ElapsedTime.TAG, runViewModel.elapsedTime);
         startActivity(intent);
         finish();
     }
