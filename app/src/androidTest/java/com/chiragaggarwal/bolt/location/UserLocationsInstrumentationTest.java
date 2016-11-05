@@ -10,6 +10,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Observable;
+import io.reactivex.observers.TestObserver;
+
 public class UserLocationsInstrumentationTest {
     @Test
     public void testThatItKnowsTheTotalDistanceTravelledInKilometersWhenItHasAlreadyVisitedACoupleOfLocations() {
@@ -57,6 +60,9 @@ public class UserLocationsInstrumentationTest {
         expectedUserLocationsContentValues.add(secondUserLocation.persistable());
         expectedUserLocationsContentValues.add(thirdUserLocation.persistable());
 
-        Assert.assertEquals(expectedUserLocationsContentValues, userLocations.persistable());
+        Observable<ContentValues> persistableUserLocationsObservble = userLocations.persistable();
+        TestObserver<ContentValues> testObserver = new TestObserver<>();
+        persistableUserLocationsObservble.subscribe(testObserver);
+        testObserver.assertResult(expectedUserLocationsContentValues.get(0), expectedUserLocationsContentValues.get(1), expectedUserLocationsContentValues.get(2));
     }
 }

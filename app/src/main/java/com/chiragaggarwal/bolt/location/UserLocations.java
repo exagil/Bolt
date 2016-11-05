@@ -9,6 +9,8 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Observable;
+
 public class UserLocations implements Parcelable {
     public static final String TAG = "com.chiragaggarwal.bolt.location.UserLocations";
     private List<UserLocation> userLocationsCollection;
@@ -124,10 +126,12 @@ public class UserLocations implements Parcelable {
         return userLocationsCollection.isEmpty();
     }
 
-    public List<ContentValues> persistable() {
-        List<ContentValues> userLocationContentValues = new ArrayList<>();
-        for (UserLocation userLocation : userLocationsCollection)
-            userLocationContentValues.add(userLocation.persistable());
-        return userLocationContentValues;
+    public Observable<ContentValues> persistable() {
+        return Observable.fromIterable(userLocationsCollection)
+                .map((userLocation) -> userLocation.persistable());
+    }
+
+    public UserLocation get(int location) {
+        return userLocationsCollection.get(location);
     }
 }
