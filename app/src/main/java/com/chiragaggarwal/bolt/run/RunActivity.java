@@ -85,7 +85,6 @@ public class RunActivity extends LocationAwareBaseActivity implements RunView {
         intent.putExtra(UserLocations.TAG, runViewModel.userLocations);
         intent.putExtra(ElapsedTime.TAG, runViewModel.elapsedTime);
         startActivity(intent);
-        finish();
     }
 
     private class RunServiceBroadcastReceiver extends BroadcastReceiver {

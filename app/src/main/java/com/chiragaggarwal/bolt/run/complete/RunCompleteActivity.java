@@ -2,6 +2,7 @@ package com.chiragaggarwal.bolt.run.complete;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -26,5 +27,14 @@ public class RunCompleteActivity extends AppCompatActivity {
         Toolbar toolbarRunComplete = (Toolbar) findViewById(R.id.run_complete_toolbar);
         setSupportActionBar(toolbarRunComplete);
         getSupportActionBar().setTitle(runViewModel.getElapsedTime());
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setPositiveButton(R.string.ok, (dialog, which) -> super.onBackPressed())
+                .setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss())
+                .setTitle(R.string.notify_dismiss)
+                .show();
     }
 }

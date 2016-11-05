@@ -18,4 +18,5 @@
     <string name="enable">ENABLE</string>
     <string name="cancel">CANCEL</string>
     <string name="add_a_note">Add a Note</string>
+    <string name="notify_dismiss">Do you want to dismiss the current run?</string>
 </resources>
