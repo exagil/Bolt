@@ -15,5 +15,7 @@ public interface BoltDatabaseSchema {
 
     interface RunSchema extends BaseColumns {
         String TABLE_NAME = "run";
+        String RATING = "rating";
+        String NOTE = "note";
     }
 }
