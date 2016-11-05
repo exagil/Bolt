@@ -1,10 +1,14 @@
 package com.chiragaggarwal.bolt.location;
 
+import android.content.ContentValues;
 import android.os.Parcel;
 
 import junit.framework.Assert;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserLocationsInstrumentationTest {
     @Test
@@ -36,5 +40,23 @@ public class UserLocationsInstrumentationTest {
         parcel.setDataPosition(0);
         UserLocations userLocationsObtainedFromParcelable = UserLocations.CREATOR.createFromParcel(parcel);
         Assert.assertEquals(userLocations, userLocationsObtainedFromParcelable);
+    }
+
+    @Test
+    public void testThatItKnowsHotToConvertItselfToBePersistable() {
+        UserLocations userLocations = new UserLocations();
+        UserLocation firstUserLocation = new UserLocation(-6.1805294D, 106.8088036D, true, 1, true, 10);
+        UserLocation secondUserLocation = new UserLocation(-6.1805228D, 106.8088433D, true, 2, true, 20);
+        UserLocation thirdUserLocation = new UserLocation(-6.1805211D, 106.8088532D, true, 3, true, 30);
+        userLocations.add(firstUserLocation);
+        userLocations.add(secondUserLocation);
+        userLocations.add(thirdUserLocation);
+
+        List<ContentValues> expectedUserLocationsContentValues = new ArrayList<>();
+        expectedUserLocationsContentValues.add(firstUserLocation.persistable());
+        expectedUserLocationsContentValues.add(secondUserLocation.persistable());
+        expectedUserLocationsContentValues.add(thirdUserLocation.persistable());
+
+        Assert.assertEquals(expectedUserLocationsContentValues, userLocations.persistable());
     }
 }

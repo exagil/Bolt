@@ -1,5 +1,6 @@
 package com.chiragaggarwal.bolt.location;
 
+import android.content.ContentValues;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -121,5 +122,12 @@ public class UserLocations implements Parcelable {
 
     private boolean isUserLocationsEmpty() {
         return userLocationsCollection.isEmpty();
+    }
+
+    public List<ContentValues> persistable() {
+        List<ContentValues> userLocationContentValues = new ArrayList<>();
+        for (UserLocation userLocation : userLocationsCollection)
+            userLocationContentValues.add(userLocation.persistable());
+        return userLocationContentValues;
     }
 }
