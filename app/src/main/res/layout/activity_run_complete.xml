@@ -1,32 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/style_full_width_full_height"
-    android:fillViewport="true">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/style_full_width_full_height">
 
-    <FrameLayout style="@style/style_full_width_full_height">
+    <android.support.design.widget.AppBarLayout
+        style="@style/app_bar_run_complete"
+        app:elevation="@dimen/bolt_dimen_inexistent">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            style="@style/layout_run_complete">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/run_complete_toolbar"
+            style="@style/run_complete_toolbar"
+            app:titleTextColor="@android:color/white" />
 
-            <ImageView
-                style="@style/run_image"
-                android:src="@drawable/placeholder_run_image" />
+    </android.support.design.widget.AppBarLayout>
 
-            <RatingBar
-                android:id="@+id/run_rating"
-                style="@style/run_rating" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/layout_run_complete"
+        android:elevation="@dimen/elevation_layout_run_complete">
 
-            <EditText
-                android:id="@+id/run_note"
-                style="@style/run_note"
-                android:background="#00000000" />
+        <ImageView
+            style="@style/run_image"
+            android:src="@drawable/placeholder_run_image" />
 
-        </LinearLayout>
+        <RatingBar
+            android:id="@+id/run_rating"
+            style="@style/run_rating" />
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_complete_run"
-            style="@style/fab_complete_run" />
+        <EditText
+            android:id="@+id/run_note"
+            style="@style/run_note" />
 
-    </FrameLayout>
+    </LinearLayout>
 
-</ScrollView>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_complete_run"
+        style="@style/fab_complete_run" />
+
+</RelativeLayout>

@@ -1,8 +1,15 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
     <dimen name="bolt_dimen_large">24dp</dimen>
     <dimen name="bolt_dimen_small">8dp</dimen>
     <dimen name="bolt_dimen_medium">16dp</dimen>
+    <dimen name="bolt_dimen_inexistent">0dp</dimen>
+
+    <dimen name="elevation_layout_run_complete">-1dp</dimen>
+
+    <dimen name="bolt_text_size_normal">16sp</dimen>
+    <dimen name="bolt_status_text_size">40sp</dimen>
+    <dimen name="bolt_timer_text_size">64sp</dimen>
 </resources>
