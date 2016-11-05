@@ -1,4 +1,4 @@
-package com.chiragaggarwal.bolt.run;
+package com.chiragaggarwal.bolt.run.persistance;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,8 +14,8 @@ import org.junit.runner.RunWith;
 
 import java.util.HashSet;
 
-import static com.chiragaggarwal.bolt.run.BoltDatabaseSchema.RunSchema;
-import static com.chiragaggarwal.bolt.run.BoltDatabaseSchema.UserLocationsSchema;
+import static com.chiragaggarwal.bolt.run.persistance.BoltDatabaseSchema.RunSchema;
+import static com.chiragaggarwal.bolt.run.persistance.BoltDatabaseSchema.UserLocationsSchema;
 
 @RunWith(AndroidJUnit4.class)
 public class BoltDatabaseInstrumentationTest {

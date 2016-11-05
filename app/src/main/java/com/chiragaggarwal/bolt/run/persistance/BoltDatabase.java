@@ -1,4 +1,4 @@
-package com.chiragaggarwal.bolt.run;
+package com.chiragaggarwal.bolt.run.persistance;
 
 import android.content.Context;
 import android.database.DatabaseErrorHandler;
@@ -6,9 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.chiragaggarwal.bolt.R;
-
-import static com.chiragaggarwal.bolt.run.BoltDatabaseSchema.RunSchema;
-import static com.chiragaggarwal.bolt.run.BoltDatabaseSchema.UserLocationsSchema;
 
 public class BoltDatabase extends SQLiteOpenHelper {
     private static final int VERSION = 1;
@@ -32,14 +29,14 @@ public class BoltDatabase extends SQLiteOpenHelper {
     }
 
     private String createUserLocationsTableSqlStatement() {
-        return "CREATE TABLE " + UserLocationsSchema.TABLE_NAME + "(" +
-                UserLocationsSchema._ID + " INTEGER PRIMARY KEY" +
+        return "CREATE TABLE " + BoltDatabaseSchema.UserLocationsSchema.TABLE_NAME + "(" +
+                BoltDatabaseSchema.UserLocationsSchema._ID + " INTEGER PRIMARY KEY" +
                 ")";
     }
 
     private String createRunTableSqlStatement() {
-        return "CREATE TABLE " + RunSchema.TABLE_NAME + "(" +
-                RunSchema._ID + " INTEGER PRIMARY KEY" +
+        return "CREATE TABLE " + BoltDatabaseSchema.RunSchema.TABLE_NAME + "(" +
+                BoltDatabaseSchema.RunSchema._ID + " INTEGER PRIMARY KEY" +
                 ")";
     }
 

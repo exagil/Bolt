@@ -1,4 +1,4 @@
-package com.chiragaggarwal.bolt.run;
+package com.chiragaggarwal.bolt.run.persistance;
 
 import android.provider.BaseColumns;
 
