@@ -3,7 +3,6 @@ package com.chiragaggarwal.bolt.common;
 import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
@@ -48,33 +47,23 @@ public abstract class LocationAwareBaseActivity extends AppCompatActivity implem
 
     @Override
     public void showPermissionRequiredNotice() {
-        AlertDialogFactory.getPermissionRequiredAlertDialog(this, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        }, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                requestPermissions();
-            }
-        }).show();
+        AlertDialogFactory.getPermissionRequiredAlertDialog(this,
+                (dialog, which) -> finish(),
+                (dialog, which) -> requestPermissions()
+        ).show();
     }
 
     @Override
     public void requestToEnableGps() {
-        AlertDialogFactory.getEnableGpsDialog(this, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                LocationAwareBaseActivity.this.finish();
-            }
-        }, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(intent);
-            }
-        }).show();
+        AlertDialogFactory.getEnableGpsDialog(this,
+                (dialog, which) -> LocationAwareBaseActivity.this.finish(),
+                (dialog, which) -> launchLocationChangeSettings()
+        ).show();
+    }
+
+    private void launchLocationChangeSettings() {
+        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        startActivity(intent);
     }
 
     @Override
