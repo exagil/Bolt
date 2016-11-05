@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/style_full_width_full_height">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/style_full_width_full_height"
+    android:fillViewport="true">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/layout_run_complete">
+    <FrameLayout style="@style/style_full_width_full_height">
 
-        <ImageView
-            style="@style/run_image"
-            android:src="@drawable/placeholder_run_image" />
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            style="@style/layout_run_complete">
 
-        <RatingBar
-            android:id="@+id/run_rating"
-            style="@style/run_rating" />
+            <ImageView
+                style="@style/run_image"
+                android:src="@drawable/placeholder_run_image" />
 
-        <EditText
-            android:id="@+id/run_note"
-            style="@style/run_note" />
+            <RatingBar
+                android:id="@+id/run_rating"
+                style="@style/run_rating" />
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/run_note"
+                style="@style/run_note"
+                android:background="#00000000" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_complete_run"
-        style="@style/fab_complete_run" />
+        </LinearLayout>
 
-</FrameLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_complete_run"
+            style="@style/fab_complete_run" />
+
+    </FrameLayout>
+
+</ScrollView>
