@@ -1,10 +1,12 @@
 package com.chiragaggarwal.bolt.location;
 
+import android.content.ContentValues;
 import android.location.Location;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
+import com.chiragaggarwal.bolt.run.persistance.BoltDatabaseSchema;
 import com.google.android.gms.maps.model.LatLng;
 
 public class UserLocation implements Parcelable {
@@ -131,5 +133,16 @@ public class UserLocation implements Parcelable {
 
     public boolean exists() {
         return true;
+    }
+
+    public ContentValues persistable() {
+        ContentValues userLocationsContentValues = new ContentValues();
+        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.LATITUDE, 12.9611d);
+        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.LONGITUDE, 12.9611d);
+        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.HAS_ACCURACY, true);
+        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.ACCURACY, 16);
+        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.HAS_SPEED, true);
+        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.SPEED, 3.16f);
+        return userLocationsContentValues;
     }
 }
