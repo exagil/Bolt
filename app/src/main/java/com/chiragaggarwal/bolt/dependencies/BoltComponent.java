@@ -1,8 +1,8 @@
 package com.chiragaggarwal.bolt.dependencies;
 
 import com.chiragaggarwal.bolt.location.OneOffLocationUpdateService;
-import com.chiragaggarwal.bolt.run.RunActivity;
-import com.chiragaggarwal.bolt.run.RunService;
+import com.chiragaggarwal.bolt.run.ongoing.RunActivity;
+import com.chiragaggarwal.bolt.run.ongoing.RunService;
 
 import javax.inject.Singleton;
 

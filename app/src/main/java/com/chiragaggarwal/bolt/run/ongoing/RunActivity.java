@@ -1,4 +1,4 @@
-package com.chiragaggarwal.bolt.run;
+package com.chiragaggarwal.bolt.run.ongoing;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -17,6 +17,7 @@ import com.chiragaggarwal.bolt.common.ServiceStateMonitor;
 import com.chiragaggarwal.bolt.databinding.ActivityMainBinding;
 import com.chiragaggarwal.bolt.location.UserLocation;
 import com.chiragaggarwal.bolt.location.UserLocations;
+import com.chiragaggarwal.bolt.run.RunViewModel;
 import com.chiragaggarwal.bolt.run.complete.RunCompleteActivity;
 import com.chiragaggarwal.bolt.run.map.RunMapFragment;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;

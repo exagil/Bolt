@@ -1,4 +1,4 @@
-package com.chiragaggarwal.bolt.run;
+package com.chiragaggarwal.bolt.run.ongoing;
 
 import android.app.NotificationManager;
 import android.app.Service;
@@ -14,6 +14,7 @@ import com.chiragaggarwal.bolt.location.UserLocation;
 import com.chiragaggarwal.bolt.location.UserLocationApiClient;
 import com.chiragaggarwal.bolt.location.UserLocationChangeListener;
 import com.chiragaggarwal.bolt.location.UserLocations;
+import com.chiragaggarwal.bolt.run.RunViewModel;
 import com.chiragaggarwal.bolt.timer.ActivityTimer;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 import com.chiragaggarwal.bolt.timer.TimerUpdateListener;
@@ -22,8 +23,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import javax.inject.Inject;
 
 public class RunService extends Service implements UserLocationChangeListener, TimerUpdateListener {
-    public static final String ACTION_TIME_TICK = "com.chiragaggarwal.bolt.run.RunService.ACTION_TIME_TICK";
-    public static final String ACTION_FETCH_ACCURATE_LOCATION = "com.chiragaggarwal.bolt.run.RunService.ACTION_FETCH_ACCURATE_LOCATION";
+    public static final String ACTION_TIME_TICK = "com.chiragaggarwal.bolt.run.ongoing.RunService.ACTION_TIME_TICK";
+    public static final String ACTION_FETCH_ACCURATE_LOCATION = "com.chiragaggarwal.bolt.run.ongoing.RunService.ACTION_FETCH_ACCURATE_LOCATION";
     private static final int NOTIFICATION_ID = 1;
 
     private UserLocationApiClient userLocationApiClient;

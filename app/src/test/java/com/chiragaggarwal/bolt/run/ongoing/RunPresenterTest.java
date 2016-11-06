@@ -1,6 +1,10 @@
-package com.chiragaggarwal.bolt.run;
+package com.chiragaggarwal.bolt.run.ongoing;
 
 import com.chiragaggarwal.bolt.common.ServiceStateMonitor;
+import com.chiragaggarwal.bolt.run.RunViewModel;
+import com.chiragaggarwal.bolt.run.ongoing.RunPresenter;
+import com.chiragaggarwal.bolt.run.ongoing.RunService;
+import com.chiragaggarwal.bolt.run.ongoing.RunView;
 
 import org.junit.Test;
 import org.mockito.Mockito;

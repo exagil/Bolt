@@ -1,6 +1,7 @@
-package com.chiragaggarwal.bolt.run;
+package com.chiragaggarwal.bolt.run.ongoing;
 
 import com.chiragaggarwal.bolt.common.ServiceStateMonitor;
+import com.chiragaggarwal.bolt.run.RunViewModel;
 
 public class RunPresenter {
     private RunView runView;

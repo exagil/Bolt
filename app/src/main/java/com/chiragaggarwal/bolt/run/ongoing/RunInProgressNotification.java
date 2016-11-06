@@ -1,4 +1,4 @@
-package com.chiragaggarwal.bolt.run;
+package com.chiragaggarwal.bolt.run.ongoing;
 
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
 import com.chiragaggarwal.bolt.R;
+import com.chiragaggarwal.bolt.run.RunViewModel;
 
 public class RunInProgressNotification {
     private static final int REQUEST_CODE_OPEN_RUN_ACTIVITY = 0;
