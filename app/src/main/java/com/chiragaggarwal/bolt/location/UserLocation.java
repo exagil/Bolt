@@ -135,14 +135,15 @@ public class UserLocation implements Parcelable {
         return true;
     }
 
-    public ContentValues persistable() {
+    public ContentValues persistable(long rowNumber) {
         ContentValues userLocationsContentValues = new ContentValues();
-        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.LATITUDE, 12.9611d);
-        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.LONGITUDE, 12.9611d);
-        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.HAS_ACCURACY, true);
-        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.ACCURACY, 16);
-        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.HAS_SPEED, true);
-        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.SPEED, 3.16f);
+        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.LATITUDE, latitude);
+        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.LONGITUDE, longitude);
+        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.HAS_ACCURACY, hasAccuracy);
+        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.ACCURACY, accuracy);
+        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.HAS_SPEED, hasSpeed);
+        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.SPEED, speed);
+        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.RUN_ID, rowNumber);
         return userLocationsContentValues;
     }
 }

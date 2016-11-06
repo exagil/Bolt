@@ -35,14 +35,15 @@ public class UserLocationInstrumentationTest {
 
     @Test
     public void testThatItCanBeConvertedToPersistableContentValuesForm() {
-        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 16, true, 3.16f);
+        UserLocation userLocation = new UserLocation(12.9611d, 77.6472d, true, 16F, true, 3.16F);
         ContentValues userLocationsContentValues = new ContentValues();
         userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.LATITUDE, 12.9611d);
-        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.LONGITUDE, 12.9611d);
+        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.LONGITUDE, 77.6472d);
         userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.HAS_ACCURACY, true);
-        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.ACCURACY, 16);
+        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.ACCURACY, 16F);
         userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.HAS_SPEED, true);
-        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.SPEED, 3.16f);
-        Assert.assertEquals(userLocationsContentValues, userLocation.persistable());
+        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.SPEED, 3.16F);
+        userLocationsContentValues.put(BoltDatabaseSchema.UserLocationsSchema.RUN_ID, 1L);
+        Assert.assertEquals(userLocationsContentValues, userLocation.persistable(1));
     }
 }
