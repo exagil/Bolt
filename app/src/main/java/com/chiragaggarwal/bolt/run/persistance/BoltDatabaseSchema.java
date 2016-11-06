@@ -11,6 +11,7 @@ public interface BoltDatabaseSchema {
         String ACCURACY = "accuracy";
         String HAS_SPEED = "has_speed";
         String SPEED = "speed";
+        String RUN_ID = "run_id";
     }
 
     interface RunSchema extends BaseColumns {

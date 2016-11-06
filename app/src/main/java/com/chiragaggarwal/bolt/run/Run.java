@@ -10,7 +10,7 @@ import io.reactivex.Observable;
 public class Run {
     private final int rating;
     private final String note;
-    private final UserLocations userLocations;
+    public final UserLocations userLocations;
 
     public Run(int rating, String note, UserLocations userLocations) {
         this.rating = rating;

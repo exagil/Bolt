@@ -7,6 +7,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.chiragaggarwal.bolt.location.UserLocation;
 import com.chiragaggarwal.bolt.location.UserLocations;
+import com.chiragaggarwal.bolt.run.Run;
 
 import org.junit.After;
 import org.junit.Before;
@@ -16,8 +17,8 @@ import org.junit.runner.RunWith;
 import io.reactivex.observers.TestObserver;
 
 @RunWith(AndroidJUnit4.class)
-public class UserLocationsDaoInstrumentationTest {
-    private UserLocationsDao userLocationsDao;
+public class RunDaoInstrumentationTest {
+    private RunDao runDao;
     private BoltDatabase boltDatabase;
 
     @Before
@@ -25,7 +26,7 @@ public class UserLocationsDaoInstrumentationTest {
         Context context = InstrumentationRegistry.getTargetContext();
         boltDatabase = BoltDatabase.getInstance(context);
         boltDatabase.reset();
-        userLocationsDao = new UserLocationsDao(boltDatabase);
+        runDao = new RunDao(boltDatabase);
     }
 
     @After
@@ -34,14 +35,15 @@ public class UserLocationsDaoInstrumentationTest {
     }
 
     @Test
-    public void testThatItMapsCorrectUserLocationsContentValues() {
+    public void testThatItMapsCorrectRunContentValues() {
         TestObserver<ContentValues> userLocationTestObserver = new TestObserver<>();
         UserLocations userLocationsToInsert = buildUserLocations();
-        userLocationsDao.insert(userLocationsToInsert, 1).subscribe(userLocationTestObserver);
-        ContentValues firstUserLocationContentValues = userLocationsToInsert.get(0).persistable();
-        ContentValues secondUserLocationContentValues = userLocationsToInsert.get(1).persistable();
-        ContentValues thirdUserLocationContentValues = userLocationsToInsert.get(2).persistable();
-        userLocationTestObserver.assertResult(firstUserLocationContentValues, secondUserLocationContentValues, thirdUserLocationContentValues);
+        Run run = new Run(5, "valid note", userLocationsToInsert);
+        runDao.insert(run).subscribe(userLocationTestObserver);
+        ContentValues runContentValues = new ContentValues();
+        runContentValues.put(BoltDatabaseSchema.RunSchema.RATING, 5);
+        runContentValues.put(BoltDatabaseSchema.RunSchema.NOTE, "valid note");
+        userLocationTestObserver.assertResult(runContentValues);
     }
 
     private UserLocations buildUserLocations() {

@@ -28,19 +28,23 @@ public class BoltDatabase extends SQLiteOpenHelper {
 
     private String createUserLocationsTableSqlStatement() {
         return "CREATE TABLE " + UserLocationsSchema.TABLE_NAME + "(" +
-                UserLocationsSchema._ID + " INTEGER PRIMARY KEY, " +
+                UserLocationsSchema._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 UserLocationsSchema.LATITUDE + " NUMERIC, " +
                 UserLocationsSchema.LONGITUDE + " NUMERIC, " +
                 UserLocationsSchema.HAS_ACCURACY + " NUMERIC, " +
                 UserLocationsSchema.ACCURACY + " NUMERIC, " +
                 UserLocationsSchema.HAS_SPEED + " NUMERIC, " +
-                UserLocationsSchema.SPEED + " NUMERIC" +
+                UserLocationsSchema.SPEED + " NUMERIC, " +
+                UserLocationsSchema.RUN_ID + " INTEGER, " +
+                "FOREIGN KEY(" + UserLocationsSchema.RUN_ID + ") REFERENCES " + RunSchema.TABLE_NAME + "(" + RunSchema._ID + ")" +
                 ")";
     }
 
     private String createRunTableSqlStatement() {
         return "CREATE TABLE " + RunSchema.TABLE_NAME + "(" +
-                RunSchema._ID + " INTEGER PRIMARY KEY" +
+                RunSchema._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                RunSchema.NOTE + " TEXT, " +
+                RunSchema.RATING + " INTEGER" +
                 ")";
     }
 
