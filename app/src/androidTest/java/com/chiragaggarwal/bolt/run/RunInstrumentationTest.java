@@ -23,4 +23,13 @@ public class RunInstrumentationTest {
         expectedRunContentValue.put(BoltDatabaseSchema.RunSchema.NOTE, "valid note");
         Assert.assertEquals(expectedRunContentValue, runContentValues);
     }
+
+    @Test
+    public void testThatRunCanBeBuiltFromContentValues() {
+        Run run = new Run(5, "valid note", null);
+        ContentValues runContentValues = new ContentValues();
+        runContentValues.put(BoltDatabaseSchema.RunSchema.RATING, 5);
+        runContentValues.put(BoltDatabaseSchema.RunSchema.NOTE, "valid note");
+        Assert.assertEquals(run, Run.fromContentValues(runContentValues));
+    }
 }

@@ -22,4 +22,31 @@ public class Run {
         contentValues.put(BoltDatabaseSchema.RunSchema.RATING, rating);
         return contentValues;
     }
+
+    public static Run fromContentValues(ContentValues contentValues) {
+        String note = contentValues.getAsString(BoltDatabaseSchema.RunSchema.NOTE);
+        Integer rating = contentValues.getAsInteger(BoltDatabaseSchema.RunSchema.RATING);
+        return new Run(rating.intValue(), note, null);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Run run = (Run) o;
+
+        if (rating != run.rating) return false;
+        if (note != null ? !note.equals(run.note) : run.note != null) return false;
+        return userLocations != null ? userLocations.equals(run.userLocations) : run.userLocations == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = rating;
+        result = 31 * result + (note != null ? note.hashCode() : 0);
+        result = 31 * result + (userLocations != null ? userLocations.hashCode() : 0);
+        return result;
+    }
 }
