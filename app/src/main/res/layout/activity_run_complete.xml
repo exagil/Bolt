@@ -34,6 +34,7 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_complete_run"
+        android:onClick=""
         style="@style/fab_complete_run" />
 
 </RelativeLayout>

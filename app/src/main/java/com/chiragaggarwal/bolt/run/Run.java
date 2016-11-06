@@ -4,29 +4,34 @@ import android.content.ContentValues;
 
 import com.chiragaggarwal.bolt.location.UserLocations;
 import com.chiragaggarwal.bolt.run.persistance.BoltDatabaseSchema;
+import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
 public class Run {
     private final int rating;
     private final String note;
     public final UserLocations userLocations;
+    private ElapsedTime elapsedTimeInSeconds;
 
-    public Run(int rating, String note, UserLocations userLocations) {
+    public Run(int rating, String note, UserLocations userLocations, ElapsedTime elapsedTimeInSeconds) {
         this.rating = rating;
         this.note = note;
         this.userLocations = userLocations;
+        this.elapsedTimeInSeconds = elapsedTimeInSeconds;
     }
 
     public ContentValues persistable() {
         ContentValues contentValues = new ContentValues();
         contentValues.put(BoltDatabaseSchema.RunSchema.NOTE, note);
         contentValues.put(BoltDatabaseSchema.RunSchema.RATING, rating);
+        contentValues.putAll(elapsedTimeInSeconds.persistable());
         return contentValues;
     }
 
     public static Run fromContentValues(ContentValues contentValues) {
         String note = contentValues.getAsString(BoltDatabaseSchema.RunSchema.NOTE);
         Integer rating = contentValues.getAsInteger(BoltDatabaseSchema.RunSchema.RATING);
-        return new Run(rating.intValue(), note, null);
+        Integer elapsedTimeInSeconds = contentValues.getAsInteger(BoltDatabaseSchema.RunSchema.ELAPSED_TIME_IN_SECONDS);
+        return new Run(rating.intValue(), note, null, new ElapsedTime(elapsedTimeInSeconds));
     }
 
     @Override

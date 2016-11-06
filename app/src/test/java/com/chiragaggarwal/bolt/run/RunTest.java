@@ -2,6 +2,7 @@ package com.chiragaggarwal.bolt.run;
 
 import com.chiragaggarwal.bolt.location.UserLocation;
 import com.chiragaggarwal.bolt.location.UserLocations;
+import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,40 +22,40 @@ public class RunTest {
 
     @Test
     public void testThatAUserLocationIsNotEqualToNull() {
-        Run userLocation = new Run(5, "valid note", userLocations);
+        Run userLocation = new Run(5, "valid note", userLocations, new ElapsedTime(123456));
         assertFalse(userLocation.equals(null));
     }
 
     @Test
     public void testThatAUserLocationIsEqualToItself() {
-        Run userLocation = new Run(5, "valid note", userLocations);
+        Run userLocation = new Run(5, "valid note", userLocations, new ElapsedTime(123456));
         assertTrue(userLocation.equals(userLocation));
     }
 
     @Test
     public void testThatAUserLocationIsEqualToAnotherLocationWithSameStates() {
-        Run userLocation = new Run(5, "valid note", userLocations);
-        Run anotherUserLocation = new Run(5, "valid note", userLocations);
+        Run userLocation = new Run(5, "valid note", userLocations, new ElapsedTime(123456));
+        Run anotherUserLocation = new Run(5, "valid note", userLocations, new ElapsedTime(123456));
         assertTrue(userLocation.equals(anotherUserLocation));
     }
 
     @Test
     public void testThatAUserLocationIsNotEqualToAnotherLocationWithDifferentStates() {
-        Run userLocation = new Run(5, "valid note", userLocations);
-        Run anotherUserLocation = new Run(0, "another valid note", null);
+        Run userLocation = new Run(5, "valid note", userLocations, new ElapsedTime(123456));
+        Run anotherUserLocation = new Run(0, "another valid note", null, new ElapsedTime(123456));
         assertFalse(userLocation.equals(anotherUserLocation));
     }
 
     @Test
     public void testThatAUserLocationIsNotEqualToAnythingOtherThanAUserLocation() {
-        Run userLocation = new Run(5, "valid note", userLocations);
+        Run userLocation = new Run(5, "valid note", userLocations, new ElapsedTime(123456));
         assertFalse(userLocation.equals(new Object()));
     }
 
     @Test
     public void testThatTwoSameLocationsHaveTheSameHashCode() {
-        Run userLocation = new Run(5, "valid note", userLocations);
-        Run anotherUserLocation = new Run(5, "valid note", userLocations);
+        Run userLocation = new Run(5, "valid note", userLocations, new ElapsedTime(123456));
+        Run anotherUserLocation = new Run(5, "valid note", userLocations, new ElapsedTime(123456));
         assertEquals(userLocation.hashCode(), anotherUserLocation.hashCode());
     }
 }

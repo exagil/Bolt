@@ -22,5 +22,6 @@ public interface BoltDatabaseSchema {
         String RATING = "rating";
         String NOTE = "note";
         String AUTHORITY = BoltDatabaseSchema.AUTHORITY + ".runprovider";
+        String ELAPSED_TIME_IN_SECONDS = "elapsed_time_in_seconds";
     }
 }

@@ -45,7 +45,8 @@ public class BoltDatabase extends SQLiteOpenHelper {
         return "CREATE TABLE " + RunSchema.TABLE_NAME + "(" +
                 RunSchema._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 RunSchema.NOTE + " TEXT, " +
-                RunSchema.RATING + " INTEGER" +
+                RunSchema.RATING + " INTEGER, " +
+                RunSchema.ELAPSED_TIME_IN_SECONDS + " NUMERIC" +
                 ")";
     }
 

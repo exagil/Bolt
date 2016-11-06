@@ -6,6 +6,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import com.chiragaggarwal.bolt.BoltApplication;
 import com.chiragaggarwal.bolt.R;
 import com.chiragaggarwal.bolt.run.RunViewModel;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
@@ -16,6 +17,7 @@ public class RunCompleteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ((BoltApplication) getApplication()).getBoltComponent().inject(this);
         setContentView(R.layout.activity_run_complete);
         ElapsedTime elapsedTime = getIntent().getParcelableExtra(ElapsedTime.TAG);
         runViewModel = new RunViewModel(getResources());

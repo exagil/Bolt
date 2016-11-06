@@ -1,15 +1,20 @@
 package com.chiragaggarwal.bolt.timer;
 
+import android.content.ContentValues;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.VisibleForTesting;
 
+import com.chiragaggarwal.bolt.run.persistance.BoltDatabaseSchema;
+
 public class ElapsedTime implements Cloneable, Parcelable {
     public static final String TAG = "com.chiragaggarwal.bolt.timer.ElapsedTime";
+
+    public int elapsedTimeInSeconds;
+
     private static final int SECONDS_IN_ONE_MINUTE = 60;
     private static final int SECONDS_IN_ONE_HOUR = 3600;
     private static final int ONE_SECOND = 1;
-    private int elapsedTimeInSeconds;
 
     public ElapsedTime() {
         this.elapsedTimeInSeconds = 0;
@@ -96,5 +101,11 @@ public class ElapsedTime implements Cloneable, Parcelable {
 
     public boolean isZero() {
         return elapsedTimeInSeconds == 0;
+    }
+
+    public ContentValues persistable() {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(BoltDatabaseSchema.RunSchema.ELAPSED_TIME_IN_SECONDS, elapsedTimeInSeconds);
+        return contentValues;
     }
 }
