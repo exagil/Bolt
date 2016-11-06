@@ -7,12 +7,14 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 
+import static com.chiragaggarwal.bolt.run.persistance.BoltDatabaseSchema.RunSchema;
+
 public class RunContentProvider extends ContentProvider {
     private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     private static final int CODE_ALL_RUNS = 0;
 
     static {
-        uriMatcher.addURI(BoltDatabaseSchema.AUTHORITY, BoltDatabaseSchema.RunSchema.PROVIDER_PATH, CODE_ALL_RUNS);
+        uriMatcher.addURI(RunSchema.AUTHORITY, RunSchema.TABLE_NAME, CODE_ALL_RUNS);
     }
 
     private RunDao runDao;

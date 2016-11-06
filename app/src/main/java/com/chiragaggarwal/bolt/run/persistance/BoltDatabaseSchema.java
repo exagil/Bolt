@@ -14,12 +14,13 @@ public interface BoltDatabaseSchema {
         String HAS_SPEED = "has_speed";
         String SPEED = "speed";
         String RUN_ID = "run_id";
+        String AUTHORITY = BoltDatabaseSchema.AUTHORITY + ".userlocationsprovider";
     }
 
     interface RunSchema extends BaseColumns {
         String TABLE_NAME = "run";
         String RATING = "rating";
         String NOTE = "note";
-        String PROVIDER_PATH = "run";
+        String AUTHORITY = BoltDatabaseSchema.AUTHORITY + ".runprovider";
     }
 }

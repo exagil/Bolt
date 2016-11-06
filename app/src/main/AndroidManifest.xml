@@ -47,6 +47,12 @@
             android:exported="false"
             android:initOrder="1" />
 
+        <provider
+            android:name=".run.persistance.UserLocationsContentProvider"
+            android:authorities="com.chiragaggarwal.bolt.userlocationsprovider"
+            android:exported="false"
+            android:initOrder="2" />
+
     </application>
 
 </manifest>

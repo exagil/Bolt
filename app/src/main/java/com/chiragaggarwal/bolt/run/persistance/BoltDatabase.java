@@ -1,5 +1,6 @@
 package com.chiragaggarwal.bolt.run.persistance;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -64,5 +65,21 @@ public class BoltDatabase extends SQLiteOpenHelper {
 
     private String dropRunTableSqlStatement() {
         return "DROP TABLE IF EXISTS " + RunSchema.TABLE_NAME;
+    }
+
+    public synchronized long insert(String table, String nullColumnHack, ContentValues values) {
+        return getWritableDatabase().insert(table, nullColumnHack, values);
+    }
+
+    public synchronized void beginTransaction() {
+        getWritableDatabase().beginTransaction();
+    }
+
+    public synchronized void endTransaction() {
+        getWritableDatabase().endTransaction();
+    }
+
+    public synchronized void setTransactionSuccessful() {
+        getWritableDatabase().setTransactionSuccessful();
     }
 }

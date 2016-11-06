@@ -49,4 +49,8 @@ public class Run {
         result = 31 * result + (userLocations != null ? userLocations.hashCode() : 0);
         return result;
     }
+
+    public ContentValues[] persistableUserLocations(long rowNumber) {
+        return userLocations.persistable(rowNumber);
+    }
 }
