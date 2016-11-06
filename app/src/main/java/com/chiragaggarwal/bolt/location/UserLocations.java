@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import io.reactivex.Observable;
-
 public class UserLocations implements Parcelable, Iterable<UserLocation> {
     public static final String TAG = "com.chiragaggarwal.bolt.location.UserLocations";
     private List<UserLocation> userLocationsCollection;
@@ -128,9 +126,13 @@ public class UserLocations implements Parcelable, Iterable<UserLocation> {
         return userLocationsCollection.isEmpty();
     }
 
-    public Observable<ContentValues> persistable() {
-        return Observable.fromIterable(userLocationsCollection)
-                .map((userLocation) -> userLocation.persistable());
+    public ContentValues[] persistable(long rowNumber) {
+        ContentValues[] contentValues = new ContentValues[userLocationsCollection.size()];
+        for (int userLocationIndex = 0; userLocationIndex < userLocationsCollection.size(); userLocationIndex++) {
+            UserLocation userLocation = userLocationsCollection.get(userLocationIndex);
+            contentValues[userLocationIndex] = userLocation.persistable(rowNumber);
+        }
+        return contentValues;
     }
 
     public UserLocation get(int location) {

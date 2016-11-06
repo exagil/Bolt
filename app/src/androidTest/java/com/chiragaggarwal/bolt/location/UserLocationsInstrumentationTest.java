@@ -7,12 +7,6 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import io.reactivex.Observable;
-import io.reactivex.observers.TestObserver;
-
 public class UserLocationsInstrumentationTest {
     @Test
     public void testThatItKnowsTheTotalDistanceTravelledInKilometersWhenItHasAlreadyVisitedACoupleOfLocations() {
@@ -55,14 +49,12 @@ public class UserLocationsInstrumentationTest {
         userLocations.add(secondUserLocation);
         userLocations.add(thirdUserLocation);
 
-        List<ContentValues> expectedUserLocationsContentValues = new ArrayList<>();
-        expectedUserLocationsContentValues.add(firstUserLocation.persistable());
-        expectedUserLocationsContentValues.add(secondUserLocation.persistable());
-        expectedUserLocationsContentValues.add(thirdUserLocation.persistable());
-
-        Observable<ContentValues> persistableUserLocationsObservble = userLocations.persistable();
-        TestObserver<ContentValues> testObserver = new TestObserver<>();
-        persistableUserLocationsObservble.subscribe(testObserver);
-        testObserver.assertResult(expectedUserLocationsContentValues.get(0), expectedUserLocationsContentValues.get(1), expectedUserLocationsContentValues.get(2));
+        ContentValues[] expectedUserLocationsContentValues = new ContentValues[3];
+        expectedUserLocationsContentValues[0] = firstUserLocation.persistable(1);
+        expectedUserLocationsContentValues[1] = secondUserLocation.persistable(1);
+        expectedUserLocationsContentValues[2] = thirdUserLocation.persistable(1);
+        Assert.assertTrue(expectedUserLocationsContentValues[0].equals(userLocations.persistable(1)[0]));
+        Assert.assertTrue(expectedUserLocationsContentValues[1].equals(userLocations.persistable(1)[1]));
+        Assert.assertTrue(expectedUserLocationsContentValues[2].equals(userLocations.persistable(1)[2]));
     }
 }
