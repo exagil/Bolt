@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.chiragaggarwal.bolt.common.PolylineTransformer;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
@@ -139,5 +140,9 @@ public class UserLocations implements Parcelable, Iterable<UserLocation> {
     @Override
     public Iterator<UserLocation> iterator() {
         return userLocationsCollection.iterator();
+    }
+
+    public String encodedPolyline() {
+        return new PolylineTransformer().encode(this);
     }
 }

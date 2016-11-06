@@ -130,4 +130,11 @@ public class UserLocationsTest {
     public void testThatItKnowsThatTheUserHasMovedWhenUserLocationsExist() {
         Assert.assertFalse(userLocations.hasUserNotMovedAtAll());
     }
+
+    @Test
+    public void testThatItKnowsItsEncodedPolyline() {
+        userLocations.add(new UserLocation(12.9612d, 77.6473d, true, 16, true, 1.25F));
+        userLocations.add(new UserLocation(12.9615d, 77.6474d, true, 16, true, 0.75F));
+        Assert.assertEquals("{mbnA_n|xMSS{@S", userLocations.encodedPolyline());
+    }
 }
