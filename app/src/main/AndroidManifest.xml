@@ -41,6 +41,12 @@
             android:name=".location.OneOffLocationUpdateService"
             android:exported="false" />
 
+        <provider
+            android:name=".run.persistance.RunContentProvider"
+            android:authorities="com.chiragaggarwal.bolt.runprovider"
+            android:exported="false"
+            android:initOrder="1" />
+
     </application>
 
 </manifest>
