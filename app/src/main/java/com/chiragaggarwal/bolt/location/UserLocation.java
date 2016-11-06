@@ -14,8 +14,8 @@ public class UserLocation implements Parcelable {
     private static final float METERS_IN_ONE_KILOMETER = 1000F;
     private static final float M_TO_KMPH_CONVERSION_FACTOR = 3.6F;
 
-    private final double latitude;
-    private final double longitude;
+    public final double latitude;
+    public final double longitude;
     private final boolean hasAccuracy;
     private final float accuracy;
     private final boolean hasSpeed;

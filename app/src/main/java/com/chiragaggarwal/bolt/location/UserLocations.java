@@ -7,11 +7,12 @@ import android.os.Parcelable;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import io.reactivex.Observable;
 
-public class UserLocations implements Parcelable {
+public class UserLocations implements Parcelable, Iterable<UserLocation> {
     public static final String TAG = "com.chiragaggarwal.bolt.location.UserLocations";
     private List<UserLocation> userLocationsCollection;
     private float totalDistanceInKilometers;
@@ -133,5 +134,10 @@ public class UserLocations implements Parcelable {
 
     public UserLocation get(int location) {
         return userLocationsCollection.get(location);
+    }
+
+    @Override
+    public Iterator<UserLocation> iterator() {
+        return userLocationsCollection.iterator();
     }
 }
