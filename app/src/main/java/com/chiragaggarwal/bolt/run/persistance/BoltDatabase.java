@@ -12,9 +12,12 @@ import static com.chiragaggarwal.bolt.run.persistance.BoltDatabaseSchema.UserLoc
 
 public class BoltDatabase extends SQLiteOpenHelper {
     private static final int VERSION = 1;
+    private static BoltDatabase boltDatabase;
 
     public static BoltDatabase getInstance(Context context) {
-        return new BoltDatabase(context, context.getString(R.string.bolt_database_name), null, VERSION);
+        if (boltDatabase == null)
+            boltDatabase = new BoltDatabase(context, context.getString(R.string.bolt_database_name), null, VERSION);
+        return boltDatabase;
     }
 
     private BoltDatabase(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
