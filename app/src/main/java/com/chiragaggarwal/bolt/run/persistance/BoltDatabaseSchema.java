@@ -1,5 +1,6 @@
 package com.chiragaggarwal.bolt.run.persistance;
 
+import android.net.Uri;
 import android.provider.BaseColumns;
 
 public interface BoltDatabaseSchema {
@@ -15,6 +16,7 @@ public interface BoltDatabaseSchema {
         String SPEED = "speed";
         String RUN_ID = "run_id";
         String AUTHORITY = BoltDatabaseSchema.AUTHORITY + ".userlocationsprovider";
+        Uri ALL_USER_LOCATIONS_URI = new Uri.Builder().scheme("content").authority(UserLocationsSchema.AUTHORITY).appendPath(UserLocationsSchema.TABLE_NAME).build();
     }
 
     interface RunSchema extends BaseColumns {
@@ -23,5 +25,6 @@ public interface BoltDatabaseSchema {
         String NOTE = "note";
         String AUTHORITY = BoltDatabaseSchema.AUTHORITY + ".runprovider";
         String ELAPSED_TIME_IN_SECONDS = "elapsed_time_in_seconds";
+        Uri ALL_RUNS_RESOURCE_URI = new Uri.Builder().scheme("content").authority(RunSchema.AUTHORITY).appendPath(RunSchema.TABLE_NAME).build();
     }
 }
