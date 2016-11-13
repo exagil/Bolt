@@ -1,6 +1,7 @@
 package com.chiragaggarwal.bolt.run;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 
 import com.chiragaggarwal.bolt.location.UserLocations;
 import com.chiragaggarwal.bolt.run.persistance.BoltDatabaseSchema;
@@ -57,5 +58,16 @@ public class Run {
 
     public ContentValues[] persistableUserLocations(long rowNumber) {
         return userLocations.persistable(rowNumber);
+    }
+
+    public static Run fromCursor(Cursor runsCursor) {
+        int ratingColumnIndex = runsCursor.getColumnIndex(BoltDatabaseSchema.RunSchema.RATING);
+        int noteColumnIndex = runsCursor.getColumnIndex(BoltDatabaseSchema.RunSchema.NOTE);
+        int elapsedTimeInSecondsColumnIndex = runsCursor.getColumnIndex(BoltDatabaseSchema.RunSchema.ELAPSED_TIME_IN_SECONDS);
+
+        String note = runsCursor.getString(noteColumnIndex);
+        Integer rating = runsCursor.getInt(ratingColumnIndex);
+        Integer elapsedTimeInSeconds = runsCursor.getInt(elapsedTimeInSecondsColumnIndex);
+        return new Run(rating.intValue(), note, null, new ElapsedTime(elapsedTimeInSeconds));
     }
 }
