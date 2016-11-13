@@ -1,5 +1,6 @@
 package com.chiragaggarwal.bolt.run.complete;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +15,7 @@ import com.chiragaggarwal.bolt.R;
 import com.chiragaggarwal.bolt.location.UserLocations;
 import com.chiragaggarwal.bolt.run.Run;
 import com.chiragaggarwal.bolt.run.RunViewModel;
+import com.chiragaggarwal.bolt.run.history.HistoryActivity;
 import com.chiragaggarwal.bolt.run.persistance.RunLocalStorage;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
@@ -62,7 +64,13 @@ public class RunCompleteActivity extends AppCompatActivity {
         int ratingBarNumStars = ratingBar.getNumStars();
         String note = inputRunNote.getText().toString();
         Run run = new Run(ratingBarNumStars, note, userLocations, elapsedTime);
-        new SaveRunAsyncTask(runLocalStorage, (_aVoid) -> finish()).execute(run);
+        new SaveRunAsyncTask(runLocalStorage, (_aVoid) -> onSaveComplete()).execute(run);
+    }
+
+    private void onSaveComplete() {
+        Intent historyActivityIntent = new Intent(this, HistoryActivity.class);
+        startActivity(historyActivityIntent);
+        finish();
     }
 
     private void initialiseView() {
