@@ -10,7 +10,8 @@ import com.chiragaggarwal.bolt.timer.ElapsedTime;
 public class Run {
     private final int rating;
     private final String note;
-    public final UserLocations userLocations;
+    public UserLocations userLocations;
+    private final long createdAt;
     private ElapsedTime elapsedTimeInSeconds;
 
     public Run(int rating, String note, UserLocations userLocations, ElapsedTime elapsedTimeInSeconds) {
@@ -18,6 +19,14 @@ public class Run {
         this.note = note;
         this.userLocations = userLocations;
         this.elapsedTimeInSeconds = elapsedTimeInSeconds;
+        this.createdAt = System.currentTimeMillis();
+    }
+
+    protected Run(int rating, String note, ElapsedTime elapsedTimeInSeconds, long createdAt) {
+        this.elapsedTimeInSeconds = elapsedTimeInSeconds;
+        this.createdAt = createdAt;
+        this.note = note;
+        this.rating = rating;
     }
 
     public ContentValues persistable() {
@@ -25,6 +34,7 @@ public class Run {
         contentValues.put(BoltDatabaseSchema.RunSchema.NOTE, note);
         contentValues.put(BoltDatabaseSchema.RunSchema.RATING, rating);
         contentValues.putAll(elapsedTimeInSeconds.persistable());
+        contentValues.put(BoltDatabaseSchema.RunSchema.CREATED_AT, createdAt);
         return contentValues;
     }
 
@@ -32,7 +42,8 @@ public class Run {
         String note = contentValues.getAsString(BoltDatabaseSchema.RunSchema.NOTE);
         Integer rating = contentValues.getAsInteger(BoltDatabaseSchema.RunSchema.RATING);
         Integer elapsedTimeInSeconds = contentValues.getAsInteger(BoltDatabaseSchema.RunSchema.ELAPSED_TIME_IN_SECONDS);
-        return new Run(rating.intValue(), note, null, new ElapsedTime(elapsedTimeInSeconds));
+        Long createdAt = contentValues.getAsLong(BoltDatabaseSchema.RunSchema.CREATED_AT);
+        return new Run(rating.intValue(), note, new ElapsedTime(elapsedTimeInSeconds), createdAt);
     }
 
     @Override
@@ -64,10 +75,12 @@ public class Run {
         int ratingColumnIndex = runsCursor.getColumnIndex(BoltDatabaseSchema.RunSchema.RATING);
         int noteColumnIndex = runsCursor.getColumnIndex(BoltDatabaseSchema.RunSchema.NOTE);
         int elapsedTimeInSecondsColumnIndex = runsCursor.getColumnIndex(BoltDatabaseSchema.RunSchema.ELAPSED_TIME_IN_SECONDS);
+        int createdAtColumnIndex = runsCursor.getColumnIndex(BoltDatabaseSchema.RunSchema.CREATED_AT);
 
         String note = runsCursor.getString(noteColumnIndex);
         Integer rating = runsCursor.getInt(ratingColumnIndex);
         Integer elapsedTimeInSeconds = runsCursor.getInt(elapsedTimeInSecondsColumnIndex);
-        return new Run(rating.intValue(), note, null, new ElapsedTime(elapsedTimeInSeconds));
+        long createdAt = runsCursor.getLong(createdAtColumnIndex);
+        return new Run(rating.intValue(), note, new ElapsedTime(elapsedTimeInSeconds), createdAt);
     }
 }
