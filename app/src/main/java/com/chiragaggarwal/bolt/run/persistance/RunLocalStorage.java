@@ -10,6 +10,7 @@ import com.chiragaggarwal.bolt.run.Run;
 import java.util.List;
 
 import static com.chiragaggarwal.bolt.run.persistance.BoltDatabaseSchema.RunSchema;
+import static com.chiragaggarwal.bolt.run.persistance.BoltDatabaseSchema.UserLocationsSchema;
 
 public class RunLocalStorage {
     private Context context;
@@ -25,7 +26,7 @@ public class RunLocalStorage {
             return false;
         }
         Long runRowNumberValue = new Long(runRowNumber);
-        context.getContentResolver().bulkInsert(RunSchema.ALL_RUNS_RESOURCE_URI, run.persistableUserLocations(runRowNumberValue.longValue()));
+        context.getContentResolver().bulkInsert(UserLocationsSchema.ALL_USER_LOCATIONS_URI, run.persistableUserLocations(runRowNumberValue.longValue()));
         return true;
     }
 
