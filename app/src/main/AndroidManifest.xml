@@ -21,7 +21,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_api_key" />
 
-        <activity android:name=".run.ongoing.RunActivity">
+        <activity
+            android:name=".run.ongoing.RunActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,8 +32,13 @@
         </activity>
 
         <activity
+            android:screenOrientation="portrait"
             android:name=".run.complete.RunCompleteActivity"
             android:theme="@style/NotesTheme" />
+
+        <activity
+            android:name=".run.history.HistoryActivity"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".run.ongoing.RunService"
