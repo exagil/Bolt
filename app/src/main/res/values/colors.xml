@@ -6,4 +6,5 @@
     <color name="color_map_background">#ebebe9eb</color>
     <color name="rating_gold">#e2c76a</color>
     <color name="action_green">#4CAF50</color>
+    <color name="light_grey">#868686</color>
 </resources>

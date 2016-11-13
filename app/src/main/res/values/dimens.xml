@@ -4,6 +4,7 @@
 
     <dimen name="bolt_dimen_large">24dp</dimen>
     <dimen name="bolt_dimen_small">8dp</dimen>
+    <dimen name="bolt_dimen_tiny">4dp</dimen>
     <dimen name="bolt_dimen_medium">16dp</dimen>
     <dimen name="bolt_dimen_inexistent">0dp</dimen>
 
