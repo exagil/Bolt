@@ -2,6 +2,7 @@ package com.chiragaggarwal.bolt.run.persistance;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -85,5 +86,9 @@ public class BoltDatabase extends SQLiteOpenHelper {
 
     public synchronized void setTransactionSuccessful() {
         getWritableDatabase().setTransactionSuccessful();
+    }
+
+    public Cursor query(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy) {
+        return getWritableDatabase().query(table, columns, selection, selectionArgs, groupBy, having, orderBy);
     }
 }

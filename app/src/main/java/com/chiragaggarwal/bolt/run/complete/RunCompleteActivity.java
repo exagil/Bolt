@@ -62,7 +62,7 @@ public class RunCompleteActivity extends AppCompatActivity {
         int ratingBarNumStars = ratingBar.getNumStars();
         String note = inputRunNote.getText().toString();
         Run run = new Run(ratingBarNumStars, note, userLocations, elapsedTime);
-        new SaveRunAsyncTask(runLocalStorage, () -> finish()).execute(run);
+        new SaveRunAsyncTask(runLocalStorage, (_aVoid) -> finish()).execute(run);
     }
 
     private void initialiseView() {

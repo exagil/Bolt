@@ -29,6 +29,9 @@ public class RunContentProvider extends ContentProvider {
     @Nullable
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+        if (uriMatcher.match(uri) == CODE_ALL_RUNS) {
+            return runDao.query(projection, selection, selectionArgs, sortOrder);
+        }
         return null;
     }
 

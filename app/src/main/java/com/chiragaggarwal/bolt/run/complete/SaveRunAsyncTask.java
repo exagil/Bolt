@@ -8,22 +8,23 @@ import com.chiragaggarwal.bolt.run.persistance.RunLocalStorage;
 
 public class SaveRunAsyncTask extends AsyncTask<Run, Void, Void> {
     private RunLocalStorage runLocalStorage;
-    private OnSuccessCallback onSuccessCallback;
+    private OnSuccessCallback<Void> onSuccessCallback;
 
-    public SaveRunAsyncTask(RunLocalStorage runLocalStorage, OnSuccessCallback onSuccessCallback) {
+    public SaveRunAsyncTask(RunLocalStorage runLocalStorage, OnSuccessCallback<Void> onSuccessCallback) {
         this.runLocalStorage = runLocalStorage;
         this.onSuccessCallback = onSuccessCallback;
     }
 
     @Override
-    protected Void doInBackground(Run... params) {
-        runLocalStorage.insertRun(params[0]);
+    protected Void doInBackground(Run... runs) {
+        Run run = runs[0];
+        runLocalStorage.insertRun(run);
         return null;
     }
 
     @Override
     protected void onPostExecute(Void aVoid) {
         if (!isCancelled())
-            onSuccessCallback.onSuccess();
+            onSuccessCallback.onSuccess(aVoid);
     }
 }

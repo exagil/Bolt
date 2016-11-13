@@ -1,12 +1,15 @@
 package com.chiragaggarwal.bolt.run.persistance;
 
+import android.app.LoaderManager;
 import android.content.Context;
 import android.net.Uri;
 
+import com.chiragaggarwal.bolt.common.OnSuccessCallback;
 import com.chiragaggarwal.bolt.run.Run;
 
+import java.util.List;
+
 import static com.chiragaggarwal.bolt.run.persistance.BoltDatabaseSchema.RunSchema;
-import static com.chiragaggarwal.bolt.run.persistance.BoltDatabaseSchema.UserLocationsSchema;
 
 public class RunLocalStorage {
     private Context context;
@@ -16,21 +19,18 @@ public class RunLocalStorage {
     }
 
     public boolean insertRun(Run run) {
-        Uri resultUri = context.getContentResolver().insert(allRunsResourceUri(), run.persistable());
+        Uri resultUri = context.getContentResolver().insert(RunSchema.ALL_RUNS_RESOURCE_URI, run.persistable());
         String runRowNumber = resultUri.getLastPathSegment();
         if (runRowNumber.equals(Dao.INVALID_PATH_ROW)) {
             return false;
         }
         Long runRowNumberValue = new Long(runRowNumber);
-        context.getContentResolver().bulkInsert(allUserLocationsUri(), run.persistableUserLocations(runRowNumberValue.longValue()));
+        context.getContentResolver().bulkInsert(RunSchema.ALL_RUNS_RESOURCE_URI, run.persistableUserLocations(runRowNumberValue.longValue()));
         return true;
     }
 
-    private Uri allUserLocationsUri() {
-        return new Uri.Builder().scheme("content").authority(UserLocationsSchema.AUTHORITY).appendPath(UserLocationsSchema.TABLE_NAME).build();
+    public void loadRuns(LoaderManager loaderManager, OnSuccessCallback<List<Run>> onSuccessCallback) {
+        new RunsLoader(context, loaderManager, onSuccessCallback).load();
     }
 
-    private Uri allRunsResourceUri() {
-        return new Uri.Builder().scheme("content").authority(RunSchema.AUTHORITY).appendPath(RunSchema.TABLE_NAME).build();
-    }
 }

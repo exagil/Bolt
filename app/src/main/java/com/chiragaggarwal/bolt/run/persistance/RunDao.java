@@ -1,6 +1,7 @@
 package com.chiragaggarwal.bolt.run.persistance;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 
 public class RunDao extends Dao {
 
@@ -20,5 +21,9 @@ public class RunDao extends Dao {
     private long insertRun(BoltDatabase boltDatabase, ContentValues persistableRun) {
         long runRowNumber = boltDatabase.insert(BoltDatabaseSchema.RunSchema.TABLE_NAME, null, persistableRun);
         return runRowNumber;
+    }
+
+    public Cursor query(String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+        return boltDatabase.query(BoltDatabaseSchema.RunSchema.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
     }
 }
