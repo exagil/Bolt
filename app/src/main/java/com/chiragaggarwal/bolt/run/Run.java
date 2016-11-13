@@ -7,12 +7,16 @@ import com.chiragaggarwal.bolt.location.UserLocations;
 import com.chiragaggarwal.bolt.run.persistance.BoltDatabaseSchema;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Run {
+    public static final String DATE_FORMAT = "EEE, dd/MM/yyyy";
+    public ElapsedTime elapsedTimeInSeconds;
     private final int rating;
     private final String note;
     public UserLocations userLocations;
     private final long createdAt;
-    private ElapsedTime elapsedTimeInSeconds;
 
     public Run(int rating, String note, UserLocations userLocations, ElapsedTime elapsedTimeInSeconds) {
         this.rating = rating;
@@ -20,6 +24,12 @@ public class Run {
         this.userLocations = userLocations;
         this.elapsedTimeInSeconds = elapsedTimeInSeconds;
         this.createdAt = System.currentTimeMillis();
+    }
+
+    public String formattedDate() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+        Date date = new Date(createdAt);
+        return dateFormat.format(date);
     }
 
     protected Run(int rating, String note, ElapsedTime elapsedTimeInSeconds, long createdAt) {
