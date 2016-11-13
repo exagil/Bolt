@@ -23,6 +23,7 @@ public class UserLocationsDao extends Dao {
             }
         }
         boltDatabase.setTransactionSuccessful();
+        boltDatabase.endTransaction();
         return totalInsertedRows;
     }
 }
