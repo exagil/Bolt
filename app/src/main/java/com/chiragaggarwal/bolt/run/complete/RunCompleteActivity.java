@@ -21,13 +21,14 @@ import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
 import javax.inject.Inject;
 
-public class RunCompleteActivity extends AppCompatActivity {
+public class RunCompleteActivity extends AppCompatActivity implements RunCompleteView {
     private RunViewModel runViewModel;
     private RatingBar ratingBar;
     private EditText inputRunNote;
     private UserLocations userLocations;
     private ElapsedTime elapsedTime;
     private FloatingActionButton floatingActionButton;
+    private RunCompletePresenter runCompletePresenter;
 
     @Inject
     public RunLocalStorage runLocalStorage;
@@ -37,6 +38,7 @@ public class RunCompleteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ((BoltApplication) getApplication()).getBoltComponent().inject(this);
         setContentView(R.layout.activity_run_complete);
+        runCompletePresenter = new RunCompletePresenter(this);
         initialiseView();
         initialiseViewListeners();
 
@@ -63,8 +65,7 @@ public class RunCompleteActivity extends AppCompatActivity {
     public void saveRun() {
         int ratingBarNumStars = ratingBar.getNumStars();
         String note = inputRunNote.getText().toString();
-        Run run = new Run(ratingBarNumStars, note, userLocations, elapsedTime);
-        new SaveRunAsyncTask(runLocalStorage, (_aVoid) -> onSaveComplete()).execute(run);
+        runCompletePresenter.saveRun(ratingBarNumStars, note, userLocations, elapsedTime);
     }
 
     private void onSaveComplete() {
@@ -83,5 +84,11 @@ public class RunCompleteActivity extends AppCompatActivity {
         Toolbar toolbarRunComplete = (Toolbar) findViewById(R.id.run_complete_toolbar);
         setSupportActionBar(toolbarRunComplete);
         getSupportActionBar().setTitle(runViewModel.getElapsedTime());
+    }
+
+    @Override
+    public void saveRun(int ratingBarNumStars, String note, UserLocations userLocations, ElapsedTime elapsedTime) {
+        Run run = new Run(ratingBarNumStars, note, userLocations, elapsedTime);
+        new SaveRunAsyncTask(runLocalStorage, (_aVoid) -> onSaveComplete()).execute(run);
     }
 }
