@@ -60,6 +60,15 @@
             android:exported="false"
             android:initOrder="2" />
 
+        <receiver android:name=".widget.RunsWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/runs_appwidget_info" />
+        </receiver>
+
     </application>
 
 </manifest>

@@ -13,4 +13,6 @@
     <dimen name="bolt_text_size_normal">16sp</dimen>
     <dimen name="bolt_status_text_size">40sp</dimen>
     <dimen name="bolt_timer_text_size">64sp</dimen>
+
+    <dimen name="bolt_widget_margin">8dp</dimen>
 </resources>
