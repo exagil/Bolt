@@ -15,7 +15,6 @@ import java.util.List;
 
 public class RunsLoader implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final int ID = 0;
-    private static final String SORT_ORDER_DESCENDING = "DESCENDING";
     private Context context;
     private LoaderManager loaderManager;
     private OnSuccessCallback<List<Run>> onSuccessCallback;
@@ -26,13 +25,22 @@ public class RunsLoader implements LoaderManager.LoaderCallbacks<Cursor> {
         this.onSuccessCallback = onSuccessCallback;
     }
 
+    public RunsLoader(Context context) {
+        this.context = context;
+    }
+
     public void load() {
         loaderManager.initLoader(ID, null, this);
     }
 
+    public List<Run> loadBlocking() {
+        Cursor runsCursor = context.getContentResolver().query(BoltDatabaseSchema.RunSchema.ALL_RUNS_RESOURCE_URI, null, null, null, null);
+        return loadRuns(runsCursor);
+    }
+
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(context, BoltDatabaseSchema.RunSchema.ALL_RUNS_RESOURCE_URI, null, null, null, SORT_ORDER_DESCENDING);
+        return new CursorLoader(context, BoltDatabaseSchema.RunSchema.ALL_RUNS_RESOURCE_URI, null, null, null, null);
     }
 
     @Override

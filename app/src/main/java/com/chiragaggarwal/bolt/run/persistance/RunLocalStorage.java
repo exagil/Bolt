@@ -34,4 +34,7 @@ public class RunLocalStorage {
         new RunsLoader(context, loaderManager, onSuccessCallback).load();
     }
 
+    public List<Run> loadRunsBlocking() {
+        return new RunsLoader(context).loadBlocking();
+    }
 }
