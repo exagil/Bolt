@@ -174,8 +174,23 @@
         <item name="android:textColor">@color/light_grey</item>
     </style>
 
+    <style name="text_date" parent="@style/extensible_run_list_item_text">
+        <item name="android:layout_alignBottom">@id/image_run</item>
+        <item name="android:textColor">@color/light_grey</item>
+    </style>
+
+    <style name="text_elapsed_time" parent="@style/extensible_run_list_item_text">
+        <item name="android:layout_alignBottom">@id/image_run</item>
+        <item name="android:textColor">@color/light_grey</item>
+    </style>
+
     <style name="label_widget_list_item_text" parent="@style/widget_list_item_text">
         <item name="android:layout_gravity">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text_distance_travelled" parent="@style/extensible_run_list_item_text">
+        <item name="android:layout_above">@id/text_elapsed_time</item>
         <item name="android:textStyle">bold</item>
     </style>
 
