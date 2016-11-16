@@ -69,6 +69,10 @@
                 android:resource="@xml/runs_appwidget_info" />
         </receiver>
 
+        <service
+            android:name=".widget.RunsWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
     </application>
 
 </manifest>
