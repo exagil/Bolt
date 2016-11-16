@@ -136,10 +136,30 @@
         <item name="android:paddingTop">@dimen/bolt_dimen_tiny</item>
     </style>
 
+    <style name="layout_widget_list_item_history" parent="@style/layout_list_item_history">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="layout_container_widget_list_item_history" parent="@style/layout_widget_list_item_history">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+
     <style name="run_image_in_list">
         <item name="android:layout_width">80dp</item>
         <item name="android:layout_height">80dp</item>
         <item name="android:layout_margin">@dimen/bolt_dimen_small</item>
+    </style>
+
+    <style name="widget_run_image_in_list" parent="@style/run_image_in_list">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
     </style>
 
     <style name="extensible_run_list_item_text" parent="@style/style_extensible_height_extensible_width">
@@ -150,18 +170,13 @@
         <item name="android:textSize">@dimen/bolt_text_size_normal</item>
     </style>
 
-    <style name="text_distance_travelled" parent="@style/extensible_run_list_item_text">
-        <item name="android:layout_above">@id/text_elapsed_time</item>
+    <style name="widget_list_item_text" parent="@style/extensible_run_list_item_text">
+        <item name="android:textColor">@color/light_grey</item>
+    </style>
+
+    <style name="label_widget_list_item_text" parent="@style/widget_list_item_text">
+        <item name="android:layout_gravity">center</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="text_elapsed_time" parent="@style/extensible_run_list_item_text">
-        <item name="android:layout_alignBottom">@id/image_run</item>
-        <item name="android:textColor">@color/light_grey</item>
-    </style>
-
-    <style name="text_date" parent="@style/extensible_run_list_item_text">
-        <item name="android:layout_alignBottom">@id/image_run</item>
-        <item name="android:textColor">@color/light_grey</item>
-    </style>
 </resources>

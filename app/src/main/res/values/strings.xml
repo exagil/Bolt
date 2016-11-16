@@ -20,4 +20,9 @@
     <string name="add_a_note">Add a Note</string>
     <string name="notify_dismiss">Do you want to dismiss the current run?</string>
     <string name="bolt_database_name" translatable="false">bolt_database.db</string>
+    <string name="no_runs">No Runs</string>
+    <string name="label_date">Date</string>
+    <string name="dummy_text_elapsed_time">00:00:02</string>
+    <string name="dummy_text_date">Sun, 13/11/2016</string>
+    <string name="dummy_text_distance">0.00 km</string>
 </resources>

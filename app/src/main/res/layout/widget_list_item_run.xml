@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/layout_widget_list_item_history">
+
+
+    <ImageView
+        android:id="@+id/image_run"
+        style="@style/widget_run_image_in_list"
+        android:src="@drawable/runner_speeding" />
+
+    <LinearLayout style="@style/layout_container_widget_list_item_history">
+
+        <TextView
+            android:id="@+id/text_distance_travelled"
+            style="@style/label_widget_list_item_text"
+            tools:text="@string/dummy_text_distance" />
+
+
+        <TextView
+            android:id="@+id/text_elapsed_time"
+            style="@style/widget_list_item_text"
+            tools:text="@string/dummy_text_elapsed_time" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/layout_container_widget_list_item_history">
+
+        <TextView
+            style="@style/label_widget_list_item_text"
+            tools:text="@string/label_date" />
+
+        <TextView
+            android:id="@+id/text_date"
+            style="@style/widget_list_item_text"
+            tools:text="@string/dummy_text_date" />
+
+    </LinearLayout>
+
+</LinearLayout>
