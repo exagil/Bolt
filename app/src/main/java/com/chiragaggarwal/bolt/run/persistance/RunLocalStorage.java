@@ -1,11 +1,15 @@
 package com.chiragaggarwal.bolt.run.persistance;
 
 import android.app.LoaderManager;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 
 import com.chiragaggarwal.bolt.common.OnSuccessCallback;
 import com.chiragaggarwal.bolt.run.Run;
+import com.chiragaggarwal.bolt.widget.RunsWidgetProvider;
 
 import java.util.List;
 
@@ -27,7 +31,16 @@ public class RunLocalStorage {
         }
         Long runRowNumberValue = new Long(runRowNumber);
         context.getContentResolver().bulkInsert(UserLocationsSchema.ALL_USER_LOCATIONS_URI, run.persistableUserLocations(runRowNumberValue.longValue()));
+        updateWidgets();
         return true;
+    }
+
+    private void updateWidgets() {
+        Intent intent = new Intent();
+        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        int[] appWidgetIds = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, RunsWidgetProvider.class));
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
+        context.sendBroadcast(intent);
     }
 
     public void loadRuns(LoaderManager loaderManager, OnSuccessCallback<List<Run>> onSuccessCallback) {
