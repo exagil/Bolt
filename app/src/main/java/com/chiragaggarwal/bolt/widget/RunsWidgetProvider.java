@@ -4,6 +4,9 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.database.ContentObserver;
+import android.net.Uri;
+import android.os.Handler;
 import android.widget.RemoteViews;
 
 import com.chiragaggarwal.bolt.R;
@@ -25,5 +28,17 @@ public class RunsWidgetProvider extends AppWidgetProvider {
             appWidgetManager.updateAppWidget(appWidgetId, runsRemoteViews);
         }
         super.onUpdate(context, appWidgetManager, appWidgetIds);
+    }
+
+    private class RunsDataChangeObserver extends ContentObserver {
+        public RunsDataChangeObserver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            super.onChange(selfChange, uri);
+
+        }
     }
 }
