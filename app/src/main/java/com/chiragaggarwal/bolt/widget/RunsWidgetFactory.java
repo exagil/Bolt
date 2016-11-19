@@ -1,6 +1,5 @@
 package com.chiragaggarwal.bolt.widget;
 
-import android.app.LoaderManager;
 import android.content.Context;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
@@ -9,8 +8,8 @@ import com.chiragaggarwal.bolt.R;
 import com.chiragaggarwal.bolt.run.Run;
 import com.chiragaggarwal.bolt.run.RunViewModel;
 import com.chiragaggarwal.bolt.run.persistance.RunLocalStorage;
-import com.chiragaggarwal.bolt.run.persistance.RunsLoader;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RunsWidgetFactory implements RemoteViewsService.RemoteViewsFactory {
@@ -18,7 +17,8 @@ public class RunsWidgetFactory implements RemoteViewsService.RemoteViewsFactory 
     private Context context;
 
     public RunsWidgetFactory(List<Run> runs, Context context) {
-        this.runs = runs;
+        this.runs = new ArrayList<>();
+        this.runs.addAll(runs);
         this.context = context;
     }
 
@@ -28,11 +28,14 @@ public class RunsWidgetFactory implements RemoteViewsService.RemoteViewsFactory 
 
     @Override
     public void onDataSetChanged() {
-        runs = new RunLocalStorage(context).loadRunsBlocking();
+        runs.clear();
+        List<Run> loadedRuns = new RunLocalStorage(context).loadRunsBlocking();
+        runs.addAll(loadedRuns);
     }
 
     @Override
     public void onDestroy() {
+        runs.clear();
     }
 
     @Override

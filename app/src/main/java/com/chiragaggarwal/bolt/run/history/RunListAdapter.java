@@ -43,6 +43,7 @@ public class RunListAdapter extends RecyclerView.Adapter<RunViewHolder> {
     }
 
     public void populate(List<Run> runs) {
+        this.runList.clear();
         this.runList.addAll(runs);
         notifyDataSetChanged();
     }

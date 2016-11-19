@@ -38,7 +38,7 @@ public class RunsWidgetProvider extends AppWidgetProvider {
             Intent intent = new Intent(context.getApplicationContext(), RunsWidgetService.class);
             RemoteViews runsRemoteViews = new RemoteViews(context.getPackageName(), R.layout.initial_layout);
             runsRemoteViews.setRemoteAdapter(R.id.widget_list_run_history, intent);
-            runsRemoteViews.setEmptyView(R.id.widget_list_run_history, R.id.text_empty_runs);
+            runsRemoteViews.setEmptyView(R.id.widget_list_run_history, R.id.layout_empty);
             appWidgetManager.updateAppWidget(appWidgetId, runsRemoteViews);
         }
         super.onUpdate(context, appWidgetManager, appWidgetIds);
