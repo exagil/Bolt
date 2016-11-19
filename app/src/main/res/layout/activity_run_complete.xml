@@ -18,9 +18,15 @@
         style="@style/layout_run_complete"
         android:elevation="@dimen/elevation_layout_run_complete">
 
-        <ImageView
-            style="@style/run_image"
-            android:src="@drawable/placeholder_run_image" />
+        <FrameLayout
+            android:id="@+id/layout_photo_camera"
+            style="@style/layout_photo_camera">
+
+            <ImageView
+                style="@style/image_photo_camera"
+                android:src="@drawable/photo_camera" />
+
+        </FrameLayout>
 
         <RatingBar
             android:id="@+id/run_rating"

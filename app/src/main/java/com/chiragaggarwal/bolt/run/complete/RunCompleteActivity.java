@@ -7,8 +7,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 import com.chiragaggarwal.bolt.BoltApplication;
 import com.chiragaggarwal.bolt.R;
@@ -29,6 +31,7 @@ public class RunCompleteActivity extends AppCompatActivity implements RunComplet
     private ElapsedTime elapsedTime;
     private FloatingActionButton floatingActionButton;
     private RunCompletePresenter runCompletePresenter;
+    private View layoutPhotoCamera;
 
     @Inject
     public RunLocalStorage runLocalStorage;
@@ -51,6 +54,7 @@ public class RunCompleteActivity extends AppCompatActivity implements RunComplet
 
     private void initialiseViewListeners() {
         floatingActionButton.setOnClickListener((view) -> saveRun());
+        layoutPhotoCamera.setOnClickListener((view) -> showNextVersionToast());
     }
 
     @Override
@@ -62,10 +66,14 @@ public class RunCompleteActivity extends AppCompatActivity implements RunComplet
                 .show();
     }
 
-    public void saveRun() {
+    private void saveRun() {
         int ratingBarNumStars = ratingBar.getNumStars();
         String note = inputRunNote.getText().toString();
         runCompletePresenter.saveRun(ratingBarNumStars, note, userLocations, elapsedTime);
+    }
+
+    private void showNextVersionToast() {
+        Toast.makeText(this, R.string.please_wait, Toast.LENGTH_SHORT).show();
     }
 
     private void onSaveComplete() {
@@ -78,6 +86,7 @@ public class RunCompleteActivity extends AppCompatActivity implements RunComplet
         ratingBar = (RatingBar) findViewById(R.id.run_rating);
         inputRunNote = (EditText) findViewById(R.id.run_note);
         floatingActionButton = (FloatingActionButton) findViewById(R.id.fab_complete_run);
+        layoutPhotoCamera = findViewById(R.id.layout_photo_camera);
     }
 
     private void setupToolbar() {

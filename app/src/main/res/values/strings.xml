@@ -25,4 +25,5 @@
     <string name="dummy_text_elapsed_time">00:00:02</string>
     <string name="dummy_text_date">Sun, 13/11/2016</string>
     <string name="dummy_text_distance">0.00 km</string>
+    <string name="please_wait">Please wait until next version!</string>
 </resources>

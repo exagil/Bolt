@@ -85,10 +85,6 @@
         <item name="android:orientation">vertical</item>
     </style>
 
-    <style name="run_image" parent="@style/style_full_width_extensible_height">
-        <item name="android:adjustViewBounds">true</item>
-    </style>
-
     <style name="run_rating" parent="@style/style_extensible_height_extensible_width">
         <item name="android:theme">@style/activity_rating_bar</item>
         <item name="android:layout_gravity">center</item>
@@ -194,4 +190,17 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="image_photo_camera">
+        <item name="android:layout_width">@dimen/side_photo_camera</item>
+        <item name="android:layout_height">@dimen/side_photo_camera</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="layout_photo_camera">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">320dp</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <dimen name="side_photo_camera">128dp</dimen>
 </resources>
