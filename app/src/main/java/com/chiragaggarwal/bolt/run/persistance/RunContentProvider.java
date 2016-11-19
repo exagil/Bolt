@@ -46,6 +46,7 @@ public class RunContentProvider extends ContentProvider {
     public Uri insert(Uri uri, ContentValues values) {
         if (uriMatcher.match(uri) == CODE_ALL_RUNS) {
             String rowNumber = runDao.insert(values);
+            this.getContext().getContentResolver().notifyChange(RunSchema.ALL_RUNS_RESOURCE_URI, null);
             return uri.buildUpon().appendPath(rowNumber).build();
         }
         return uri.buildUpon().appendPath(Dao.INVALID_PATH_ROW).build();

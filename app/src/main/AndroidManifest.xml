@@ -51,7 +51,7 @@
         <provider
             android:name=".run.persistance.RunContentProvider"
             android:authorities="com.chiragaggarwal.bolt.runprovider"
-            android:exported="false"
+            android:exported="true"
             android:initOrder="1" />
 
         <provider
