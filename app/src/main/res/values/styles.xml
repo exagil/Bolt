@@ -215,4 +215,24 @@
         <item name="android:contentDescription">@string/run_map</item>
     </style>
 
+    <style name="widget_layout_empty" parent="@style/style_full_width_extensible_height">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:padding">@dimen/bolt_widget_margin</item>
+    </style>
+
+    <style name="image_layout_empty_background" parent="@style/style_full_width_full_height">
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:src">@drawable/run_empty_background</item>
+    </style>
+
+    <style name="widget_start_run_button" parent="@style/style_full_width_extensible_height">
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:background">@color/action_light_green</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/bolt_dimen_small</item>
+        <item name="android:text">@string/start_run</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/bolt_text_size_normal</item>
+    </style>
+
 </resources>

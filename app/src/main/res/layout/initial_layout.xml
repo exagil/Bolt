@@ -1,37 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:color/transparent"
-    android:padding="@dimen/bolt_widget_margin">
+    style="@style/widget_layout_empty">
 
     <FrameLayout
         android:id="@+id/layout_empty"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        style="@style/style_full_width_full_height">
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/run_empty_background" />
+            android:id="@+id/image_layout_empty_background"
+            style="@style/image_layout_empty_background" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="@color/action_light_green"
-            android:gravity="center"
-            android:padding="@dimen/bolt_dimen_small"
-            android:text="@string/start_run"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/bolt_text_size_normal" />
+        <TextView style="@style/widget_start_run_button" />
 
     </FrameLayout>
 
     <ListView
         android:id="@+id/widget_list_run_history"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        style="@style/style_full_width_full_height" />
 
 </RelativeLayout>
