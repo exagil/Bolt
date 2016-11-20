@@ -31,6 +31,7 @@
         <item name="android:gravity">center</item>
         <item name="android:paddingTop">@dimen/bolt_dimen_large</item>
         <item name="android:textSize">@dimen/bolt_timer_text_size</item>
+        <item name="android:contentDescription">@string/timer</item>
     </style>
 
     <style name="text_duration" parent="@style/style_extensible_height_extensible_width">
@@ -39,6 +40,8 @@
         <item name="android:layout_below">@id/text_timer</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:padding">@dimen/bolt_dimen_small</item>
+        <item name="android:contentDescription">@string/duration</item>
+        <item name="android:text">@string/label_duration</item>
     </style>
 
     <style name="layout_run_stats" parent="@style/style_full_width_extensible_height">
@@ -94,6 +97,7 @@
         <item name="android:layout_marginTop">@dimen/bolt_dimen_large</item>
         <item name="android:numStars">5</item>
         <item name="android:stepSize">1</item>
+        <item name="android:contentDescription">@string/rating_bar</item>
     </style>
 
     <style name="run_note" parent="@style/style_full_width_extensible_height">
@@ -104,6 +108,7 @@
         <item name="android:drawableLeft">@drawable/ic_editor_mode_edit</item>
         <item name="android:hint">@string/add_a_note</item>
         <item name="android:background">@null</item>
+        <item name="android:contentDescription">@string/add_a_note</item>
     </style>
 
     <style name="fab_complete_run" parent="@style/style_extensible_height_extensible_width">
@@ -111,6 +116,7 @@
         <item name="android:src">@drawable/ic_done_white_24dp</item>
         <item name="android:layout_alignParentBottom">true</item>
         <item name="android:layout_alignParentRight">true</item>
+        <item name="android:contentDescription">@string/save_run</item>
     </style>
 
     <style name="app_bar_run_complete">
@@ -200,7 +206,13 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">320dp</item>
         <item name="android:background">@color/colorPrimary</item>
+        <item name="android:contentDescription">@string/open_camera</item>
     </style>
 
-    <dimen name="side_photo_camera">128dp</dimen>
+    <style name="frame_map" parent="@style/style_full_width_full_height">
+        <item name="android:layout_above">@id/button_start_activity</item>
+        <item name="android:layout_below">@id/layout_run_stats</item>
+        <item name="android:contentDescription">@string/run_map</item>
+    </style>
+
 </resources>

@@ -15,4 +15,6 @@
     <dimen name="bolt_timer_text_size">64sp</dimen>
 
     <dimen name="bolt_widget_margin">8dp</dimen>
+
+    <dimen name="side_photo_camera">128dp</dimen>
 </resources>

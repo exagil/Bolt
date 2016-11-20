@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Bolt</string>
-    <string name="duration">DURATION</string>
+    <string name="label_duration">DURATION</string>
     <string name="calories">CALORIES (CAL)</string>
-    <string name="current_pace">PACE (KMPH)</string>
-    <string name="distance">DISTANCE (KM)</string>
+    <string name="label_current_pace">PACE (KMPH)</string>
+    <string name="label_distance">DISTANCE (KM)</string>
     <string name="start_activity">START ACTIVITY</string>
     <string name="stop_activity">STOP ACTIVITY</string>
     <string name="run_in_progress_notification_text">Running activity with Bolt</string>
@@ -26,4 +26,13 @@
     <string name="dummy_text_date">Sun, 13/11/2016</string>
     <string name="dummy_text_distance">0.00 km</string>
     <string name="please_wait">Please wait until next version!</string>
+    <string name="list_run_history">Run history</string>
+    <string name="current_pace">Current pace</string>
+    <string name="distance">Distance</string>
+    <string name="timer">Timer</string>
+    <string name="duration">Duration</string>
+    <string name="run_map">Run map</string>
+    <string name="open_camera">Open camera</string>
+    <string name="rating_bar">Rating bar</string>
+    <string name="save_run">Save run</string>
 </resources>

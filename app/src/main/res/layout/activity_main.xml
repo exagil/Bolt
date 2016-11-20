@@ -27,8 +27,7 @@
 
         <TextView
             android:id="@+id/text_duration"
-            style="@style/text_duration"
-            android:text="@string/duration" />
+            style="@style/text_duration" />
 
         <LinearLayout
             android:id="@+id/layout_run_stats"
@@ -48,14 +47,12 @@
             android:id="@+id/button_start_activity"
             style="@style/button_start_activity"
             android:onClick="@{() -> runPresenter.onToggleRunClick()}"
+            android:contentDescription="@{runViewModel.toggleRunButtonText}"
             android:text="@{runViewModel.toggleRunButtonText}" />
 
         <FrameLayout
             android:id="@+id/frame_map"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/button_start_activity"
-            android:layout_below="@id/layout_run_stats" />
+            style="@style/frame_map" />
 
     </RelativeLayout>
 </layout>

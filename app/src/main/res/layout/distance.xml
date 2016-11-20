@@ -10,6 +10,7 @@
     </data>
 
     <LinearLayout
+        android:contentDescription="@string/distance"
         style="@style/layout_stats_element">
 
         <TextView
@@ -18,7 +19,7 @@
 
         <TextView
             style="@style/text_stats_label"
-            android:text="@string/distance" />
+            android:text="@string/label_distance" />
 
     </LinearLayout>
 

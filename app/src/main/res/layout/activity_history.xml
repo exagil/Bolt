@@ -5,6 +5,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list_run_history"
+        android:contentDescription="@string/list_run_history"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

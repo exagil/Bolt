@@ -10,6 +10,7 @@
     </data>
 
     <LinearLayout
+        android:contentDescription="@string/current_pace"
         style="@style/layout_stats_element">
 
         <TextView
@@ -19,7 +20,7 @@
         <TextView
             android:id="@+id/text_label_average_pace"
             style="@style/text_stats_label"
-            android:text="@string/current_pace" />
+            android:text="@string/label_current_pace" />
 
     </LinearLayout>
 
