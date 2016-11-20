@@ -19,8 +19,7 @@
 
         <TextView
             android:id="@+id/text_label_average_pace"
-            style="@style/text_stats_label"
-            android:text="@string/label_current_pace" />
+            style="@style/text_average_pace" />
 
     </LinearLayout>
 

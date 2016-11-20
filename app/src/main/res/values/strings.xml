@@ -24,11 +24,10 @@
     <string name="label_date">Date</string>
     <string name="dummy_text_elapsed_time">00:00:02</string>
     <string name="dummy_text_date">Sun, 13/11/2016</string>
-    <string name="dummy_text_distance">0.00 km</string>
     <string name="please_wait">Please wait until next version!</string>
     <string name="list_run_history">Run history</string>
-    <string name="current_pace">Current pace</string>
-    <string name="distance">Distance</string>
+    <string name="current_pace">Current pace in kilometers per hour</string>
+    <string name="distance">Distance in kilometers</string>
     <string name="timer">Timer</string>
     <string name="duration">Duration</string>
     <string name="run_map">Run map</string>
@@ -37,4 +36,6 @@
     <string name="save_run">Save run</string>
     <string name="text_elapsed_time_two_seconds">00:00:02</string>
     <string name="dummy_date">Sun, 13/11/2016</string>
+    <string name="zero_kilometers">0.00 km</string>
+    <string name="image_runner">Runner image</string>
 </resources>

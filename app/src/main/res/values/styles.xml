@@ -166,12 +166,14 @@
         <item name="android:layout_width">80dp</item>
         <item name="android:layout_height">80dp</item>
         <item name="android:layout_margin">@dimen/bolt_dimen_small</item>
+        <item name="android:contentDescription">@string/image_runner</item>
     </style>
 
     <style name="widget_run_image_in_list" parent="@style/run_image_in_list">
         <item name="android:layout_width">40dp</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:contentDescription">@string/image_runner</item>
     </style>
 
     <style name="extensible_run_list_item_text" parent="@style/style_extensible_height_extensible_width">
@@ -205,6 +207,7 @@
     <style name="label_widget_list_item_text" parent="@style/widget_list_item_text">
         <item name="android:layout_gravity">center</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:contentDescription">@string/label_date</item>
     </style>
 
     <style name="text_distance_travelled" parent="@style/extensible_run_list_item_text">
@@ -242,6 +245,7 @@
     <style name="image_layout_empty_background" parent="@style/style_full_width_full_height">
         <item name="android:scaleType">centerCrop</item>
         <item name="android:src">@drawable/run_empty_background</item>
+        <item name="android:contentDescription">@string/start_run</item>
     </style>
 
     <style name="widget_start_run_button" parent="@style/style_full_width_extensible_height">
@@ -252,7 +256,22 @@
         <item name="android:text">@string/start_run</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/bolt_text_size_normal</item>
+        <item name="android:contentDescription">@string/start_run</item>
     </style>
 
-    <string name="zero_kilometers">0.00 km</string>
+    <style name="text_average_pace" parent="@style/text_stats_label">
+        <item name="android:contentDescription">@string/current_pace</item>
+        <item name="android:text">@string/label_current_pace</item>
+    </style>
+
+    <style name="text_distance" parent="@style/text_stats_label">
+        <item name="android:contentDescription">@string/distance</item>
+        <item name="android:text">@string/label_distance</item>
+    </style>
+
+    <style name="map_view" parent="@style/style_full_width_full_height">
+        <item name="android:contentDescription">@string/run_map</item>
+        <item name="android:visibility">invisible</item>
+    </style>
+
 </resources>

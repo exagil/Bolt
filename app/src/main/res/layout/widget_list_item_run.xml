@@ -14,7 +14,7 @@
         <TextView
             android:id="@+id/text_distance_travelled"
             style="@style/label_widget_list_item_text"
-            android:text="@string/dummy_text_distance" />
+            android:text="@string/zero_kilometers" />
 
 
         <TextView

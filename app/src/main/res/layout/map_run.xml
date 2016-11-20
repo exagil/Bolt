@@ -5,7 +5,6 @@
 
     <com.google.android.gms.maps.MapView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/map_view"
-        style="@style/style_full_width_full_height"
-        android:visibility="invisible" />
+        style="@style/map_view" />
 
 </FrameLayout>

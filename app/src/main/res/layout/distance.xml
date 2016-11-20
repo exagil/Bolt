@@ -17,9 +17,7 @@
             style="@style/text_stats_measure"
             android:text="@{runViewModel.distance}" />
 
-        <TextView
-            style="@style/text_stats_label"
-            android:text="@string/label_distance" />
+        <TextView style="@style/text_distance" />
 
     </LinearLayout>
 
