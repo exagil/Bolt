@@ -2,6 +2,8 @@ package com.chiragaggarwal.bolt.run;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import com.chiragaggarwal.bolt.run.persistance.BoltDatabaseSchema;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
@@ -12,15 +14,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class Run {
+public class Run implements Parcelable {
+    public static final String TAG = "run";
     private static final String DATE_FORMAT = "EEE, dd/MM/yyyy";
     private static final String DECIMAL_FORMAT_PATTERN = "#.##";
     private static final String SUFFIX_KILOMETERS = " km";
+
     public ElapsedTime elapsedTimeInSeconds;
-    private final int rating;
     public String polyline;
-    public float totalDistanceInKilometers;
-    private final String note;
+    public final String note;
+
+    private float totalDistanceInKilometers;
+    private final int rating;
     private final long createdAt;
 
     public Run(int rating, String note, ElapsedTime elapsedTimeInSeconds, long createdAt, String polyline, float totalDistanceInKilometers) {
@@ -109,4 +114,40 @@ public class Run {
         DecimalFormat twoDecimalsFormat = new DecimalFormat(DECIMAL_FORMAT_PATTERN, new DecimalFormatSymbols(Locale.US));
         return twoDecimalsFormat.format(totalDistanceInKilometers) + SUFFIX_KILOMETERS;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(this.elapsedTimeInSeconds, flags);
+        dest.writeInt(this.rating);
+        dest.writeString(this.polyline);
+        dest.writeFloat(this.totalDistanceInKilometers);
+        dest.writeString(this.note);
+        dest.writeLong(this.createdAt);
+    }
+
+    protected Run(Parcel in) {
+        this.elapsedTimeInSeconds = in.readParcelable(ElapsedTime.class.getClassLoader());
+        this.rating = in.readInt();
+        this.polyline = in.readString();
+        this.totalDistanceInKilometers = in.readFloat();
+        this.note = in.readString();
+        this.createdAt = in.readLong();
+    }
+
+    public static final Parcelable.Creator<Run> CREATOR = new Parcelable.Creator<Run>() {
+        @Override
+        public Run createFromParcel(Parcel source) {
+            return new Run(source);
+        }
+
+        @Override
+        public Run[] newArray(int size) {
+            return new Run[size];
+        }
+    };
 }

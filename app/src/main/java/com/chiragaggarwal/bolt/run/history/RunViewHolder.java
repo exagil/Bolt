@@ -23,4 +23,8 @@ public class RunViewHolder extends RecyclerView.ViewHolder {
         textElapsedTime.setText(elapsedTime);
         textDate.setText(date);
     }
+
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        super.itemView.setOnClickListener(v -> onClickListener.onClick(v));
+    }
 }

@@ -34,11 +34,15 @@
         <activity
             android:screenOrientation="portrait"
             android:name=".run.complete.RunCompleteActivity"
-            android:theme="@style/NotesTheme" />
+            android:theme="@style/NoActionBarTheme" />
 
         <activity
             android:name=".run.history.HistoryActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".run.history.RunDetailsActivity"
+            android:theme="@style/NoActionBarTheme" />
 
         <service
             android:name=".run.ongoing.RunService"

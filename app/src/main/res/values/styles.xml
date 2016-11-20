@@ -6,7 +6,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="NotesTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="NoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -78,7 +78,7 @@
         <item name="android:textSize">@dimen/bolt_text_size_normal</item>
     </style>
 
-    <style name="activity_rating_bar" parent="NotesTheme">
+    <style name="activity_rating_bar" parent="NoActionBarTheme">
         <item name="colorControlNormal">@color/common_action_bar_splitter</item>
         <item name="colorControlActivated">@color/rating_gold</item>
     </style>

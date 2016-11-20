@@ -16,9 +16,11 @@ import java.util.List;
 public class RunListAdapter extends RecyclerView.Adapter<RunViewHolder> {
     private final ArrayList<Run> runList;
     private Context context;
+    private OnRunClickListener onRunClickListener;
 
-    public RunListAdapter(Context context) {
+    public RunListAdapter(Context context, OnRunClickListener onRunClickListener) {
         this.context = context;
+        this.onRunClickListener = onRunClickListener;
         this.runList = new ArrayList<>();
     }
 
@@ -32,6 +34,7 @@ public class RunListAdapter extends RecyclerView.Adapter<RunViewHolder> {
     @Override
     public void onBindViewHolder(RunViewHolder holder, int position) {
         Run run = runList.get(position);
+        holder.setOnClickListener(v -> onRunClickListener.onClick(run));
         RunViewModel runViewModel = new RunViewModel(context.getResources());
         runViewModel.setElapsedTime(run.elapsedTimeInSeconds);
         holder.bind(run.formattedTotalDistanceInKilometers(), runViewModel.getElapsedTime(), run.formattedDate());
