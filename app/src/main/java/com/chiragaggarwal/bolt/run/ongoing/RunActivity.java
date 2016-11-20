@@ -12,6 +12,7 @@ import android.view.View;
 
 import com.chiragaggarwal.bolt.BoltApplication;
 import com.chiragaggarwal.bolt.R;
+import com.chiragaggarwal.bolt.analytics.FirebaseAnalyticsTracker;
 import com.chiragaggarwal.bolt.common.LocationAwareBaseActivity;
 import com.chiragaggarwal.bolt.common.ServiceStateMonitor;
 import com.chiragaggarwal.bolt.databinding.ActivityMainBinding;
@@ -38,6 +39,9 @@ public class RunActivity extends LocationAwareBaseActivity implements RunView {
 
     @Inject
     public ServiceStateMonitor serviceStateMonitor;
+
+    @Inject
+    public FirebaseAnalyticsTracker firebaseAnalyticsTracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +109,7 @@ public class RunActivity extends LocationAwareBaseActivity implements RunView {
     }
     private void initialise(ActivityMainBinding activityMainBinding) {
         runViewModel = new RunViewModel(getResources());
-        runPresenter = new RunPresenter(this, runViewModel, serviceStateMonitor);
+        runPresenter = new RunPresenter(this, runViewModel, serviceStateMonitor, firebaseAnalyticsTracker);
         activityMainBinding.setRunViewModel(runViewModel);
         activityMainBinding.setRunPresenter(runPresenter);
         runServiceBroadcastReceiver = new RunServiceBroadcastReceiver();
