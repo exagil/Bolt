@@ -4,6 +4,8 @@ import com.chiragaggarwal.bolt.location.UserLocation;
 import com.chiragaggarwal.bolt.location.UserLocations;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
+import junit.framework.Assert;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -57,5 +59,21 @@ public class RunTest {
         Run userLocation = new Run(5, "valid note", userLocations, new ElapsedTime(123456));
         Run anotherUserLocation = new Run(5, "valid note", userLocations, new ElapsedTime(123456));
         assertEquals(userLocation.hashCode(), anotherUserLocation.hashCode());
+    }
+
+    @Test
+    public void testThatRunKnowsItsCorrespondingPolylineWhenItDoesNotHaveUserLocations() {
+        Run run = new Run(5, "valid note", new ElapsedTime(123456), System.currentTimeMillis(), "{mbnA_n|xMSS{@S");
+        Assert.assertEquals("{mbnA_n|xMSS{@S", run.polyline());
+    }
+
+    @Test
+    public void testThatRunKnowsItsCorrespondingPolylineWhenItHasUserLocations() {
+        userLocations = new UserLocations();
+        userLocations.add(new UserLocation(12.9611d, 77.6472d, true, 16, true, 3.16f));
+        userLocations.add(new UserLocation(12.9612d, 77.6473d, true, 16, true, 1.25F));
+        userLocations.add(new UserLocation(12.9615d, 77.6474d, true, 16, true, 0.75F));
+        Run run = new Run(5, "valid note", userLocations, new ElapsedTime(123456));
+        Assert.assertEquals("{mbnA_n|xMSS{@S", run.polyline());
     }
 }

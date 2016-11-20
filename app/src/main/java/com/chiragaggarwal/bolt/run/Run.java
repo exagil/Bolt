@@ -14,6 +14,7 @@ public class Run {
     private static final String DATE_FORMAT = "EEE, dd/MM/yyyy";
     public ElapsedTime elapsedTimeInSeconds;
     private final int rating;
+    private String polyline;
     private final String note;
     public UserLocations userLocations;
     private final long createdAt;
@@ -24,6 +25,15 @@ public class Run {
         this.userLocations = userLocations;
         this.elapsedTimeInSeconds = elapsedTimeInSeconds;
         this.createdAt = System.currentTimeMillis();
+    }
+
+    public Run(int rating, String note, ElapsedTime elapsedTimeInSeconds, long createdAt, String polyline) {
+        this.elapsedTimeInSeconds = elapsedTimeInSeconds;
+        this.createdAt = createdAt;
+        this.note = note;
+        this.rating = rating;
+        this.polyline = polyline;
+        this.userLocations = new UserLocations();
     }
 
     public String formattedDate() {
@@ -37,6 +47,7 @@ public class Run {
         this.createdAt = createdAt;
         this.note = note;
         this.rating = rating;
+        this.userLocations = new UserLocations();
     }
 
     public ContentValues persistable() {
@@ -92,5 +103,12 @@ public class Run {
         Integer elapsedTimeInSeconds = runsCursor.getInt(elapsedTimeInSecondsColumnIndex);
         long createdAt = runsCursor.getLong(createdAtColumnIndex);
         return new Run(rating.intValue(), note, new ElapsedTime(elapsedTimeInSeconds), createdAt);
+    }
+
+    public String polyline() {
+        if (userLocations.hasUserNotMovedAtAll())
+            return this.polyline;
+        else
+            return userLocations.encodedPolyline();
     }
 }
