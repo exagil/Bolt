@@ -12,7 +12,6 @@
         android:id="@+id/text_distance_travelled"
         style="@style/text_distance_travelled" />
 
-
     <TextView
         android:id="@+id/text_elapsed_time"
         style="@style/text_elapsed_time"

@@ -51,6 +51,7 @@ public class RunsWidgetFactory implements RemoteViewsService.RemoteViewsFactory 
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_list_item_run);
         remoteViews.setTextViewText(R.id.text_date, run.formattedDate());
         remoteViews.setTextViewText(R.id.text_elapsed_time, runViewModel.getElapsedTime());
+        remoteViews.setTextViewText(R.id.text_distance_travelled, run.formattedTotalDistanceInKilometers());
         return remoteViews;
     }
 

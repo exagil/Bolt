@@ -38,4 +38,5 @@
     <string name="dummy_date">Sun, 13/11/2016</string>
     <string name="zero_kilometers">0.00 km</string>
     <string name="image_runner">Runner image</string>
+    <string name="km">km</string>
 </resources>

@@ -9,11 +9,16 @@ import com.chiragaggarwal.bolt.location.UserLocations;
 import com.chiragaggarwal.bolt.run.persistance.BoltDatabaseSchema;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class Run {
     private static final String DATE_FORMAT = "EEE, dd/MM/yyyy";
+    private static final String DECIMAL_FORMAT_PATTERN = "#.##";
+    public static final String SUFFIX_KILOMETERS = " km";
     public ElapsedTime elapsedTimeInSeconds;
     private final int rating;
     private String polyline;
@@ -125,7 +130,12 @@ public class Run {
             return userLocations.encodedPolyline();
     }
 
-    public float totalDistanceInKilometers() {
+    public String formattedTotalDistanceInKilometers() {
+        DecimalFormat twoDecimalsFormat = new DecimalFormat(DECIMAL_FORMAT_PATTERN, new DecimalFormatSymbols(Locale.US));
+        return twoDecimalsFormat.format(totalDistanceInKilometers()) + SUFFIX_KILOMETERS;
+    }
+
+    private float totalDistanceInKilometers() {
         if (userLocations.hasUserNotMovedAtAll())
             return this.totalDistanceInKilometers;
         else

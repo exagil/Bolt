@@ -34,7 +34,7 @@ public class RunListAdapter extends RecyclerView.Adapter<RunViewHolder> {
         Run run = runList.get(position);
         RunViewModel runViewModel = new RunViewModel(context.getResources());
         runViewModel.setElapsedTime(run.elapsedTimeInSeconds);
-        holder.bind("0.0 km", runViewModel.getElapsedTime(), run.formattedDate());
+        holder.bind(run.formattedTotalDistanceInKilometers(), runViewModel.getElapsedTime(), run.formattedDate());
     }
 
     @Override
