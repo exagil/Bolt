@@ -39,7 +39,7 @@ public class RunInstrumentationTest {
         expectedRunContentValue.put(BoltDatabaseSchema.RunSchema.ELAPSED_TIME_IN_SECONDS, 123456);
         expectedRunContentValue.put(BoltDatabaseSchema.RunSchema.CREATED_AT, createdAt);
         expectedRunContentValue.put(BoltDatabaseSchema.RunSchema.POLYLINE, "{mbnA_n|xMSS{@S");
-        expectedRunContentValue.put(BoltDatabaseSchema.RunSchema.TOTAL_DISTANCE_IN_KILOMETERS, 0.05041329F);
+        expectedRunContentValue.put(BoltDatabaseSchema.RunSchema.TOTAL_DISTANCE_IN_KILOMETERS, 0.0345F);
         Assert.assertEquals(expectedRunContentValue, runContentValues);
     }
 
