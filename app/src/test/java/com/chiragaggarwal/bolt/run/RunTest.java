@@ -63,7 +63,7 @@ public class RunTest {
 
     @Test
     public void testThatRunKnowsItsCorrespondingPolylineWhenItDoesNotHaveUserLocations() {
-        Run run = new Run(5, "valid note", new ElapsedTime(123456), System.currentTimeMillis(), "{mbnA_n|xMSS{@S");
+        Run run = new Run(5, "valid note", new ElapsedTime(123456), System.currentTimeMillis(), "{mbnA_n|xMSS{@S", 10F);
         Assert.assertEquals("{mbnA_n|xMSS{@S", run.polyline());
     }
 

@@ -17,6 +17,7 @@ public class Run {
     public ElapsedTime elapsedTimeInSeconds;
     private final int rating;
     private String polyline;
+    private float totalDistanceInKilometers;
     private final String note;
     public UserLocations userLocations;
     private final long createdAt;
@@ -38,12 +39,13 @@ public class Run {
         this.createdAt = createdAt;
     }
 
-    public Run(int rating, String note, ElapsedTime elapsedTimeInSeconds, long createdAt, String polyline) {
+    public Run(int rating, String note, ElapsedTime elapsedTimeInSeconds, long createdAt, String polyline, float totalDistanceInKilometers) {
         this.elapsedTimeInSeconds = elapsedTimeInSeconds;
         this.createdAt = createdAt;
         this.note = note;
         this.rating = rating;
         this.polyline = polyline;
+        this.totalDistanceInKilometers = totalDistanceInKilometers;
         this.userLocations = new UserLocations();
     }
 
@@ -53,14 +55,6 @@ public class Run {
         return dateFormat.format(date);
     }
 
-    protected Run(int rating, String note, ElapsedTime elapsedTimeInSeconds, long createdAt) {
-        this.elapsedTimeInSeconds = elapsedTimeInSeconds;
-        this.createdAt = createdAt;
-        this.note = note;
-        this.rating = rating;
-        this.userLocations = new UserLocations();
-    }
-
     public ContentValues persistable() {
         ContentValues contentValues = new ContentValues();
         contentValues.put(BoltDatabaseSchema.RunSchema.NOTE, note);
@@ -68,6 +62,7 @@ public class Run {
         contentValues.putAll(elapsedTimeInSeconds.persistable());
         contentValues.put(BoltDatabaseSchema.RunSchema.CREATED_AT, createdAt);
         contentValues.put(BoltDatabaseSchema.RunSchema.POLYLINE, polyline());
+        contentValues.put(BoltDatabaseSchema.RunSchema.TOTAL_DISTANCE_IN_KILOMETERS, totalDistanceInKilometers());
         return contentValues;
     }
 
@@ -77,7 +72,8 @@ public class Run {
         Integer elapsedTimeInSeconds = contentValues.getAsInteger(BoltDatabaseSchema.RunSchema.ELAPSED_TIME_IN_SECONDS);
         Long createdAt = contentValues.getAsLong(BoltDatabaseSchema.RunSchema.CREATED_AT);
         String polyline = contentValues.getAsString(BoltDatabaseSchema.RunSchema.POLYLINE);
-        return new Run(rating.intValue(), note, new ElapsedTime(elapsedTimeInSeconds), createdAt, polyline);
+        Float totalDistanceInKilometers = contentValues.getAsFloat(BoltDatabaseSchema.RunSchema.TOTAL_DISTANCE_IN_KILOMETERS);
+        return new Run(rating.intValue(), note, new ElapsedTime(elapsedTimeInSeconds), createdAt, polyline, totalDistanceInKilometers.floatValue());
     }
 
     @Override
@@ -111,13 +107,15 @@ public class Run {
         int elapsedTimeInSecondsColumnIndex = runsCursor.getColumnIndex(BoltDatabaseSchema.RunSchema.ELAPSED_TIME_IN_SECONDS);
         int createdAtColumnIndex = runsCursor.getColumnIndex(BoltDatabaseSchema.RunSchema.CREATED_AT);
         int polylineColumnIndex = runsCursor.getColumnIndex(BoltDatabaseSchema.RunSchema.POLYLINE);
+        int totalDistanceInKilometersColumnIndex = runsCursor.getColumnIndex(BoltDatabaseSchema.RunSchema.TOTAL_DISTANCE_IN_KILOMETERS);
 
         String note = runsCursor.getString(noteColumnIndex);
         Integer rating = runsCursor.getInt(ratingColumnIndex);
         Integer elapsedTimeInSeconds = runsCursor.getInt(elapsedTimeInSecondsColumnIndex);
         long createdAt = runsCursor.getLong(createdAtColumnIndex);
         String polyline = runsCursor.getString(polylineColumnIndex);
-        return new Run(rating.intValue(), note, new ElapsedTime(elapsedTimeInSeconds), createdAt, polyline);
+        float totalDistanceInKilometers = runsCursor.getFloat(totalDistanceInKilometersColumnIndex);
+        return new Run(rating.intValue(), note, new ElapsedTime(elapsedTimeInSeconds), createdAt, polyline, totalDistanceInKilometers);
     }
 
     public String polyline() {
@@ -125,5 +123,12 @@ public class Run {
             return this.polyline;
         else
             return userLocations.encodedPolyline();
+    }
+
+    public float totalDistanceInKilometers() {
+        if (userLocations.hasUserNotMovedAtAll())
+            return this.totalDistanceInKilometers;
+        else
+            return userLocations.totalDistanceInKilometers();
     }
 }

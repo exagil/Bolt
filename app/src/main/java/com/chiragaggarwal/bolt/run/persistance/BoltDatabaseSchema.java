@@ -28,5 +28,6 @@ public interface BoltDatabaseSchema {
         String CREATED_AT = "created_at";
         Uri ALL_RUNS_RESOURCE_URI = new Uri.Builder().scheme("content").authority(RunSchema.AUTHORITY).appendPath(RunSchema.TABLE_NAME).build();
         String POLYLINE = "polyline";
+        String TOTAL_DISTANCE_IN_KILOMETERS = "total_distance";
     }
 }
