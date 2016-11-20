@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.chiragaggarwal.bolt.BoltApplication;
 import com.chiragaggarwal.bolt.R;
+import com.chiragaggarwal.bolt.analytics.FirebaseAnalyticsTracker;
 import com.chiragaggarwal.bolt.location.UserLocations;
 import com.chiragaggarwal.bolt.run.Run;
 import com.chiragaggarwal.bolt.run.RunViewModel;
@@ -36,12 +37,15 @@ public class RunCompleteActivity extends AppCompatActivity implements RunComplet
     @Inject
     public RunLocalStorage runLocalStorage;
 
+    @Inject
+    public FirebaseAnalyticsTracker firebaseAnalyticsTracker;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((BoltApplication) getApplication()).getBoltComponent().inject(this);
         setContentView(R.layout.activity_run_complete);
-        runCompletePresenter = new RunCompletePresenter(this);
+        runCompletePresenter = new RunCompletePresenter(this, firebaseAnalyticsTracker);
         initialiseView();
         initialiseViewListeners();
 

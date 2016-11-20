@@ -13,6 +13,10 @@ public class RunEvent implements Analysable {
         return new RunEvent(RunStatus.STOP);
     }
 
+    public static RunEvent newCompleteRunEvent() {
+        return new RunEvent(RunStatus.COMPLETE);
+    }
+
     private RunEvent(@RunStatus String runStatus) {
         this.runStatus = runStatus;
     }
