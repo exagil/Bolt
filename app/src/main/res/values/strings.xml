@@ -35,4 +35,6 @@
     <string name="open_camera">Open camera</string>
     <string name="rating_bar">Rating bar</string>
     <string name="save_run">Save run</string>
+    <string name="text_elapsed_time_two_seconds">00:00:02</string>
+    <string name="dummy_date">Sun, 13/11/2016</string>
 </resources>

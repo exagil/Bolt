@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -93,7 +93,9 @@
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_marginBottom">@dimen/bolt_dimen_small</item>
         <item name="android:layout_marginLeft">@dimen/bolt_dimen_large</item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">@dimen/bolt_dimen_large</item>
         <item name="android:layout_marginRight">@dimen/bolt_dimen_large</item>
+        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">@dimen/bolt_dimen_large</item>
         <item name="android:layout_marginTop">@dimen/bolt_dimen_large</item>
         <item name="android:numStars">5</item>
         <item name="android:stepSize">1</item>
@@ -103,9 +105,12 @@
     <style name="run_note" parent="@style/style_full_width_extensible_height">
         <item name="android:layout_marginBottom">@dimen/bolt_dimen_large</item>
         <item name="android:layout_marginLeft">@dimen/bolt_dimen_large</item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">@dimen/bolt_dimen_large</item>
         <item name="android:layout_marginRight">@dimen/bolt_dimen_large</item>
+        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">@dimen/bolt_dimen_large</item>
         <item name="android:layout_marginTop">@dimen/bolt_dimen_small</item>
         <item name="android:drawableLeft">@drawable/ic_editor_mode_edit</item>
+        <item name="android:drawableStart">@drawable/ic_editor_mode_edit</item>
         <item name="android:hint">@string/add_a_note</item>
         <item name="android:background">@null</item>
         <item name="android:contentDescription">@string/add_a_note</item>
@@ -116,6 +121,7 @@
         <item name="android:src">@drawable/ic_done_white_24dp</item>
         <item name="android:layout_alignParentBottom">true</item>
         <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_alignParentEnd" tools:targetApi="jelly_bean_mr1">true</item>
         <item name="android:contentDescription">@string/save_run</item>
     </style>
 
@@ -134,7 +140,11 @@
     <style name="layout_list_item_history" parent="@style/style_full_width_full_height">
         <item name="android:paddingBottom">@dimen/bolt_dimen_tiny</item>
         <item name="android:paddingLeft">@dimen/bolt_dimen_small</item>
+        <item name="android:paddingStart" tools:targetApi="jelly_bean_mr1">@dimen/bolt_dimen_small
+        </item>
         <item name="android:paddingRight">@dimen/bolt_dimen_small</item>
+        <item name="android:paddingEnd" tools:targetApi="jelly_bean_mr1">@dimen/bolt_dimen_small
+        </item>
         <item name="android:paddingTop">@dimen/bolt_dimen_tiny</item>
     </style>
 
@@ -167,7 +177,9 @@
     <style name="extensible_run_list_item_text" parent="@style/style_extensible_height_extensible_width">
         <item name="android:layout_marginBottom">@dimen/bolt_dimen_small</item>
         <item name="android:layout_marginLeft">@dimen/bolt_dimen_medium</item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">@dimen/bolt_dimen_medium</item>
         <item name="android:layout_marginRight">@dimen/bolt_dimen_medium</item>
+        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">@dimen/bolt_dimen_medium</item>
         <item name="android:layout_marginTop">@dimen/bolt_dimen_tiny</item>
         <item name="android:textSize">@dimen/bolt_text_size_normal</item>
     </style>
@@ -179,11 +191,15 @@
     <style name="text_date" parent="@style/extensible_run_list_item_text">
         <item name="android:layout_alignBottom">@id/image_run</item>
         <item name="android:textColor">@color/light_grey</item>
+        <item name="android:layout_alignParentEnd" tools:targetApi="jelly_bean_mr1">true</item>
+        <item name="android:layout_alignParentRight">true</item>
     </style>
 
     <style name="text_elapsed_time" parent="@style/extensible_run_list_item_text">
         <item name="android:layout_alignBottom">@id/image_run</item>
         <item name="android:textColor">@color/light_grey</item>
+        <item name="android:layout_toRightOf">@id/image_run</item>
+        <item name="android:layout_toEndOf" tools:targetApi="jelly_bean_mr1">@id/image_run</item>
     </style>
 
     <style name="label_widget_list_item_text" parent="@style/widget_list_item_text">
@@ -194,6 +210,9 @@
     <style name="text_distance_travelled" parent="@style/extensible_run_list_item_text">
         <item name="android:layout_above">@id/text_elapsed_time</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:text">@string/zero_kilometers</item>
+        <item name="android:layout_toEndOf" tools:targetApi="jelly_bean_mr1">@id/image_run</item>
+        <item name="android:layout_toRightOf">@id/image_run</item>
     </style>
 
     <style name="image_photo_camera">
@@ -235,4 +254,5 @@
         <item name="android:textSize">@dimen/bolt_text_size_normal</item>
     </style>
 
+    <string name="zero_kilometers">0.00 km</string>
 </resources>
