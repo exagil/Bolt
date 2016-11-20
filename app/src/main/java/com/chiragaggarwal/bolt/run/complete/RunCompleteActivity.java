@@ -101,7 +101,7 @@ public class RunCompleteActivity extends AppCompatActivity implements RunComplet
 
     @Override
     public void saveRun(int ratingBarNumStars, String note, UserLocations userLocations, ElapsedTime elapsedTime) {
-        Run run = new Run(ratingBarNumStars, note, userLocations, elapsedTime);
+        Run run = new Run(ratingBarNumStars, note, elapsedTime, System.currentTimeMillis(), userLocations.encodedPolyline(), userLocations.totalDistanceInKilometers());
         new SaveRunAsyncTask(runLocalStorage, (_aVoid) -> onSaveComplete()).execute(run);
     }
 }
