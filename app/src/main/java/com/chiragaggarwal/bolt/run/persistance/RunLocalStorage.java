@@ -31,16 +31,7 @@ public class RunLocalStorage {
         }
         Long runRowNumberValue = new Long(runRowNumber);
         context.getContentResolver().bulkInsert(UserLocationsSchema.ALL_USER_LOCATIONS_URI, run.persistableUserLocations(runRowNumberValue.longValue()));
-        updateWidgets();
         return true;
-    }
-
-    private void updateWidgets() {
-        Intent intent = new Intent();
-        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-        int[] appWidgetIds = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, RunsWidgetProvider.class));
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
-        context.sendBroadcast(intent);
     }
 
     public void loadRuns(LoaderManager loaderManager, OnSuccessCallback<List<Run>> onSuccessCallback) {
