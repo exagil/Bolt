@@ -27,5 +27,6 @@ public interface BoltDatabaseSchema {
         String ELAPSED_TIME_IN_SECONDS = "elapsed_time_in_seconds";
         String CREATED_AT = "created_at";
         Uri ALL_RUNS_RESOURCE_URI = new Uri.Builder().scheme("content").authority(RunSchema.AUTHORITY).appendPath(RunSchema.TABLE_NAME).build();
+        String POLYLINE = "polyline";
     }
 }

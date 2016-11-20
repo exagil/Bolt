@@ -51,6 +51,7 @@ public class BoltDatabase extends SQLiteOpenHelper {
                 RunSchema.NOTE + " TEXT, " +
                 RunSchema.RATING + " INTEGER, " +
                 RunSchema.ELAPSED_TIME_IN_SECONDS + " NUMERIC, " +
+                RunSchema.POLYLINE + " TEXT," +
                 RunSchema.CREATED_AT + " NUMERIC " +
                 ")";
     }

@@ -2,6 +2,8 @@ package com.chiragaggarwal.bolt.run;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.support.annotation.NonNull;
+import android.support.annotation.VisibleForTesting;
 
 import com.chiragaggarwal.bolt.location.UserLocations;
 import com.chiragaggarwal.bolt.run.persistance.BoltDatabaseSchema;
@@ -19,12 +21,21 @@ public class Run {
     public UserLocations userLocations;
     private final long createdAt;
 
-    public Run(int rating, String note, UserLocations userLocations, ElapsedTime elapsedTimeInSeconds) {
+    public Run(int rating, String note, @NonNull UserLocations userLocations, ElapsedTime elapsedTimeInSeconds) {
         this.rating = rating;
         this.note = note;
         this.userLocations = userLocations;
         this.elapsedTimeInSeconds = elapsedTimeInSeconds;
         this.createdAt = System.currentTimeMillis();
+    }
+
+    @VisibleForTesting
+    public Run(int rating, String note, @NonNull UserLocations userLocations, ElapsedTime elapsedTimeInSeconds, long createdAt) {
+        this.rating = rating;
+        this.note = note;
+        this.userLocations = userLocations;
+        this.elapsedTimeInSeconds = elapsedTimeInSeconds;
+        this.createdAt = createdAt;
     }
 
     public Run(int rating, String note, ElapsedTime elapsedTimeInSeconds, long createdAt, String polyline) {
@@ -56,6 +67,7 @@ public class Run {
         contentValues.put(BoltDatabaseSchema.RunSchema.RATING, rating);
         contentValues.putAll(elapsedTimeInSeconds.persistable());
         contentValues.put(BoltDatabaseSchema.RunSchema.CREATED_AT, createdAt);
+        contentValues.put(BoltDatabaseSchema.RunSchema.POLYLINE, polyline());
         return contentValues;
     }
 
@@ -64,7 +76,8 @@ public class Run {
         Integer rating = contentValues.getAsInteger(BoltDatabaseSchema.RunSchema.RATING);
         Integer elapsedTimeInSeconds = contentValues.getAsInteger(BoltDatabaseSchema.RunSchema.ELAPSED_TIME_IN_SECONDS);
         Long createdAt = contentValues.getAsLong(BoltDatabaseSchema.RunSchema.CREATED_AT);
-        return new Run(rating.intValue(), note, new ElapsedTime(elapsedTimeInSeconds), createdAt);
+        String polyline = contentValues.getAsString(BoltDatabaseSchema.RunSchema.POLYLINE);
+        return new Run(rating.intValue(), note, new ElapsedTime(elapsedTimeInSeconds), createdAt, polyline);
     }
 
     @Override
@@ -97,12 +110,14 @@ public class Run {
         int noteColumnIndex = runsCursor.getColumnIndex(BoltDatabaseSchema.RunSchema.NOTE);
         int elapsedTimeInSecondsColumnIndex = runsCursor.getColumnIndex(BoltDatabaseSchema.RunSchema.ELAPSED_TIME_IN_SECONDS);
         int createdAtColumnIndex = runsCursor.getColumnIndex(BoltDatabaseSchema.RunSchema.CREATED_AT);
+        int polylineColumnIndex = runsCursor.getColumnIndex(BoltDatabaseSchema.RunSchema.POLYLINE);
 
         String note = runsCursor.getString(noteColumnIndex);
         Integer rating = runsCursor.getInt(ratingColumnIndex);
         Integer elapsedTimeInSeconds = runsCursor.getInt(elapsedTimeInSecondsColumnIndex);
         long createdAt = runsCursor.getLong(createdAtColumnIndex);
-        return new Run(rating.intValue(), note, new ElapsedTime(elapsedTimeInSeconds), createdAt);
+        String polyline = runsCursor.getString(polylineColumnIndex);
+        return new Run(rating.intValue(), note, new ElapsedTime(elapsedTimeInSeconds), createdAt, polyline);
     }
 
     public String polyline() {
