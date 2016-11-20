@@ -108,8 +108,4 @@ public class ElapsedTime implements Cloneable, Parcelable {
         contentValues.put(BoltDatabaseSchema.RunSchema.ELAPSED_TIME_IN_SECONDS, elapsedTimeInSeconds);
         return contentValues;
     }
-
-    public long longValue() {
-        return elapsedTimeInSeconds;
-    }
 }

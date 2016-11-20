@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Run {
-    public static final String DATE_FORMAT = "EEE, dd/MM/yyyy";
+    private static final String DATE_FORMAT = "EEE, dd/MM/yyyy";
     public ElapsedTime elapsedTimeInSeconds;
     private final int rating;
     private final String note;
