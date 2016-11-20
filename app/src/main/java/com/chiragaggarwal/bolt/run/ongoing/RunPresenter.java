@@ -1,8 +1,7 @@
 package com.chiragaggarwal.bolt.run.ongoing;
 
 import com.chiragaggarwal.bolt.analytics.FirebaseAnalyticsTracker;
-import com.chiragaggarwal.bolt.analytics.StartRunEvent;
-import com.chiragaggarwal.bolt.analytics.StopRunEvent;
+import com.chiragaggarwal.bolt.analytics.RunEvent;
 import com.chiragaggarwal.bolt.common.ServiceStateMonitor;
 import com.chiragaggarwal.bolt.run.RunViewModel;
 
@@ -21,12 +20,12 @@ public class RunPresenter {
 
     public void onToggleRunClick() {
         if (serviceStateMonitor.isRunning(RunService.class)) {
-            firebaseAnalyticsTracker.track(new StopRunEvent());
+            firebaseAnalyticsTracker.track(RunEvent.newStopRunEvent());
             runView.stopRun();
             runView.showRunCompleteScreen();
             runViewModel.setRunningAsStopped();
         } else {
-            firebaseAnalyticsTracker.track(new StartRunEvent());
+            firebaseAnalyticsTracker.track(RunEvent.newStartRunEvent());
             runView.startRun();
             runViewModel.setRunningAsStarted();
         }
