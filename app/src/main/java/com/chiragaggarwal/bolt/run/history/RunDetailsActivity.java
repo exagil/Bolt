@@ -43,17 +43,6 @@ public class RunDetailsActivity extends AppCompatActivity implements OnMapReadyC
         mapView.getMapAsync(this);
     }
 
-    private void initialiseView() {
-        mapView = (MapView) findViewById(R.id.map_view);
-        textDetailTime = (TextView) findViewById(R.id.text_detail_time);
-        textDetailDistance = (TextView) findViewById(R.id.text_detail_distance);
-        ratingBar = (RatingBar) findViewById(R.id.run_rating);
-        textDetailDistance.setText(run.formattedTotalDistanceInKilometers());
-        RunViewModel runViewModel = new RunViewModel(getResources());
-        runViewModel.setElapsedTime(run.elapsedTimeInSeconds);
-        textDetailTime.setText(runViewModel.getElapsedTime());
-    }
-
     @Override
     public void onResume() {
         super.onResume();
@@ -92,6 +81,22 @@ public class RunDetailsActivity extends AppCompatActivity implements OnMapReadyC
             plotPolyline(googleMap, travelledPoints);
             animateToPolyline(googleMap, run.getTravelledBounds());
         }
+    }
+
+    private void initialiseView() {
+        findViews();
+        textDetailDistance.setText(run.formattedTotalDistanceInKilometers());
+        RunViewModel runViewModel = new RunViewModel(getResources());
+        runViewModel.setElapsedTime(run.elapsedTimeInSeconds);
+        textDetailTime.setText(runViewModel.getElapsedTime());
+        ratingBar.setRating(run.rating);
+    }
+
+    private void findViews() {
+        mapView = (MapView) findViewById(R.id.map_view);
+        textDetailTime = (TextView) findViewById(R.id.text_detail_time);
+        textDetailDistance = (TextView) findViewById(R.id.text_detail_distance);
+        ratingBar = (RatingBar) findViewById(R.id.run_rating);
     }
 
     private void initialise(GoogleMap googleMap) {

@@ -29,9 +29,9 @@ public class Run implements Parcelable {
     public ElapsedTime elapsedTimeInSeconds;
     public String polyline;
     public final String note;
+    public final int rating;
 
     private float totalDistanceInKilometers;
-    private final int rating;
     private final long createdAt;
 
     public Run(int rating, String note, ElapsedTime elapsedTimeInSeconds, long createdAt, String polyline, float totalDistanceInKilometers) {
