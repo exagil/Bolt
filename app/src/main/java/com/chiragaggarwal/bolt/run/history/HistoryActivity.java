@@ -32,15 +32,15 @@ public class HistoryActivity extends AppCompatActivity {
         listRunHistory.setAdapter(runListAdapter);
     }
 
-    private void launchRunDetailsActivityWith(Run run) {
-        Intent intent = new Intent(this, RunDetailsActivity.class);
-        intent.putExtra(Run.TAG, run);
-        startActivity(intent);
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
         runLocalStorage.loadRuns(getLoaderManager(), runs -> runListAdapter.populate(runs));
+    }
+
+    private void launchRunDetailsActivityWith(Run run) {
+        Intent intent = new Intent(this, RunDetailsActivity.class);
+        intent.putExtra(Run.TAG, run);
+        startActivity(intent);
     }
 }

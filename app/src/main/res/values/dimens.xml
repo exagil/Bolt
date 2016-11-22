@@ -3,9 +3,9 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="bolt_dimen_large">24dp</dimen>
+    <dimen name="bolt_dimen_medium">16dp</dimen>
     <dimen name="bolt_dimen_small">8dp</dimen>
     <dimen name="bolt_dimen_tiny">4dp</dimen>
-    <dimen name="bolt_dimen_medium">16dp</dimen>
     <dimen name="bolt_dimen_inexistent">0dp</dimen>
 
     <dimen name="elevation_layout_run_complete">-1dp</dimen>
@@ -17,4 +17,6 @@
     <dimen name="bolt_widget_margin">8dp</dimen>
 
     <dimen name="side_photo_camera">128dp</dimen>
+    <dimen name="polyline_width">2dp</dimen>
+    <dimen name="width_run_details_map">240dp</dimen>
 </resources>
