@@ -44,6 +44,11 @@
 
             <include layout="@layout/layout_total_time" />
 
+            <include layout="@layout/layout_note" />
+
+            <include layout="@layout/layout_rating" />
+
+
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

@@ -39,4 +39,5 @@
     <string name="zero_kilometers">0.00 km</string>
     <string name="image_runner">Runner image</string>
     <string name="km">km</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultricies posuere justo, vitae imperdiet massa egestas at. Aliquam at tincidunt ante. Nunc vitae justo dictum, pretium eros vel, tempor ante. Morbi justo ligula, molestie ac auctor ac, maximus auctor nisl. Etiam tincidunt massa eu turpis fringilla aliquam.</string>
 </resources>

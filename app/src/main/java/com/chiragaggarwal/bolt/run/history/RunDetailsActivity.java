@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.chiragaggarwal.bolt.R;
@@ -30,6 +31,7 @@ public class RunDetailsActivity extends AppCompatActivity implements OnMapReadyC
     private Run run;
     private TextView textDetailDistance;
     private TextView textDetailTime;
+    private RatingBar ratingBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class RunDetailsActivity extends AppCompatActivity implements OnMapReadyC
         mapView = (MapView) findViewById(R.id.map_view);
         textDetailTime = (TextView) findViewById(R.id.text_detail_time);
         textDetailDistance = (TextView) findViewById(R.id.text_detail_distance);
+        ratingBar = (RatingBar) findViewById(R.id.run_rating);
         textDetailDistance.setText(run.formattedTotalDistanceInKilometers());
         RunViewModel runViewModel = new RunViewModel(getResources());
         runViewModel.setElapsedTime(run.elapsedTimeInSeconds);

@@ -6,7 +6,7 @@
     android:layout_marginLeft="@dimen/bolt_dimen_tiny"
     android:layout_marginRight="@dimen/bolt_dimen_tiny"
     android:layout_marginTop="@dimen/bolt_dimen_tiny"
-    android:background="#dfdfdf">
+    android:background="@android:color/white">
 
     <ImageView
         android:id="@+id/image_detail_timer"
