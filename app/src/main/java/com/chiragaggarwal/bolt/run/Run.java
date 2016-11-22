@@ -5,14 +5,20 @@ import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.chiragaggarwal.bolt.common.PolylineTransformer;
 import com.chiragaggarwal.bolt.run.persistance.BoltDatabaseSchema;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+
+import io.reactivex.Observable;
 
 public class Run implements Parcelable {
     public static final String TAG = "run";
@@ -120,6 +126,19 @@ public class Run implements Parcelable {
         return 0;
     }
 
+    public List<LatLng> getTravelledPoints() {
+        return calculateTravelledPoints();
+    }
+
+    public LatLngBounds getTravelledBounds() {
+        List<LatLng> travelledPoints = calculateTravelledPoints();
+        LatLngBounds.Builder latLngBoundsBuilder = new LatLngBounds.Builder();
+        Observable.fromIterable(travelledPoints).
+                map(latLng -> latLngBoundsBuilder.include(latLng)).
+                subscribe();
+        return latLngBoundsBuilder.build();
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeParcelable(this.elapsedTimeInSeconds, flags);
@@ -150,4 +169,8 @@ public class Run implements Parcelable {
             return new Run[size];
         }
     };
+
+    private List<LatLng> calculateTravelledPoints() {
+        return new PolylineTransformer().decode(polyline);
+    }
 }
