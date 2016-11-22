@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="240dp"
+    android:layout_marginLeft="@dimen/bolt_dimen_tiny"
+    android:layout_marginRight="@dimen/bolt_dimen_tiny"
+    android:layout_marginTop="@dimen/bolt_dimen_tiny"
+    android:background="#dfdfdf">
+
+    <ImageView
+        android:id="@+id/image_detail_timer"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/bolt_dimen_large"
+        android:src="@drawable/stopwatch" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/image_detail_timer"
+        android:layout_toRightOf="@id/image_detail_timer"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_label_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/image_detail_timer"
+            android:layout_margin="8dp"
+            android:text="Time"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/text_detail_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_label_time"
+            android:layout_margin="8dp"
+            android:layout_toRightOf="@id/image_detail_timer"
+            android:textSize="36sp"
+            tools:text="01:13:08" />
+
+    </LinearLayout>
+
+</RelativeLayout>

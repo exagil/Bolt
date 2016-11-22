@@ -40,23 +40,9 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="240dp"
-                android:background="@android:color/holo_red_light"
-                android:elevation="10dp" />
+            <include layout="@layout/layout_distance_detail" />
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="240dp"
-                android:background="@android:color/holo_blue_dark"
-                android:elevation="100dp" />
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="240dp"
-                android:background="@android:color/holo_green_dark"
-                android:elevation="100dp" />
+            <include layout="@layout/layout_total_time" />
 
         </LinearLayout>
 
