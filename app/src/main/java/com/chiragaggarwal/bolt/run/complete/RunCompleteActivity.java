@@ -71,7 +71,7 @@ public class RunCompleteActivity extends AppCompatActivity implements RunComplet
     }
 
     private void saveRun() {
-        int ratingBarNumStars = ratingBar.getNumStars();
+        int ratingBarNumStars = (int) ratingBar.getRating();
         String note = inputRunNote.getText().toString();
         runCompletePresenter.saveRun(ratingBarNumStars, note, userLocations, elapsedTime);
     }
