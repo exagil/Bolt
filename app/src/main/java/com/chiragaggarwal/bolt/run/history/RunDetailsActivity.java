@@ -3,6 +3,7 @@ package com.chiragaggarwal.bolt.run.history;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.widget.RatingBar;
@@ -32,6 +33,8 @@ public class RunDetailsActivity extends AppCompatActivity implements OnMapReadyC
     private TextView textDetailDistance;
     private TextView textDetailTime;
     private RatingBar ratingBar;
+    private TextView runNote;
+    private FloatingActionButton fabShare;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,6 +93,7 @@ public class RunDetailsActivity extends AppCompatActivity implements OnMapReadyC
         runViewModel.setElapsedTime(run.elapsedTimeInSeconds);
         textDetailTime.setText(runViewModel.getElapsedTime());
         ratingBar.setRating(run.rating);
+        runNote.setText(run.note);
     }
 
     private void findViews() {
@@ -97,6 +101,8 @@ public class RunDetailsActivity extends AppCompatActivity implements OnMapReadyC
         textDetailTime = (TextView) findViewById(R.id.text_detail_time);
         textDetailDistance = (TextView) findViewById(R.id.text_detail_distance);
         ratingBar = (RatingBar) findViewById(R.id.run_rating);
+        runNote = (TextView) findViewById(R.id.run_note);
+        fabShare = (FloatingActionButton) findViewById(R.id.fab_share);
     }
 
     private void initialise(GoogleMap googleMap) {

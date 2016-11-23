@@ -2,15 +2,17 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@android:color/white">
 
     <TextView
+        android:id="@+id/run_note"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_margin="@dimen/bolt_dimen_large"
         android:lineSpacingExtra="@dimen/bolt_dimen_tiny"
-        android:text="@string/lorem_ipsum"
+        tools:text="@string/lorem_ipsum"
         android:textAlignment="center"
         android:textSize="@dimen/bolt_dimen_medium"
         android:textStyle="italic" />
