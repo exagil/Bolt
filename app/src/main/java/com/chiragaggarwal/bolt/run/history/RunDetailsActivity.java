@@ -36,12 +36,14 @@ public class RunDetailsActivity extends AppCompatActivity implements OnMapReadyC
     private RatingBar ratingBar;
     private TextView runNote;
     private FloatingActionButton fabShare;
+    private RunDetailsViewModel runDetailsViewModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_run_details);
         run = getIntent().getParcelableExtra(Run.TAG);
+        runDetailsViewModel = new RunDetailsViewModel(run, getResources());
         initialiseView();
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
@@ -165,9 +167,9 @@ public class RunDetailsActivity extends AppCompatActivity implements OnMapReadyC
     private void shareRunDetails() {
         Intent shareTextIntent = new Intent();
         shareTextIntent.setAction(Intent.ACTION_SEND);
-        String shareText = "Date: " + run.formattedDate() + "\n" + "Distance: " + run.formattedTotalDistanceInKilometers();
+        String shareText = runDetailsViewModel.shareText();
         shareTextIntent.putExtra(Intent.EXTRA_TEXT, shareText);
-        shareTextIntent.setType("text/plain");
+        shareTextIntent.setType(getString(R.string.mime_type_plain));
         if (shareTextIntent.resolveActivity(getPackageManager()) != null) {
             startActivity(shareTextIntent);
         }
