@@ -21,4 +21,20 @@ public class RunDetailsViewModel {
                 resources.getString(R.string.key_distance) +
                 run.formattedTotalDistanceInKilometers();
     }
+
+    public String formattedTotalDistanceInKilometers() {
+        return run.formattedTotalDistanceInKilometers();
+    }
+
+    public String getElapsedTime() {
+        return run.time().toString();
+    }
+
+    public int rating() {
+        return run.rating;
+    }
+
+    public String note() {
+        return run.note;
+    }
 }

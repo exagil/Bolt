@@ -11,6 +11,7 @@ import com.chiragaggarwal.bolt.timer.ElapsedTime;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
+import java.sql.Time;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
@@ -172,5 +173,9 @@ public class Run implements Parcelable {
 
     private List<LatLng> calculateTravelledPoints() {
         return new PolylineTransformer().decode(polyline);
+    }
+
+    public Time time() {
+        return new Time(elapsedTimeInSeconds.elapsedTimeInSeconds);
     }
 }

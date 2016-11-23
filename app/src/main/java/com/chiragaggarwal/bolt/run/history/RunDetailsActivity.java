@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.chiragaggarwal.bolt.R;
 import com.chiragaggarwal.bolt.run.Run;
-import com.chiragaggarwal.bolt.run.RunViewModel;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -91,12 +90,10 @@ public class RunDetailsActivity extends AppCompatActivity implements OnMapReadyC
 
     private void initialiseView() {
         findViews();
-        textDetailDistance.setText(run.formattedTotalDistanceInKilometers());
-        RunViewModel runViewModel = new RunViewModel(getResources());
-        runViewModel.setElapsedTime(run.elapsedTimeInSeconds);
-        textDetailTime.setText(runViewModel.getElapsedTime());
-        ratingBar.setRating(run.rating);
-        runNote.setText(run.note);
+        textDetailDistance.setText(runDetailsViewModel.formattedTotalDistanceInKilometers());
+        textDetailTime.setText(runDetailsViewModel.getElapsedTime());
+        ratingBar.setRating(runDetailsViewModel.rating());
+        runNote.setText(runDetailsViewModel.note());
         fabShare.setOnClickListener(_view -> shareRunDetails());
     }
 
