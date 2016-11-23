@@ -1,5 +1,6 @@
 package com.chiragaggarwal.bolt.run.history;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -94,6 +95,7 @@ public class RunDetailsActivity extends AppCompatActivity implements OnMapReadyC
         textDetailTime.setText(runViewModel.getElapsedTime());
         ratingBar.setRating(run.rating);
         runNote.setText(run.note);
+        fabShare.setOnClickListener(_view -> shareRunDetails());
     }
 
     private void findViews() {
@@ -158,5 +160,16 @@ public class RunDetailsActivity extends AppCompatActivity implements OnMapReadyC
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics;
+    }
+
+    private void shareRunDetails() {
+        Intent shareTextIntent = new Intent();
+        shareTextIntent.setAction(Intent.ACTION_SEND);
+        String shareText = "Date: " + run.formattedDate() + "\n" + "Distance: " + run.formattedTotalDistanceInKilometers();
+        shareTextIntent.putExtra(Intent.EXTRA_TEXT, shareText);
+        shareTextIntent.setType("text/plain");
+        if (shareTextIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(shareTextIntent);
+        }
     }
 }
