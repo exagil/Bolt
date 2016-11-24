@@ -1,12 +1,14 @@
 package com.chiragaggarwal.bolt.run.complete;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 import com.chiragaggarwal.bolt.BoltApplication;
 import com.chiragaggarwal.bolt.R;
 import com.chiragaggarwal.bolt.analytics.FirebaseAnalyticsTracker;
+import com.chiragaggarwal.bolt.common.FadeEnabledActivity;
 import com.chiragaggarwal.bolt.location.UserLocations;
 import com.chiragaggarwal.bolt.run.Run;
 import com.chiragaggarwal.bolt.run.RunViewModel;
@@ -24,7 +27,7 @@ import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
 import javax.inject.Inject;
 
-public class RunCompleteActivity extends AppCompatActivity implements RunCompleteView {
+public class RunCompleteActivity extends FadeEnabledActivity implements RunCompleteView {
     private RunViewModel runViewModel;
     private RatingBar ratingBar;
     private EditText inputRunNote;
@@ -39,6 +42,13 @@ public class RunCompleteActivity extends AppCompatActivity implements RunComplet
 
     @Inject
     public FirebaseAnalyticsTracker firebaseAnalyticsTracker;
+
+    @Override
+    protected void initialiseTransitions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setEnterTransition(new Slide(Gravity.RIGHT).setDuration(300));
+        }
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

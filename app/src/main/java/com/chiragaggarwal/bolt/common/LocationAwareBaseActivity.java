@@ -11,12 +11,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AppCompatActivity;
 
 import com.chiragaggarwal.bolt.location.OneOffLocationUpdateService;
 import com.chiragaggarwal.bolt.location.UserLocation;
 
-public abstract class LocationAwareBaseActivity extends AppCompatActivity implements LocationAwareBaseView {
+public abstract class LocationAwareBaseActivity extends FadeEnabledActivity implements LocationAwareBaseView {
     private static int REQUEST_CODE_LOCATION = 37;
     private OneOffLocationUpdateBroadcastReceiver oneOffLocationUpdateBroadcastReceiver;
     private LocationAwareBasePresenter locationAwareBasePresenter;

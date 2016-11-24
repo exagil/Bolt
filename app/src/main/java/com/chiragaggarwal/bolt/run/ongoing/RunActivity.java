@@ -5,9 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.databinding.DataBindingUtil;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.LocalBroadcastManager;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.View;
 
 import com.chiragaggarwal.bolt.BoltApplication;
@@ -50,6 +53,14 @@ public class RunActivity extends LocationAwareBaseActivity implements RunView {
         ButterKnife.bind(this);
         ((BoltApplication) getApplication()).getBoltComponent().inject(this);
         initialise(activityMainBinding);
+    }
+
+    @Override
+    protected void initialiseTransitions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setEnterTransition(new Slide(Gravity.RIGHT).setDuration(300));
+            getWindow().setExitTransition(new Slide(Gravity.LEFT).setDuration(300));
+        }
     }
 
     @Override
@@ -107,6 +118,7 @@ public class RunActivity extends LocationAwareBaseActivity implements RunView {
             }
         }
     }
+
     private void initialise(ActivityMainBinding activityMainBinding) {
         runViewModel = new RunViewModel(getResources());
         runPresenter = new RunPresenter(this, runViewModel, serviceStateMonitor, firebaseAnalyticsTracker);
