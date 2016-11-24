@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.chiragaggarwal.bolt.R;
+import com.chiragaggarwal.bolt.common.FadeEnabledActivity;
 import com.chiragaggarwal.bolt.run.Run;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -27,7 +27,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.List;
 
-public class RunDetailsActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class RunDetailsActivity extends FadeEnabledActivity implements OnMapReadyCallback {
     private MapView mapView;
     private Run run;
     private TextView textDetailDistance;
@@ -90,10 +90,10 @@ public class RunDetailsActivity extends AppCompatActivity implements OnMapReadyC
 
     private void initialiseView() {
         findViews();
-        textDetailDistance.setText(runDetailsViewModel.formattedTotalDistanceInKilometers());
+        textDetailDistance.setText(runDetailsViewModel.getFormattedTotalDistanceInKilometers());
         textDetailTime.setText(runDetailsViewModel.getElapsedTime());
-        ratingBar.setRating(runDetailsViewModel.rating());
-        runNote.setText(runDetailsViewModel.note());
+        ratingBar.setRating(runDetailsViewModel.getRating());
+        runNote.setText(runDetailsViewModel.getNote());
         fabShare.setOnClickListener(_view -> shareRunDetails());
     }
 
