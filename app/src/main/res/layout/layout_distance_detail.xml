@@ -1,47 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="240dp"
-    android:layout_marginLeft="@dimen/bolt_dimen_tiny"
-    android:layout_marginRight="@dimen/bolt_dimen_tiny"
-    android:layout_marginTop="@dimen/bolt_dimen_tiny"
-    android:background="@android:color/white">
+    style="@style/layout_section_detail">
 
     <ImageView
         android:id="@+id/image_detail_distance"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_centerVertical="true"
-        android:layout_margin="@dimen/bolt_dimen_large"
-        android:src="@drawable/road_with_two_placeholders"></ImageView>
+        style="@style/image_section_detail"
+        android:src="@drawable/road_with_two_placeholders" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@id/image_detail_distance"
-        android:layout_toRightOf="@id/image_detail_distance"
-        android:gravity="center"
-        android:orientation="vertical">
+        style="@style/layout_detail_info_detail_section">
 
         <TextView
             android:id="@+id/text_label_distance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/image_detail_distance"
-            android:layout_margin="8dp"
-            android:text="Distance"
-            android:textSize="20sp" />
+            style="@style/text_detail_label"
+            android:text="@string/label_distance_detail" />
 
         <TextView
             android:id="@+id/text_detail_distance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_label_distance"
-            android:layout_margin="8dp"
-            android:layout_toRightOf="@id/image_detail_distance"
-            android:textSize="36sp"
+            style="@style/text_detail"
             tools:text="1.23 km" />
 
     </LinearLayout>

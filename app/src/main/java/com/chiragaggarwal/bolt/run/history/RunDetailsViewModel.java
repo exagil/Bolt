@@ -1,13 +1,13 @@
 package com.chiragaggarwal.bolt.run.history;
 
 import android.content.res.Resources;
-import android.databinding.BaseObservable;
-import android.databinding.Bindable;
+import android.text.TextUtils;
+import android.view.View;
 
 import com.chiragaggarwal.bolt.R;
 import com.chiragaggarwal.bolt.run.Run;
 
-public class RunDetailsViewModel extends BaseObservable {
+public class RunDetailsViewModel {
     private Run run;
     private Resources resources;
 
@@ -24,23 +24,23 @@ public class RunDetailsViewModel extends BaseObservable {
                 run.formattedTotalDistanceInKilometers();
     }
 
-    @Bindable
     public String getFormattedTotalDistanceInKilometers() {
         return run.formattedTotalDistanceInKilometers();
     }
 
-    @Bindable
     public String getElapsedTime() {
         return run.time().toString();
     }
 
-    @Bindable
     public int getRating() {
         return run.rating;
     }
 
-    @Bindable
     public String getNote() {
         return run.note;
+    }
+
+    public int getNoteVisibility() {
+        return TextUtils.isEmpty(run.note) ? View.GONE : View.VISIBLE;
     }
 }

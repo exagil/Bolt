@@ -281,4 +281,57 @@
         <item name="android:visibility">invisible</item>
     </style>
 
+    <style name="layout_section_detail">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">240dp</item>
+        <item name="android:layout_marginLeft">@dimen/bolt_dimen_tiny</item>
+        <item name="android:layout_marginRight">@dimen/bolt_dimen_tiny</item>
+        <item name="android:layout_marginTop">@dimen/bolt_dimen_tiny</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+
+    <style name="image_section_detail">
+        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_height">120dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_margin">@dimen/bolt_dimen_large</item>
+    </style>
+
+    <style name="layout_section_detail_info" parent="@style/style_full_width_full_height">
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="layout_detail_info_detail_section" parent="@style/layout_section_detail_info">
+        <item name="android:layout_toEndOf" tools:targetApi="jelly_bean_mr1">
+            @id/image_detail_distance
+        </item>
+        <item name="android:layout_toRightOf">@id/image_detail_distance</item>
+    </style>
+
+    <style name="layout_detail_info_time_section" parent="@style/layout_section_detail_info">
+        <item name="android:layout_toEndOf" tools:targetApi="jelly_bean_mr1">@id/image_detail_timer</item>
+        <item name="android:layout_toRightOf">@id/image_detail_timer</item>
+    </style>
+
+    <style name="text_detail_label" parent="@style/style_extensible_height_extensible_width">
+        <item name="android:layout_margin">@dimen/bolt_dimen_small</item>
+        <item name="android:textSize">@dimen/bolt_text_size_large</item>
+    </style>
+
+    <style name="text_detail" parent="@style/style_extensible_height_extensible_width">
+        <item name="android:layout_margin">@dimen/bolt_dimen_small</item>
+        <item name="android:textSize">@dimen/bolt_text_size_extra_large</item>
+    </style>
+
+    <style name="run_detail_note" parent="@style/style_full_width_full_height">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_margin">@dimen/bolt_dimen_large</item>
+        <item name="android:lineSpacingExtra">@dimen/bolt_dimen_tiny</item>
+        <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">center</item>
+        <item name="android:textSize">@dimen/bolt_text_size_normal</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
 </resources>

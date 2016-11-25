@@ -8,6 +8,7 @@
     <RatingBar
         android:id="@+id/run_rating"
         style="@style/run_rating"
+        android:isIndicator="true"
         android:layout_margin="@dimen/bolt_dimen_large" />
 
 </LinearLayout>

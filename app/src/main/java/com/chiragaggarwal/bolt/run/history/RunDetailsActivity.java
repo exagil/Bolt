@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -36,6 +37,7 @@ public class RunDetailsActivity extends FadeEnabledActivity implements OnMapRead
     private TextView runNote;
     private FloatingActionButton fabShare;
     private RunDetailsViewModel runDetailsViewModel;
+    private View layoutNote;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -94,6 +96,8 @@ public class RunDetailsActivity extends FadeEnabledActivity implements OnMapRead
         textDetailTime.setText(runDetailsViewModel.getElapsedTime());
         ratingBar.setRating(runDetailsViewModel.getRating());
         runNote.setText(runDetailsViewModel.getNote());
+        //noinspection WrongConstant
+        layoutNote.setVisibility(runDetailsViewModel.getNoteVisibility());
         fabShare.setOnClickListener(_view -> shareRunDetails());
     }
 
@@ -104,6 +108,7 @@ public class RunDetailsActivity extends FadeEnabledActivity implements OnMapRead
         ratingBar = (RatingBar) findViewById(R.id.run_rating);
         runNote = (TextView) findViewById(R.id.run_note);
         fabShare = (FloatingActionButton) findViewById(R.id.fab_share);
+        layoutNote = findViewById(R.id.layout_note);
     }
 
     private void initialise(GoogleMap googleMap) {

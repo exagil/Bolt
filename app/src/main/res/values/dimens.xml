@@ -11,6 +11,8 @@
     <dimen name="elevation_layout_run_complete">-1dp</dimen>
 
     <dimen name="bolt_text_size_normal">16sp</dimen>
+    <dimen name="bolt_text_size_large">24sp</dimen>
+    <dimen name="bolt_text_size_extra_large">36sp</dimen>
     <dimen name="bolt_status_text_size">40sp</dimen>
     <dimen name="bolt_timer_text_size">64sp</dimen>
 
