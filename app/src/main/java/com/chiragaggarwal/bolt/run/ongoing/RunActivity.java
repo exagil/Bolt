@@ -9,12 +9,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.chiragaggarwal.bolt.BoltApplication;
@@ -27,6 +29,7 @@ import com.chiragaggarwal.bolt.location.UserLocation;
 import com.chiragaggarwal.bolt.location.UserLocations;
 import com.chiragaggarwal.bolt.run.RunViewModel;
 import com.chiragaggarwal.bolt.run.complete.RunCompleteActivity;
+import com.chiragaggarwal.bolt.run.history.HistoryActivity;
 import com.chiragaggarwal.bolt.run.map.RunMapFragment;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
@@ -51,6 +54,9 @@ public class RunActivity extends LocationAwareBaseActivity implements RunView {
 
     @BindView(R.id.drawer_main)
     public DrawerLayout drawerMain;
+
+    @BindView(R.id.navigation_drawer)
+    public NavigationView navigationView;
 
     @Inject
     public ServiceStateMonitor serviceStateMonitor;
@@ -158,6 +164,22 @@ public class RunActivity extends LocationAwareBaseActivity implements RunView {
         drawerToggle = new ActionBarDrawerToggle(this, drawerMain, toolbar, R.string.nav_drawer_open, R.string.nav_drawer_close);
         drawerToggle.setHomeAsUpIndicator(R.drawable.common_full_open_on_phone);
         drawerMain.setDrawerListener(drawerToggle);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                int itemId = menuItem.getItemId();
+                if (itemId == R.id.history) {
+                    startHistoryActivity();
+                    drawerMain.closeDrawers();
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+
+    private void startHistoryActivity() {
+        startActivity(new Intent(this, HistoryActivity.class));
     }
 
     @NonNull

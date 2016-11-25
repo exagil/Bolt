@@ -47,4 +47,5 @@
     <string name="share">Share your run details</string>
     <string name="nav_drawer_open">Navigation Drawer Opened</string>
     <string name="nav_drawer_close">Navigation Drawer Close</string>
+    <string name="history">History</string>
 </resources>

@@ -21,9 +21,8 @@
         style="@style/style_full_width_full_height">
 
         <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".run.ongoing.RunActivity">
+            style="@style/style_full_width_full_height"
+            tools:context=".run.ongoing.RunActivity">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/main_toolbar"
@@ -69,11 +68,10 @@
         </RelativeLayout>
 
         <android.support.design.widget.NavigationView
-            android:layout_width="@dimen/width_run_details_map"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:fitsSystemWindows="true"
-            app:headerLayout="@layout/navigation_drawer_header" />
+            android:id="@+id/navigation_drawer"
+            style="@style/navigation_drawer"
+            app:headerLayout="@layout/navigation_drawer_header"
+            app:menu="@menu/drawer" />
 
     </android.support.v4.widget.DrawerLayout>
 
