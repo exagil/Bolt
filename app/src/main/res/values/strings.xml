@@ -44,4 +44,7 @@
     <string name="key_distance">"Distance: "</string>
     <string name="mime_type_plain" translatable="false">text/plain</string>
     <string name="label_distance_detail">Distance</string>
+    <string name="share">Share your run details</string>
+    <string name="nav_drawer_open">Navigation Drawer Opened</string>
+    <string name="nav_drawer_close">Navigation Drawer Close</string>
 </resources>

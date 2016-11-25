@@ -22,4 +22,6 @@
     <dimen name="polyline_width">2dp</dimen>
     <dimen name="width_run_details_map">240dp</dimen>
     <dimen name="height_detail_map">240dp</dimen>
+    <dimen name="height_navigation_drawer_header">240dp</dimen>
+    <dimen name="width_navigation_drawer">280dp</dimen>
 </resources>

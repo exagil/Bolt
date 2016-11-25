@@ -8,7 +8,11 @@ import android.databinding.DataBindingUtil;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
 import android.view.Gravity;
 import android.view.View;
@@ -37,8 +41,16 @@ public class RunActivity extends LocationAwareBaseActivity implements RunView {
     private RunViewModel runViewModel;
     private RunPresenter runPresenter;
 
+    private ActionBarDrawerToggle drawerToggle;
+
     @BindView(R.id.frame_map)
     public View frameMap;
+
+    @BindView(R.id.main_toolbar)
+    public Toolbar toolbar;
+
+    @BindView(R.id.drawer_main)
+    public DrawerLayout drawerMain;
 
     @Inject
     public ServiceStateMonitor serviceStateMonitor;
@@ -96,6 +108,12 @@ public class RunActivity extends LocationAwareBaseActivity implements RunView {
     }
 
     @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        drawerToggle.syncState();
+    }
+
+    @Override
     public void showRunCompleteScreen() {
         Intent intent = new Intent(this, RunCompleteActivity.class);
         intent.putExtra(UserLocations.TAG, runViewModel.userLocations);
@@ -120,6 +138,8 @@ public class RunActivity extends LocationAwareBaseActivity implements RunView {
     }
 
     private void initialise(ActivityMainBinding activityMainBinding) {
+        setupToolbar();
+        setupNavigationDrawer();
         runViewModel = new RunViewModel(getResources());
         runPresenter = new RunPresenter(this, runViewModel, serviceStateMonitor, firebaseAnalyticsTracker);
         activityMainBinding.setRunViewModel(runViewModel);
@@ -127,6 +147,17 @@ public class RunActivity extends LocationAwareBaseActivity implements RunView {
         runServiceBroadcastReceiver = new RunServiceBroadcastReceiver();
         localBroadcastManager = LocalBroadcastManager.getInstance(this);
         getFragmentManager().beginTransaction().add(R.id.frame_map, new RunMapFragment()).commit();
+    }
+
+    private void setupToolbar() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void setupNavigationDrawer() {
+        drawerToggle = new ActionBarDrawerToggle(this, drawerMain, toolbar, R.string.nav_drawer_open, R.string.nav_drawer_close);
+        drawerToggle.setHomeAsUpIndicator(R.drawable.common_full_open_on_phone);
+        drawerMain.setDrawerListener(drawerToggle);
     }
 
     @NonNull

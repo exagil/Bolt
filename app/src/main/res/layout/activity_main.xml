@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -15,44 +16,65 @@
 
     </data>
 
-    <RelativeLayout
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_main"
+        style="@style/style_full_width_full_height">
+
+        <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".run.ongoing.RunActivity">
 
-        <TextView
-            android:id="@+id/text_timer"
-            style="@style/text_timer"
-            android:text="@{runViewModel.elapsedTime}" />
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/main_toolbar"
+                style="@style/main_toolbar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:titleTextColor="@android:color/white" />
 
-        <TextView
-            android:id="@+id/text_duration"
-            style="@style/text_duration" />
+            <TextView
+                android:id="@+id/text_timer"
+                style="@style/text_timer"
+                android:layout_below="@id/main_toolbar"
+                android:text="@{runViewModel.elapsedTime}" />
 
-        <LinearLayout
-            android:id="@+id/layout_run_stats"
-            style="@style/layout_run_stats">
+            <TextView
+                android:id="@+id/text_duration"
+                style="@style/text_duration" />
 
-            <include
-                layout="@layout/current_pace"
-                bind:runViewModel="@{runViewModel}" />
+            <LinearLayout
+                android:id="@+id/layout_run_stats"
+                style="@style/layout_run_stats">
 
-            <include
-                layout="@layout/distance"
-                bind:runViewModel="@{runViewModel}" />
+                <include
+                    layout="@layout/current_pace"
+                    bind:runViewModel="@{runViewModel}" />
 
-        </LinearLayout>
+                <include
+                    layout="@layout/distance"
+                    bind:runViewModel="@{runViewModel}" />
 
-        <TextView
-            android:id="@+id/button_start_activity"
-            style="@style/button_start_activity"
-            android:onClick="@{() -> runPresenter.onToggleRunClick()}"
-            android:contentDescription="@{runViewModel.toggleRunButtonText}"
-            android:text="@{runViewModel.toggleRunButtonText}" />
+            </LinearLayout>
 
-        <FrameLayout
-            android:id="@+id/frame_map"
-            style="@style/frame_map" />
+            <TextView
+                android:id="@+id/button_start_activity"
+                style="@style/button_start_activity"
+                android:contentDescription="@{runViewModel.toggleRunButtonText}"
+                android:onClick="@{() -> runPresenter.onToggleRunClick()}"
+                android:text="@{runViewModel.toggleRunButtonText}" />
 
-    </RelativeLayout>
+            <FrameLayout
+                android:id="@+id/frame_map"
+                style="@style/frame_map" />
+
+        </RelativeLayout>
+
+        <android.support.design.widget.NavigationView
+            android:layout_width="@dimen/width_run_details_map"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/navigation_drawer_header" />
+
+    </android.support.v4.widget.DrawerLayout>
+
 </layout>
