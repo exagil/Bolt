@@ -19,4 +19,5 @@
     <dimen name="side_photo_camera">128dp</dimen>
     <dimen name="polyline_width">2dp</dimen>
     <dimen name="width_run_details_map">240dp</dimen>
+    <dimen name="height_detail_map">240dp</dimen>
 </resources>

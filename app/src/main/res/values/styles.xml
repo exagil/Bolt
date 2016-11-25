@@ -125,6 +125,13 @@
         <item name="android:contentDescription">@string/save_run</item>
     </style>
 
+    <style name="fab_share" parent="@style/style_extensible_height_extensible_width">
+        <item name="android:layout_margin">@dimen/bolt_dimen_medium</item>
+        <item name="android:src">@drawable/ic_done_white_24dp</item>
+        <item name="android:layout_gravity">bottom|end</item>
+        <item name="android:contentDescription">@string/save_run</item>
+    </style>
+
     <style name="app_bar_run_complete">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
