@@ -6,6 +6,7 @@ import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 
 import com.chiragaggarwal.bolt.common.OnSuccessCallback;
 import com.chiragaggarwal.bolt.run.Run;
@@ -15,6 +16,7 @@ import java.util.List;
 
 public class RunsLoader implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final int ID = 0;
+    public static final String SORT_ORDER_DESCENDING = " DESC";
     private Context context;
     private LoaderManager loaderManager;
     private OnSuccessCallback<List<Run>> onSuccessCallback;
@@ -34,13 +36,18 @@ public class RunsLoader implements LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     public List<Run> loadBlocking() {
-        Cursor runsCursor = context.getContentResolver().query(BoltDatabaseSchema.RunSchema.ALL_RUNS_RESOURCE_URI, null, null, null, null);
+        Cursor runsCursor = context.getContentResolver().query(BoltDatabaseSchema.RunSchema.ALL_RUNS_RESOURCE_URI, null, null, null, buildDescendingSortOrder());
         return loadRuns(runsCursor);
     }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(context, BoltDatabaseSchema.RunSchema.ALL_RUNS_RESOURCE_URI, null, null, null, null);
+        return new CursorLoader(context, BoltDatabaseSchema.RunSchema.ALL_RUNS_RESOURCE_URI, null, null, null, buildDescendingSortOrder());
+    }
+
+    @NonNull
+    private String buildDescendingSortOrder() {
+        return BoltDatabaseSchema.RunSchema._ID + SORT_ORDER_DESCENDING;
     }
 
     @Override
