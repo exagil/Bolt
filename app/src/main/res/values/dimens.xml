@@ -1,6 +1,4 @@
 <resources>
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="bolt_dimen_large">24dp</dimen>
     <dimen name="bolt_dimen_xx_large">48dp</dimen>
     <dimen name="bolt_dimen_medium">16dp</dimen>
@@ -19,6 +17,5 @@
     <dimen name="width_run_details_map">240dp</dimen>
     <dimen name="height_detail_map">240dp</dimen>
     <dimen name="height_navigation_drawer_header">240dp</dimen>
-    <dimen name="width_navigation_drawer">280dp</dimen>
     <dimen name="side_user_photo">80dp</dimen>
 </resources>

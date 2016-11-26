@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/style_full_width_full_height">
 
     <android.support.design.widget.AppBarLayout
@@ -16,7 +17,8 @@
 
     <LinearLayout
         style="@style/layout_run_complete"
-        android:elevation="@dimen/elevation_layout_run_complete">
+        android:elevation="@dimen/elevation_layout_run_complete"
+        tools:targetApi="lollipop">
 
         <FrameLayout
             android:id="@+id/layout_photo_camera"
@@ -24,6 +26,7 @@
 
             <ImageView
                 style="@style/image_photo_camera"
+                android:contentDescription="@string/open_camera"
                 android:src="@drawable/photo_camera" />
 
         </FrameLayout>

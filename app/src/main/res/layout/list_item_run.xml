@@ -6,6 +6,7 @@
     <ImageView
         android:id="@+id/image_run"
         style="@style/run_image_in_list"
+        android:contentDescription="@string/image_runner"
         android:src="@drawable/runner_speeding" />
 
     <TextView

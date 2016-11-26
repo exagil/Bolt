@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Bolt</string>
     <string name="label_duration">DURATION</string>
-    <string name="calories">CALORIES (CAL)</string>
     <string name="label_current_pace">PACE (KMPH)</string>
     <string name="label_distance">DISTANCE (KM)</string>
     <string name="start_activity">START ACTIVITY</string>
@@ -22,8 +21,6 @@
     <string name="bolt_database_name" translatable="false">bolt_database.db</string>
     <string name="start_run">Start Run</string>
     <string name="label_date">Date</string>
-    <string name="dummy_text_elapsed_time">00:00:02</string>
-    <string name="dummy_text_date">Sun, 13/11/2016</string>
     <string name="please_wait">Please wait until next version!</string>
     <string name="list_run_history">Run history</string>
     <string name="current_pace">Current pace in kilometers per hour</string>
@@ -34,12 +31,8 @@
     <string name="open_camera">Open camera</string>
     <string name="rating_bar">Rating bar</string>
     <string name="save_run">Save run</string>
-    <string name="text_elapsed_time_two_seconds">00:00:02</string>
-    <string name="dummy_date">Sun, 13/11/2016</string>
     <string name="zero_kilometers">0.00 km</string>
     <string name="image_runner">Runner image</string>
-    <string name="km">km</string>
-    <string name="lorem_ipsum">Lorem ipsum dolor.</string>
     <string name="key_date">"Date: "</string>
     <string name="key_distance">"Distance: "</string>
     <string name="mime_type_plain" translatable="false">text/plain</string>
@@ -49,6 +42,13 @@
     <string name="nav_drawer_close">Navigation Drawer Close</string>
     <string name="history">History</string>
     <string name="dummy_name">John Doe</string>
-    <string name="google_maps_api_key">AIzaSyCV_ZEIjMsEv2MsXxdLXjlbvJS9Ulq7IX4</string>
     <string name="text_no_runs">No Runs</string>
+    <string name="profile">Profile</string>
+    <string name="time">Time</string>
+    <string name="lorem_ipsum">Lorem Ipsum</string>
+    <string name="text_elapsed_time_two_seconds">00:00:02</string>
+    <string name="dummy_date">Sat, 02 Nov 2016</string>
+    <string name="dummy_time">00:01:03</string>
+    <string name="dummy_text_elapsed_time">00:01:03</string>
+    <string name="dummy_text_date">Sat, 02 Nov, 2016</string>
 </resources>

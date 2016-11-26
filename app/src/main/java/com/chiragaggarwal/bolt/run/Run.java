@@ -74,7 +74,7 @@ public class Run implements Parcelable {
     }
 
     public String formattedDate() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.US);
         Date date = new Date(createdAt);
         return dateFormat.format(date);
     }

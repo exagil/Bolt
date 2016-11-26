@@ -46,7 +46,7 @@ public class RunCompleteActivity extends FadeEnabledActivity implements RunCompl
     @Override
     protected void initialiseTransitions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setEnterTransition(new Slide(Gravity.RIGHT).setDuration(300));
+            getWindow().setEnterTransition(new Slide(Gravity.END).setDuration(300));
         }
     }
 

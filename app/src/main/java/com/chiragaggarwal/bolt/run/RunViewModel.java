@@ -11,6 +11,7 @@ import com.chiragaggarwal.bolt.timer.ElapsedTime;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.Locale;
 
 public class RunViewModel extends BaseObservable {
     private static final String COLON = ":";
@@ -89,7 +90,7 @@ public class RunViewModel extends BaseObservable {
     }
 
     private String formatWithLeadingZero(int timeElement) {
-        return String.format(FORMAT_LEADING_ZERO, timeElement);
+        return String.format(Locale.getDefault(), FORMAT_LEADING_ZERO, timeElement);
     }
 
     public void updateVisitedUserLocations(UserLocations userLocations) {

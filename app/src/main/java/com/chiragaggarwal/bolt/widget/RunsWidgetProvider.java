@@ -17,11 +17,10 @@ import com.chiragaggarwal.bolt.run.persistance.BoltDatabaseSchema;
 
 public class RunsWidgetProvider extends AppWidgetProvider {
     private static final int CODE_START_RUN = 1;
-    private final HandlerThread runsWidgetHandler;
     private final Handler workerQueue;
 
     public RunsWidgetProvider() {
-        runsWidgetHandler = new HandlerThread("runs_widget_handler");
+        HandlerThread runsWidgetHandler = new HandlerThread("runs_widget_handler");
         runsWidgetHandler.start();
         workerQueue = new Handler(runsWidgetHandler.getLooper());
     }

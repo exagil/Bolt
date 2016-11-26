@@ -6,6 +6,7 @@
     <ImageView
         android:id="@+id/image_detail_timer"
         style="@style/image_section_detail"
+        android:contentDescription="@string/time"
         android:src="@drawable/stopwatch" />
 
     <LinearLayout
@@ -14,12 +15,12 @@
         <TextView
             android:id="@+id/text_label_time"
             style="@style/text_detail_label"
-            android:text="Time" />
+            android:text="@string/time" />
 
         <TextView
             android:id="@+id/text_detail_time"
             style="@style/text_detail"
-            tools:text="01:13:08" />
+            tools:text="@string/dummy_time" />
 
     </LinearLayout>
 

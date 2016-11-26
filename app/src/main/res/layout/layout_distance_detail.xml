@@ -6,6 +6,7 @@
     <ImageView
         android:id="@+id/image_detail_distance"
         style="@style/image_section_detail"
+        android:contentDescription="@string/distance"
         android:src="@drawable/road_with_two_placeholders" />
 
     <LinearLayout

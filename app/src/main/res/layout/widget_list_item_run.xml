@@ -7,6 +7,7 @@
     <ImageView
         android:id="@+id/image_run"
         style="@style/widget_run_image_in_list"
+        android:contentDescription="@string/image_runner"
         android:src="@drawable/runner_speeding" />
 
     <LinearLayout style="@style/layout_container_widget_list_item_history">

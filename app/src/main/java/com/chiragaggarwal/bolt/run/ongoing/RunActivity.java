@@ -76,8 +76,8 @@ public class RunActivity extends LocationAwareBaseActivity implements RunView {
     @Override
     protected void initialiseTransitions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setEnterTransition(new Slide(Gravity.RIGHT).setDuration(300));
-            getWindow().setExitTransition(new Slide(Gravity.LEFT).setDuration(300));
+            getWindow().setEnterTransition(new Slide(Gravity.END).setDuration(300));
+            getWindow().setExitTransition(new Slide(Gravity.START).setDuration(300));
         }
     }
 

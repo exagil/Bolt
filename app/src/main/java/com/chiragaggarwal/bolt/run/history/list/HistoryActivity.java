@@ -21,7 +21,6 @@ import butterknife.ButterKnife;
 
 public class HistoryActivity extends AppCompatActivity implements HistoryView {
     private RunListAdapter runListAdapter;
-    private RunLocalStorage runLocalStorage;
     private HistoryPresenter historyPresenter;
 
     @BindView(R.id.list_run_history)
@@ -35,7 +34,7 @@ public class HistoryActivity extends AppCompatActivity implements HistoryView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         ButterKnife.bind(this);
-        runLocalStorage = new RunLocalStorage(this);
+        RunLocalStorage runLocalStorage = new RunLocalStorage(this);
         historyPresenter = new HistoryPresenter(this, runLocalStorage);
         listRunHistory.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         runListAdapter = new RunListAdapter(this, run -> launchRunDetailsActivityWith(run));

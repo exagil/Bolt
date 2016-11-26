@@ -8,6 +8,7 @@
 
         <ImageView
             android:id="@+id/image_layout_empty_background"
+            android:contentDescription="@string/image_runner"
             style="@style/image_layout_empty_background" />
 
         <TextView style="@style/widget_start_run_button" />

@@ -5,6 +5,7 @@
 
     <ImageView
         android:id="@+id/image_nav_header_background"
+        android:contentDescription="@string/profile"
         style="@style/image_nav_header_background" />
 
     <com.chiragaggarwal.bolt.common.RoundedImageView
