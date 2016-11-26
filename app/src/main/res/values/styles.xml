@@ -354,5 +354,29 @@
         <item name="android:fitsSystemWindows">true</item>
     </style>
 
+    <style name="image_user">
+        <item name="android:layout_width">@dimen/side_user_photo</item>
+        <item name="android:layout_height">@dimen/side_user_photo</item>
+        <item name="android:layout_above">@id/text_user_name</item>
+        <item name="android:layout_marginLeft">@dimen/bolt_dimen_xx_large</item>
+        <item name="android:layout_marginRight">@dimen/bolt_dimen_xx_large</item>
+        <item name="android:layout_marginTop">@dimen/bolt_dimen_xx_large</item>
+    </style>
+
+    <style name="text_user_name" parent="@style/style_extensible_height_extensible_width">
+        <item name="android:layout_alignBottom">@id/image_nav_header_background</item>
+        <item name="android:layout_marginBottom">@dimen/bolt_dimen_large</item>
+        <item name="android:layout_marginLeft">@dimen/bolt_dimen_xx_large</item>
+        <item name="android:layout_marginTop">@dimen/bolt_dimen_large</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/bolt_dimen_large</item>
+    </style>
+
+    <style name="image_nav_header_background">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/height_navigation_drawer_header</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:src">@drawable/image_nav_header_background</item>
+    </style>
 
 </resources>

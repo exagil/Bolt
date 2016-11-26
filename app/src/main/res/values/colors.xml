@@ -10,4 +10,5 @@
     <color name="action_light_green">#58d25d</color>
     <color name="light_grey">#868686</color>
     <color name="polyline_color">#348CF9</color>
+    <color name="color_image_circle">#BAB399</color>
 </resources>

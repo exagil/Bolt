@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/style_extensible_height_extensible_width">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/height_navigation_drawer_header"
-        android:scaleType="centerCrop"
-        android:src="@drawable/image_nav_header_background" />
+        android:id="@+id/image_nav_header_background"
+        style="@style/image_nav_header_background" />
 
-</FrameLayout>
+    <com.chiragaggarwal.bolt.common.RoundedImageView
+        android:id="@+id/image_user"
+        style="@style/image_user"
+        android:src="@drawable/photo_user" />
+
+    <TextView
+        android:id="@+id/text_user_name"
+        style="@style/text_user_name"
+        android:text="@string/dummy_name" />
+
+</RelativeLayout>
