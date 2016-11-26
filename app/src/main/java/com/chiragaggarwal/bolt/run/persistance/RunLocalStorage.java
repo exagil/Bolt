@@ -21,10 +21,7 @@ public class RunLocalStorage {
     public boolean insertRun(Run run) {
         Uri resultUri = context.getContentResolver().insert(RunSchema.ALL_RUNS_RESOURCE_URI, run.persistable());
         String runRowNumber = resultUri.getLastPathSegment();
-        if (runRowNumber.equals(Dao.INVALID_PATH_ROW)) {
-            return false;
-        }
-        return true;
+        return !runRowNumber.equals(Dao.INVALID_PATH_ROW);
     }
 
     public void loadRuns(LoaderManager loaderManager, OnSuccessCallback<List<Run>> onSuccessCallback) {

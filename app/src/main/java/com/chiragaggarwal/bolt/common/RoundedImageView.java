@@ -66,7 +66,6 @@ public class RoundedImageView extends ImageView {
         Canvas canvas = new Canvas(output);
 
         @ColorInt int color = getContext().getResources().getColor(R.color.color_image_circle);
-        ;
         final Paint paint = new Paint();
         final Rect rect = new Rect(0, 0, radius, radius);
 
