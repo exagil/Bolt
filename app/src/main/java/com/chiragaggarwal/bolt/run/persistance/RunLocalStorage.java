@@ -8,6 +8,9 @@ import com.chiragaggarwal.bolt.common.OnSuccessCallback;
 import com.chiragaggarwal.bolt.run.Run;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
 
 import static com.chiragaggarwal.bolt.run.persistance.BoltDatabaseSchema.RunSchema;
 
@@ -28,7 +31,10 @@ public class RunLocalStorage {
     }
 
     public void loadRuns(LoaderManager loaderManager, OnSuccessCallback<List<Run>> onSuccessCallback) {
-        new RunsLoader(context, loaderManager, onSuccessCallback).load();
+        Observable.timer(300, TimeUnit.MILLISECONDS)
+                .doOnEach(longNotification -> new RunsLoader(context, loaderManager, onSuccessCallback).load())
+                .subscribe();
+
     }
 
     public List<Run> loadRunsBlocking() {

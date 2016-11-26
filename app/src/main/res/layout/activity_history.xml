@@ -7,11 +7,13 @@
         android:id="@+id/list_run_history"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         android:contentDescription="@string/list_run_history" />
 
     <TextView
         android:id="@+id/text_no_runs"
         style="@style/text_no_runs"
+        android:visibility="gone"
         android:text="@string/text_no_runs" />
 
 </FrameLayout>
