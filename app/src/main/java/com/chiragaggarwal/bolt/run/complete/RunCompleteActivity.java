@@ -21,7 +21,7 @@ import com.chiragaggarwal.bolt.common.FadeEnabledActivity;
 import com.chiragaggarwal.bolt.location.UserLocations;
 import com.chiragaggarwal.bolt.run.Run;
 import com.chiragaggarwal.bolt.run.RunViewModel;
-import com.chiragaggarwal.bolt.run.history.HistoryActivity;
+import com.chiragaggarwal.bolt.run.history.list.HistoryActivity;
 import com.chiragaggarwal.bolt.run.persistance.RunLocalStorage;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 

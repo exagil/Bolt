@@ -1,4 +1,4 @@
-package com.chiragaggarwal.bolt.run.history;
+package com.chiragaggarwal.bolt.run.history.list;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

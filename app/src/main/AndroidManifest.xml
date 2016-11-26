@@ -38,11 +38,11 @@
             android:theme="@style/NoActionBarTheme" />
 
         <activity
-            android:name=".run.history.HistoryActivity"
+            android:name=".run.history.list.HistoryActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".run.history.RunDetailsActivity"
+            android:name=".run.history.detail.RunDetailsActivity"
             android:theme="@style/NoActionBarTheme" />
 
         <service

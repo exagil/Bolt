@@ -29,7 +29,7 @@ import com.chiragaggarwal.bolt.location.UserLocation;
 import com.chiragaggarwal.bolt.location.UserLocations;
 import com.chiragaggarwal.bolt.run.RunViewModel;
 import com.chiragaggarwal.bolt.run.complete.RunCompleteActivity;
-import com.chiragaggarwal.bolt.run.history.HistoryActivity;
+import com.chiragaggarwal.bolt.run.history.list.HistoryActivity;
 import com.chiragaggarwal.bolt.run.map.RunMapFragment;
 import com.chiragaggarwal.bolt.timer.ElapsedTime;
 

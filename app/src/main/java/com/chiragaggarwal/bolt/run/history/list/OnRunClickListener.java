@@ -1,4 +1,4 @@
-package com.chiragaggarwal.bolt.run.history;
+package com.chiragaggarwal.bolt.run.history.list;
 
 import com.chiragaggarwal.bolt.run.Run;
 

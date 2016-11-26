@@ -1,4 +1,4 @@
-package com.chiragaggarwal.bolt.run.history;
+package com.chiragaggarwal.bolt.run.history.detail;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.chiragaggarwal.bolt.run.history;
+package com.chiragaggarwal.bolt.run.history.list;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.chiragaggarwal.bolt.R;
 import com.chiragaggarwal.bolt.run.Run;
+import com.chiragaggarwal.bolt.run.history.detail.RunDetailsActivity;
 import com.chiragaggarwal.bolt.run.persistance.RunLocalStorage;
 
 import butterknife.BindView;
