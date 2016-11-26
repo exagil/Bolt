@@ -1,6 +1,10 @@
 Bolt - Fitness Tracker
 ======================
 
+![Run Not Stated](http://res.cloudinary.com/chi6rag/image/upload/c_scale,w_240/v1480132872/nexus6p_run_not_started_p2y6dz.png)
+![Run In Progress](http://res.cloudinary.com/chi6rag/image/upload/c_scale,w_280/v1480133119/bolt/nexus6p_run_in_progress.png)
+![Run Complete](http://res.cloudinary.com/chi6rag/image/upload/c_scale,w_240/v1480132447/bolt/nexus6p_run_complete.png)
+
 Google Maps Setup
 ------------------
 - Obtain a Google Maps API Key from [here](https://developers.google.com/maps/documentation/android-api/signup#use-key).
